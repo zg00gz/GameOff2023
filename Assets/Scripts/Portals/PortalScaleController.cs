@@ -1,115 +1,102 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
 
-public class PortalScaleController : MonoBehaviour
+namespace ScaleTravel
 {
-    [SerializeField] bool m_IsActive;
-    [SerializeField] float m_Delay;
-    [SerializeField] float m_Duration;
-    [SerializeField] float m_Speed = 2f;
-    [SerializeField] Vector3 m_TargetScale;
 
-    public CinemachineBrain Cam;
-    [SerializeField] CinemachineVirtualCamera Cam1;
-    [SerializeField] CinemachineVirtualCamera Cam2;
-
-    GameObject m_Target;
-    bool m_IsScaleUp;
-    bool m_IsActionRunning;
-
-
-    void Start()
+    public class PortalScaleController : MonoBehaviour
     {
-        // TODO ajouter particule system avec les - et/ou sens des particules ?
-    }
+        [SerializeField] bool m_IsActive;
+        [SerializeField] float m_Delay;
+        [SerializeField] float m_Duration;
+        [SerializeField] float m_Speed = 2f;
+        [SerializeField] Vector3 m_TargetScale;
 
-    void Update()
-    {
-        if(m_IsActive)
+        GameObject m_Target;
+        bool m_IsScalingUp;
+        bool m_IsActionRunning;
+
+        VirtualCamController m_VirtualCamScript;
+
+        void Start()
         {
-            if(!m_IsActionRunning)
-            {
-                if (m_Delay > 0)
-                {
-                    // TODO si delay => coroutine + isactive false => à la fin de la coroutine m_Target = null
-                }
-                if (m_Duration > 0)
-                {
+            m_VirtualCamScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<VirtualCamController>();
 
-                }
+            // TODO ajouter particule system avec les - et/ou sens des particules ?
+        }
 
-                m_IsScaleUp = m_Target.transform.localScale.x < m_TargetScale.x;
-                m_IsActionRunning = true;
-            }
-            else
+        void Update()
+        {
+            if (m_IsActive)
             {
-                if (!m_IsScaleUp)
+                if (!m_IsActionRunning)
                 {
-                    if (m_Target.transform.localScale.x <= m_TargetScale.x)
+                    if (m_Delay > 0)
                     {
-                        Scaled();
-                        return;
+                        // TODO si delay => coroutine + isactive false => à la fin de la coroutine m_Target = null
                     }
-                    m_Target.transform.localScale -= m_TargetScale * Time.deltaTime * m_Speed;
+                    if (m_Duration > 0)
+                    {
+
+                    }
+
+                    m_IsScalingUp = m_Target.transform.localScale.x < m_TargetScale.x;
+                    m_IsActionRunning = true;
                 }
                 else
                 {
-                    if (m_Target.transform.localScale.x >= m_TargetScale.x)
+                    if (!m_IsScalingUp)
                     {
-                        Scaled();
-                        return;
+                        if (m_Target.transform.localScale.x <= m_TargetScale.x)
+                        {
+                            Scaled();
+                            return;
+                        }
+                        m_Target.transform.localScale -= m_TargetScale * Time.deltaTime * m_Speed;
                     }
-                    m_Target.transform.localScale += m_TargetScale * Time.deltaTime * m_Speed;
-                }   
+                    else
+                    {
+                        if (m_Target.transform.localScale.x >= m_TargetScale.x)
+                        {
+                            Scaled();
+                            return;
+                        }
+                        m_Target.transform.localScale += m_TargetScale * Time.deltaTime * m_Speed;
+                    }
+                }
             }
         }
-    }
 
-    private void Scaled()
-    {
-        Debug.Log("Scaled !");
-        m_Target.transform.localScale = m_TargetScale;
-        m_IsActive = false;
-        m_IsActionRunning = false;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
+        private void Scaled()
         {
-            Debug.Log("Player enter");
-            m_Target = other.gameObject;
-            m_IsActive = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            Debug.Log("Player exit");
+            Debug.Log("Scaled !");
+            m_Target.transform.localScale = m_TargetScale;
+            m_VirtualCamScript.CheckVirtualCamera(m_Target.transform.localScale.x);
             m_IsActive = false;
-            if(m_Delay == 0f && m_Duration == 0f) m_Target = null;
+            m_IsActionRunning = false;
+        }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                //Debug.Log("Player enter");
+                m_Target = other.gameObject;
+                m_IsActive = true;
+            }
+        }
 
-            // TODO script update sur Cinemachine ?
-            if (m_TargetScale.x < 0.5)
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Player"))
             {
-                //Cam1.GetComponent<CinemachineVirtualCamera>().enabled = false;
-                //Cam2.GetComponent<CinemachineVirtualCamera>().enabled = true;
-                Cam1.Priority = 9;
-                Cam2.Priority = 10;
+                //Debug.Log("Player exit");
+                m_IsActive = false;
+                m_VirtualCamScript.CheckVirtualCamera(other.transform.localScale.x);
+                if (m_Delay == 0f && m_Duration == 0f) m_Target = null;
             }
-            else
-            {
-                //Cam1.GetComponent<CinemachineVirtualCamera>().enabled = true;
-                //Cam2.GetComponent<CinemachineVirtualCamera>().enabled = false;
-                Cam1.Priority = 10;
-                Cam2.Priority = 9;
-            }
-            
         }
     }
+
 }
