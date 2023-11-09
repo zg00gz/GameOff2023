@@ -8,77 +8,163 @@ namespace ScaleTravel
 
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] float m_Speed = 2.0f;
-        [SerializeField] float m_JumpHeight = 1f;
-        private float m_GravityValue = -9.81f;
+        private static PlayerController s_Instance;
+        public static PlayerController Instance { get { return s_Instance; } }
 
-        private CharacterController m_Controller;
-        private Vector3 m_Velocity;
-        [SerializeField] bool m_IsGrounded = true;
-        private bool m_IsGravityChanged;
-        
 
-        private void Start()
+        [SerializeField] float m_Speed = 5.0f;
+        [SerializeField] float m_Acceleration = 15.0f;
+        [SerializeField] float m_JumpHeight = 4.0f;
+        [SerializeField] float m_GravityValue = -9.81f;
+
+        [SerializeField] bool m_IsGrounded;
+        [SerializeField] bool m_IsCollided;
+        [SerializeField] bool m_IsJumping;
+        [SerializeField] Vector3 m_Velocity;
+        [SerializeField] Vector3 m_PrevVelocity;
+
+        Rigidbody m_Rigidbody;
+        PlayerInput m_Input; 
+
+
+        void Awake()
         {
-            m_Controller = GetComponent<CharacterController>();
+            if (s_Instance != null)
+            {
+                Debug.Log("PlayerController - gameobject destroyed");
+                Destroy(gameObject);
+                return;
+            }
+            s_Instance = this;
+
+            m_Input = GetComponent<PlayerInput>();
+            m_Rigidbody = GetComponent<Rigidbody>();
+            m_IsGrounded = true;
         }
 
-        void Update()
+        void FixedUpdate()
         {
-            m_IsGrounded = m_Controller.isGrounded;
-            if (m_IsGrounded && m_Velocity.y < 0)
+            UpdateVelocity();
+            UpdateDirection();
+            UpdateJump();
+
+            m_PrevVelocity = m_Rigidbody.velocity;
+        }
+
+        private void UpdateVelocity()
+        {
+            m_Velocity = m_Rigidbody.velocity;
+            Vector3 move = m_Input.Move;
+
+            if (move.magnitude >= 0.1f)
             {
-                m_Velocity.y = 0f;
+                // Vitesse en fonction de la taille
+                float ratioScaleSpeed = transform.localScale.x < 1 ? 1 / transform.localScale.x : 1.0f;
+                float maxSpeed = m_Speed + ratioScaleSpeed - 1;
+
+                m_Velocity += move * m_Acceleration * Time.fixedDeltaTime;
+                m_Velocity.x = Mathf.Clamp(m_Velocity.x, -maxSpeed, maxSpeed);
+                m_Rigidbody.velocity = m_Velocity;
             }
-
-            // Vitesse en fonction de la taille
-            float ratioScaleSpeed = transform.localScale.x < 1 ? 1/transform.localScale.x : 1.0f;
-            Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-            m_Controller.Move(move * Time.deltaTime * m_Speed * ratioScaleSpeed);
-
-            if (move != Vector3.zero)
+            else
             {
-                //transform.up = m_GravityValue > 0 ? Vector3.down : Vector3.up;
-                //if (m_GravityValue < 0)
-                //    transform.forward = move;
-                //else
-                //    transform.right = move;
-
-                //transform.forward = move;
+                m_Velocity.x = 0f;
+                m_Rigidbody.velocity = m_Velocity;
             }
+        }
 
-            if (Input.GetButtonDown("Jump") && m_IsGrounded)
+        private void UpdateJump()
+        {
+            if (m_IsGrounded && m_Input.Jump)
             {
+                m_IsJumping = true;
+
                 // Hauteur en fonction de la taille
-                float ratioScaleHeight= transform.localScale.x < 0.5f ? 0.5f : 1.0f;
+                float ratioScaleHeight = transform.localScale.x < 0.5f ? 0.5f : 1.0f;
 
-                m_Velocity.y += Mathf.Sqrt(m_JumpHeight * -3.0f * m_GravityValue * ratioScaleHeight);
+                m_Rigidbody.AddForce(transform.up * (m_JumpHeight + ratioScaleHeight - 1), ForceMode.VelocityChange);
             }
 
-            m_Velocity.y += m_GravityValue * Time.deltaTime;
-            m_Controller.Move(m_Velocity * Time.deltaTime);
-            // if (m_GravityValue > 0) transform.localEulerAngles = new Vector3(180.0f, transform.localEulerAngles.y, transform.localEulerAngles.z);
-            if (m_IsGravityChanged)
+            if (m_IsCollided && m_IsJumping) // Mathf.Round(m_Velocity.y) == 0
             {
-                //transform.up = m_GravityValue > 0 ? Vector3.down : Vector3.up;
-                m_IsGravityChanged = false;
+                m_Velocity.x = 0f;
+                m_Rigidbody.velocity = m_Velocity;
             }
         }
 
-        public void SetGravityInverted(bool inverted)
+        private void UpdateDirection()
         {
-            m_GravityValue = inverted ? -m_GravityValue : m_GravityValue;
-            //gameObject.transform.up = inverted ? Vector3.down : Vector3.up;
-            //Vector3 currentLocalAngles = transform.localEulerAngles;
-            //transform.localEulerAngles = new Vector3(inverted ? 180f : 0f, transform.localEulerAngles.y, transform.localEulerAngles.z);
-            StartCoroutine(GravityInverted());
+            Vector3 move = m_Input.Move;
+
+            if (m_GravityValue > 0)
+            {
+                Vector3 direction = transform.localEulerAngles;
+
+                if (move != Vector3.zero)
+                {
+                    if (move.x < 0)
+                        direction.y = 270;
+                    else
+                        direction.y = 90;
+                }
+                transform.localEulerAngles = direction;
+            }
+            else if (move != Vector3.zero)
+            {
+                transform.forward = move;
+            }
         }
 
-        IEnumerator GravityInverted()
+
+        public void SetGravityInverted()
+        {
+            m_GravityValue = -m_GravityValue;
+            Physics.gravity = new Vector3(0, m_GravityValue, 0);
+
+            Vector3 rotation = transform.localEulerAngles;
+            rotation.z = m_GravityValue > 0 ? 180f : 0f;
+            StartCoroutine(SetLocalEulerAngles(rotation));
+        }
+        IEnumerator SetLocalEulerAngles(Vector3 rotation)
         {
             yield return new WaitForSeconds(0.5f);
-            m_IsGravityChanged = true;
-            transform.localEulerAngles = new Vector3(m_GravityValue > 0 ? 180.0f : 0.0f, transform.localEulerAngles.y, transform.localEulerAngles.z);
+            transform.localEulerAngles = rotation;
+            // TODO animation 180° pour remplacer coroutine
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Ground"))
+            {
+                m_IsCollided = true;
+            }
+        }
+
+        private void OnCollisionExit(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Ground"))
+            {
+                m_IsCollided = false;
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Ground"))
+            {
+                m_IsGrounded = true;
+                m_IsJumping = false;
+                m_Velocity.y = 0f;
+                m_Rigidbody.velocity = m_Velocity;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Ground"))
+            {
+                m_IsGrounded = false;
+            }
         }
 
     }

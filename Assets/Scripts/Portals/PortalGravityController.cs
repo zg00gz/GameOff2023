@@ -10,7 +10,6 @@ namespace ScaleTravel
         [SerializeField] bool m_IsActive;
         [SerializeField] float m_Delay;
         [SerializeField] float m_Duration;
-        [SerializeField] bool m_IsGravityInverted;
 
         GameObject m_Target;
         bool m_IsActionRunning;
@@ -32,10 +31,10 @@ namespace ScaleTravel
                     }
                     if (m_Duration > 0)
                     {
-                        // A la fin de la durée la gravité s'inverse => !m_IsGravityInverted
+                        // A la fin de la durée la gravité s'inverse de nouveau
                     }
 
-                    m_Target.GetComponent<PlayerController>().SetGravityInverted(m_IsGravityInverted);
+                    m_Target.GetComponent<PlayerController>().SetGravityInverted();
 
                     m_IsActionRunning = true;
                 }
@@ -52,6 +51,15 @@ namespace ScaleTravel
             {
                 m_Target = other.gameObject;
                 m_IsActive = true;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                m_IsActive = false;
+                m_IsActionRunning = false;
             }
         }
     }
