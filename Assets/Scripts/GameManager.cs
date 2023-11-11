@@ -21,6 +21,12 @@ namespace ScaleTravel
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+
+        // Avant d'afficher l'aide, on vérifie le contrôleur utilisé 
+        public void LastDeviceUsed()
+        {
+            // PlayerInput.Instance.
+        }
     }
 
 }

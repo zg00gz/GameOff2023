@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem;
+#endif
+
 
 namespace ScaleTravel
 {
@@ -14,6 +18,7 @@ namespace ScaleTravel
         public bool playerControllerInputBlocked;
 
         private Vector3 m_Move;
+        private Vector3 m_Action;
         private bool m_Jump;
         private bool m_Pause;
         private bool m_Restart;
@@ -25,6 +30,16 @@ namespace ScaleTravel
                 if (playerControllerInputBlocked)
                     return Vector3.zero;
                 return m_Move;
+            }
+        }
+
+        public Vector3 Action
+        {
+            get
+            {
+                if (playerControllerInputBlocked)
+                    return Vector3.zero;
+                return m_Action;
             }
         }
 
@@ -53,12 +68,44 @@ namespace ScaleTravel
             s_Instance = this;
         }
 
+#if ENABLE_INPUT_SYSTEM
+		public void OnMove(InputValue value)
+		{
+			MoveInput(value.Get<Vector2>());
+		}
+
+        public void OnAction(InputValue value)
+        {
+            ActionInput(value.Get<Vector2>());
+        }
+
+        public void OnJump(InputValue value)
+		{
+			JumpInput(value.isPressed);
+		}
+#else
         void Update()
         {
             m_Move.Set(Input.GetAxis("Horizontal"), 0, 0);
             m_Jump = Input.GetButton("Jump");
             m_Pause = Input.GetKeyDown(KeyCode.P); // Input.GetButtonDown("Pause");
             m_Restart = Input.GetKeyDown(KeyCode.R); // Input.GetButtonDown("Restart");
+        }
+#endif
+
+        public void MoveInput(Vector2 newMoveDirection)
+        {
+            m_Move = newMoveDirection;
+        }
+
+        public void ActionInput(Vector2 newActionDirection)
+        {
+            m_Action = newActionDirection;
+        }
+
+        public void JumpInput(bool newJumpState)
+        {
+            m_Jump = newJumpState;
         }
 
     }

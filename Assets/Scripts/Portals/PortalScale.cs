@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ScaleTravel
 {
 
-    public class PortalScaleController : MonoBehaviour
+    public class PortalScale : MonoBehaviour
     {
         [SerializeField] bool m_IsActive;
         [SerializeField] float m_Delay;
@@ -70,7 +70,7 @@ namespace ScaleTravel
 
         private void Scaled()
         {
-            Debug.Log("Scaled !");
+            //Debug.Log("Scaled !");
             m_Target.transform.localScale = m_TargetScale;
             m_VirtualCamScript.CheckVirtualCamera(m_Target.transform.localScale.x);
             m_IsActive = false;
@@ -79,9 +79,8 @@ namespace ScaleTravel
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player") && other.isTrigger)
             {
-                //Debug.Log("Player enter");
                 m_Target = other.gameObject;
                 m_IsActive = true;
             }
@@ -89,9 +88,8 @@ namespace ScaleTravel
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player") && other.isTrigger)
             {
-                //Debug.Log("Player exit");
                 m_IsActive = false;
                 m_VirtualCamScript.CheckVirtualCamera(other.transform.localScale.x);
                 if (m_Delay == 0f && m_Duration == 0f) m_Target = null;

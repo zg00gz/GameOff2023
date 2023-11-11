@@ -16,14 +16,16 @@ namespace ScaleTravel
         [SerializeField] float m_Acceleration = 15.0f;
         [SerializeField] float m_JumpHeight = 4.0f;
         [SerializeField] float m_GravityValue = -9.81f;
+        public Vector3 RespawnPoint;
+        [SerializeField] FadeTransition m_TransitionScript;
 
         [SerializeField] bool m_IsGrounded;
         [SerializeField] bool m_IsCollided;
-        [SerializeField] bool m_IsJumping;
+        public bool m_IsJumping; // Public TMP
         [SerializeField] Vector3 m_Velocity;
-        [SerializeField] Vector3 m_PrevVelocity;
+        //[SerializeField] Vector3 m_PrevVelocity;
 
-        Rigidbody m_Rigidbody;
+        public Rigidbody m_Rigidbody; // Public TMP
         PlayerInput m_Input; 
 
 
@@ -42,13 +44,24 @@ namespace ScaleTravel
             m_IsGrounded = true;
         }
 
+        void Update()
+        {
+            if (transform.position.y < -4 || transform.position.y > 10)
+            {
+                Respawn();
+            }
+        }
+
         void FixedUpdate()
         {
-            UpdateVelocity();
-            UpdateDirection();
-            UpdateJump();
+            if(!m_Input.playerControllerInputBlocked)
+            {
+                UpdateVelocity();
+                UpdateDirection();
+                UpdateJump();
+            }
 
-            m_PrevVelocity = m_Rigidbody.velocity;
+            //m_PrevVelocity = m_Rigidbody.velocity;
         }
 
         private void UpdateVelocity()
@@ -61,6 +74,7 @@ namespace ScaleTravel
                 // Vitesse en fonction de la taille
                 float ratioScaleSpeed = transform.localScale.x < 1 ? 1 / transform.localScale.x : 1.0f;
                 float maxSpeed = m_Speed + ratioScaleSpeed - 1;
+                if (m_IsJumping) maxSpeed /= 2;
 
                 m_Velocity += move * m_Acceleration * Time.fixedDeltaTime;
                 m_Velocity.x = Mathf.Clamp(m_Velocity.x, -maxSpeed, maxSpeed);
@@ -71,6 +85,11 @@ namespace ScaleTravel
                 m_Velocity.x = 0f;
                 m_Rigidbody.velocity = m_Velocity;
             }
+
+            if (m_IsCollided && m_IsJumping)
+            {
+                m_Rigidbody.AddForce(-move * 1.5f, ForceMode.VelocityChange);
+            }
         }
 
         private void UpdateJump()
@@ -80,16 +99,21 @@ namespace ScaleTravel
                 m_IsJumping = true;
 
                 // Hauteur en fonction de la taille
-                float ratioScaleHeight = transform.localScale.x < 0.5f ? 0.5f : 1.0f;
+                float ratioScaleHeight = transform.localScale.x < 1.0f ? transform.localScale.x : 1.0f;
 
-                m_Rigidbody.AddForce(transform.up * (m_JumpHeight + ratioScaleHeight - 1), ForceMode.VelocityChange);
+                m_Rigidbody.AddForce(transform.up * (m_JumpHeight + ratioScaleHeight), ForceMode.VelocityChange);
             }
-
-            if (m_IsCollided && m_IsJumping) // Mathf.Round(m_Velocity.y) == 0
+            else
             {
-                m_Velocity.x = 0f;
-                m_Rigidbody.velocity = m_Velocity;
+                m_Input.JumpInput(false);
             }
+
+            // Attention peut bloquer sur un angle => TODO bouton respawn
+            //if (m_IsCollided && m_IsJumping)
+            //{
+            //    m_Velocity.x = 0f;
+            //    m_Rigidbody.velocity = m_Velocity;
+            //}
         }
 
         private void UpdateDirection()
@@ -115,22 +139,36 @@ namespace ScaleTravel
             }
         }
 
+        private void Respawn()
+        {
+            m_TransitionScript.StartFadeOut();
+            if (m_GravityValue > 0) SetGravityInverted();
+            //SetKinematic(true);
+            SetPosition(RespawnPoint);
+            transform.forward = Vector3.right;
+            //SetKinematic(false);
+        }
 
         public void SetGravityInverted()
         {
             m_GravityValue = -m_GravityValue;
+            m_Rigidbody.velocity = Vector3.zero;
             Physics.gravity = new Vector3(0, m_GravityValue, 0);
+        }
 
-            Vector3 rotation = transform.localEulerAngles;
-            rotation.z = m_GravityValue > 0 ? 180f : 0f;
-            StartCoroutine(SetLocalEulerAngles(rotation));
-        }
-        IEnumerator SetLocalEulerAngles(Vector3 rotation)
+        public void SetPosition(Vector3 position)
         {
-            yield return new WaitForSeconds(0.5f);
-            transform.localEulerAngles = rotation;
-            // TODO animation 180° pour remplacer coroutine
+            SetKinematic(true);
+            transform.position = position;
+            SetKinematic(false);
         }
+
+        public void SetKinematic(bool value)
+        {
+            m_Input.playerControllerInputBlocked = value;
+            m_Rigidbody.isKinematic = value;
+        }
+
 
         private void OnCollisionEnter(Collision collision)
         {
@@ -154,8 +192,11 @@ namespace ScaleTravel
             {
                 m_IsGrounded = true;
                 m_IsJumping = false;
-                m_Velocity.y = 0f;
-                m_Rigidbody.velocity = m_Velocity;
+                if(!m_Input.playerControllerInputBlocked)
+                {
+                    m_Velocity.y = 0f;
+                    m_Rigidbody.velocity = m_Velocity;
+                }
             }
         }
 
