@@ -46,7 +46,7 @@ namespace ScaleTravel
 
         void Update()
         {
-            if (transform.position.y < -4 || transform.position.y > 10)
+            if (transform.position.y < -5 || transform.position.y > 15)
             {
                 Respawn();
             }

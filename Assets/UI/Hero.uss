@@ -1,0 +1,278 @@
+.hero-groupbox-home {
+    position: absolute;
+    right: 0;
+    width: 50%;
+    top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.hero-groupbox-level {
+    border-left-color: rgb(229, 228, 226);
+    border-right-color: rgb(229, 228, 226);
+    border-top-color: rgb(229, 228, 226);
+    border-bottom-color: rgb(229, 228, 226);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.hero-groupbox-pause {
+    background-color: rgba(12, 9, 10, 0.5);
+    width: 100%;
+    height: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.hero-label-time {
+    color: rgb(255, 255, 255);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 100px;
+    height: 50px;
+    -unity-text-align: middle-center;
+    -unity-font: url('project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
+    font-size: 30px;
+    -unity-font-style: bold;
+}
+
+.hero-input-field {
+    -unity-font: url('project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
+    -unity-font-style: bold;
+    -unity-text-align: upper-left;
+    white-space: normal;
+    font-size: 14px;
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+}
+
+.hero-button {
+    background-color: rgba(229, 228, 226, 0.59);
+    -unity-font: url('project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    -unity-font-style: bold;
+    border-left-color: rgb(104, 106, 108);
+    border-right-color: rgb(104, 106, 108);
+    border-top-color: rgb(104, 106, 108);
+    border-bottom-color: rgb(104, 106, 108);
+}
+
+.hero-button-small {
+    background-color: rgba(229, 228, 226, 0.39);
+    -unity-font: url('project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -unity-font-style: bold;
+    border-left-color: rgb(104, 106, 108);
+    border-right-color: rgb(104, 106, 108);
+    border-top-color: rgb(104, 106, 108);
+    border-bottom-color: rgb(104, 106, 108);
+    height: 20px;
+    margin-left: 7px;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 2px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 6px;
+    justify-content: center;
+    width: 30px;
+    color: rgb(61, 60, 58);
+    background-image: url('project://database/Assets/Textures/Coupe.png?fileID=21300000&guid=a61b02b85b2ab2f4ab6f8c2642289b22&type=3#Coupe');
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-slice-left: 0;
+    -unity-slice-top: 2;
+    -unity-slice-right: 0;
+    -unity-slice-bottom: 0;
+    -unity-background-image-tint-color: rgb(94, 94, 94);
+}
+
+.hero-button-profile {
+    background-color: rgba(229, 228, 226, 0);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 20px;
+    margin-left: 5px;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 2px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 6px;
+    width: 30px;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    background-image: url('project://database/Assets/Textures/Profile.png?fileID=21300000&guid=d4a9c5834b2aea74ab04b520f3b06b89&type=3#Profile');
+    -unity-slice-left: 0;
+    -unity-slice-top: 0;
+    -unity-slice-right: 0;
+    -unity-slice-bottom: 0;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.hero-button-level {
+    -unity-font: url('project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -unity-font-style: bold;
+    width: 85%;
+    height: 20px;
+    margin-left: 2px;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 2px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    justify-content: center;
+    font-size: 12px;
+    -unity-text-align: middle-center;
+    color: rgb(61, 60, 58);
+}
+
+.hero-button-level-default {
+    background-color: rgba(229, 228, 226, 0.5);
+    border-left-color: rgb(104, 106, 108);
+    border-right-color: rgb(104, 106, 108);
+    border-top-color: rgb(104, 106, 108);
+    border-bottom-color: rgb(104, 106, 108);
+}
+
+.hero-button-level-bronze {
+    background-color: rgba(205, 127, 50, 0.5);
+    border-left-color: rgb(205, 127, 50);
+    border-right-color: rgb(205, 127, 50);
+    border-top-color: rgb(205, 127, 50);
+    border-bottom-color: rgb(205, 127, 50);
+}
+
+.hero-button-level-silver {
+    background-color: rgba(188, 198, 204, 0.5);
+    border-left-color: rgb(188, 198, 204);
+    border-right-color: rgb(188, 198, 204);
+    border-top-color: rgb(188, 198, 204);
+    border-bottom-color: rgb(188, 198, 204);
+}
+
+.hero-button-level-gold {
+    background-color: rgba(212, 175, 55, 0.5);
+    border-left-color: rgb(212, 175, 55);
+    border-right-color: rgb(212, 175, 55);
+    border-top-color: rgb(212, 175, 55);
+    border-bottom-color: rgb(212, 175, 55);
+}
+
+.hero-label-profile-home {
+    -unity-font: url('project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
+    color: rgb(229, 228, 226);
+    -unity-font-style: bold;
+    font-size: 25px;
+    -unity-text-align: middle-left;
+}
+
+.hero-label-levelgroup {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 5px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: url('project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
+    color: rgb(61, 60, 58);
+    -unity-font-style: bold;
+    width: 80%;
+}
+
+.hero-cup-level {
+    background-image: url('project://database/Assets/Textures/Coupe.png?fileID=21300000&guid=a61b02b85b2ab2f4ab6f8c2642289b22&type=3#Coupe');
+    width: 18px;
+    height: 18px;
+    margin-left: 5px;
+    margin-top: 1px;
+    -unity-background-image-tint-color: rgb(94, 94, 94);
+}
+
+.hero-cup-level-default {
+    -unity-background-image-tint-color: rgb(229, 228, 226);
+}
+
+.hero-cup-level-bronze {
+    -unity-background-image-tint-color: rgb(205, 127, 50);
+}
+
+.hero-cup-level-silver {
+    -unity-background-image-tint-color: rgb(188, 198, 204);
+}
+
+.hero-cup-level-gold {
+    -unity-background-image-tint-color: rgb(212, 175, 55);
+}

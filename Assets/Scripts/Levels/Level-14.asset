@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf497794925e0c4f9d5a9821e37846a, type: 3}
+  m_Name: Level-14
+  m_EditorClassIdentifier: 
+  _LevelID: 14
+  _RunCupTime:
+  - 30
+  - 60
+  - 120
+  _English:
+    GroupLevelName: World of void
+    LevelName: The Milky Way
+    LevelScale: 100 000 Light Years
+    GoWord: Let's go !
+    EndWord: Well done !
+  _French:
+    GroupLevelName: Monde du vide
+    LevelName: "La Voie Lact\xE9e"
+    LevelScale: "100 000 Ann\xE9es-lumi\xE8re"
+    GoWord: Let's go !
+    EndWord: "Bien jou\xE9 !"
