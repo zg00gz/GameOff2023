@@ -123,7 +123,7 @@ namespace ScaleTravel
             // Levels
             _Label_LevelGroups = new List<Label>();
             _Groupbox_levelGroups = new List<GroupBox>();
-            for( var i=1; i < 4; i++)
+            for( var i=1; i < 5; i++)
             {
                 _Label_LevelGroups.Add(uiDocument.rootVisualElement.Q<Label>("Group-"+ i +"-Name"));
                 _Groupbox_levelGroups.Add(uiDocument.rootVisualElement.Q<GroupBox>("Group-"+ i ));
@@ -135,10 +135,10 @@ namespace ScaleTravel
             foreach (LevelData level in m_Levels)
             {
                 _Btn_Levels.Add(_GroupLevels.Q<Button>("Level-"+level.LevelID));
-                //_Btn_Levels[_Btn_Levels.Count - 1].RegisterCallback<ClickEvent>(delegate { LoadScene(level.LevelID); });
+                _Btn_Levels[_Btn_Levels.Count - 1].RegisterCallback<ClickEvent>(delegate { LoadScene(level.LevelID); });
                 _CupLevels.Add(_GroupLevels.Q<VisualElement>("Cup-" + level.LevelID));
                 _Btn_Scores.Add(_GroupLevels.Q<Button>("Scores-" + level.LevelID));
-                //_Btn_Scores[_Btn_Levels.Count - 1].RegisterCallback<ClickEvent>(delegate { DisplayScores(level.LevelID); });
+                _Btn_Scores[_Btn_Levels.Count - 1].RegisterCallback<ClickEvent>(delegate { DisplayScores(level.LevelID); });
             }
 
             // Parameters/Options
@@ -171,22 +171,16 @@ namespace ScaleTravel
             _GroupParams.Q<Slider>("slider_music").label = menuText.MusicVolume;
             _GroupParams.Q<Slider>("slider_sounds").label = menuText.SoundVolume;
 
-            Debug.Log(m_Levels.Length);
             // Levels
             for (var i = 0; i < _Btn_Levels.Count; i++)
             {
                 m_Levels[i].SetLanguage(lang);
                 _Btn_Levels[i].text = m_Levels[i].LevelName;
-                Debug.Log(m_Levels[i].LevelName);
             }
             _Label_LevelGroups[0].text = m_Levels[0].GroupLevelName;
             _Label_LevelGroups[1].text = m_Levels[3].GroupLevelName;
-            _Label_LevelGroups[2].text = m_Levels[10].GroupLevelName;
-        }
-
-        private void OnDisable()
-        {
-            //_Btn_OK.UnregisterCallback<ClickEvent>(CreateProfile);
+            _Label_LevelGroups[2].text = m_Levels[9].GroupLevelName;
+            _Label_LevelGroups[3].text = m_Levels[14].GroupLevelName;
         }
 
         private void DisplayCreateProfile()

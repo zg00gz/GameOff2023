@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3965778397759906552
+--- !u!1 &2558896309307878388
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2316317475045243816}
-  - component: {fileID: 7124154740617840700}
-  - component: {fileID: 3922212360327661186}
+  - component: {fileID: 4362024039738847010}
+  - component: {fileID: 8490576526322533912}
+  - component: {fileID: 7595944653917861210}
   m_Layer: 0
-  m_Name: PortalGravityArrival
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2316317475045243816
+--- !u!4 &4362024039738847010
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3965778397759906552}
+  m_GameObject: {fileID: 2558896309307878388}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -33,36 +33,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7124154740617840700
+--- !u!114 &8490576526322533912
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3965778397759906552}
-  m_Enabled: 1
+  m_GameObject: {fileID: 2558896309307878388}
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 634e8636b94176b49950034ebf608db8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5968413c8ab233b46bd671486ca28b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &3922212360327661186
-BoxCollider:
+  targetFPS: 30
+--- !u!114 &7595944653917861210
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3965778397759906552}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_GameObject: {fileID: 2558896309307878388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 088e693ddcc5d9744afc55eafd905abe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LevelValues: {fileID: 11400000, guid: 4d6380179ddff4e47a0457df7ace79b6, type: 2}
+  m_Text_GroupLevelTitle: {fileID: 0}
+  m_Text_LevelTitle: {fileID: 0}
+  m_UI_Level: {fileID: 0}
+  IsLevelDone: 0

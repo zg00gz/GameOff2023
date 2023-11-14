@@ -19,13 +19,13 @@ MonoBehaviour:
   - 50
   _English:
     GroupLevelName: Particles World
-    LevelName: Tutorial
-    LevelScale: 
-    GoWord: Go !!!!
-    EndWord: Well done !
+    LevelName: At the very beginning...
+    LevelScale: 10<sup>-35</sup> m
+    GoWord: It all starts here...
+    EndWord: You are ready now !
   _French:
     GroupLevelName: Monde des particules
-    LevelName: Tutoriel
-    LevelScale: 
-    GoWord: C'est parti !!!!
-    EndWord: "Bien jou\xE9 !"
+    LevelName: "Au tout d\xE9but..."
+    LevelScale: 10<sup>-35</sup> m
+    GoWord: Tout commence ici...
+    EndWord: "Tu es pr\xEAt maintenant !"

@@ -12,6 +12,8 @@ namespace ScaleTravel
         [SerializeField] float m_Duration;
         [SerializeField] float m_Speed = 2f;
         [SerializeField] Vector3 m_TargetScale;
+        [SerializeField] GameObject m_TypeScaleUp;
+        [SerializeField] GameObject m_TypeScaleDown;
 
         GameObject m_Target;
         bool m_IsScalingUp;
@@ -22,8 +24,7 @@ namespace ScaleTravel
         void Start()
         {
             m_VirtualCamScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<VirtualCamController>();
-
-            // TODO ajouter particule system avec les - et/ou sens des particules ?
+            DisplayType(PlayerController.Instance.transform.localScale.x);
         }
 
         void Update()
@@ -83,6 +84,7 @@ namespace ScaleTravel
             {
                 m_Target = other.gameObject;
                 m_IsActive = true;
+                HideType();
             }
         }
 
@@ -92,9 +94,51 @@ namespace ScaleTravel
             {
                 m_IsActive = false;
                 m_VirtualCamScript.CheckVirtualCamera(other.transform.localScale.x);
-                if (m_Delay == 0f && m_Duration == 0f) m_Target = null;
+
+                if (m_Delay == 0f && m_Duration == 0f)
+                {
+                    UpdateAllDisplayType(m_Target.transform.localScale.x);
+                    m_Target = null;
+                }
             }
         }
+
+        public void DisplayType(float targetScaleX)
+        {
+            if (m_TargetScale.x > targetScaleX)
+            {
+                m_TypeScaleUp.SetActive(true);
+                m_TypeScaleDown.SetActive(false);
+            }
+            else if (m_TargetScale.x < targetScaleX)
+            {
+                m_TypeScaleDown.SetActive(true);
+                m_TypeScaleUp.SetActive(false);
+            }
+            else
+            {
+                // Same scale than the player
+                HideType();
+            }
+        }
+
+        private void UpdateAllDisplayType(float targetScaleX)
+        {
+            var portals = GameObject.FindGameObjectsWithTag("PortalScale");
+
+            foreach (var portal in portals)
+            {
+                portal.GetComponent<PortalScale>().DisplayType(targetScaleX);
+            }
+        }
+
+        private void HideType()
+        {
+            m_TypeScaleDown.SetActive(false);
+            m_TypeScaleUp.SetActive(false);
+        }
+
+
     }
 
 }

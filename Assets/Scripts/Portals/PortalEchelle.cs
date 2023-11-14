@@ -33,7 +33,7 @@ namespace ScaleTravel
         // TODO si gestion Move dans Player controller => enlever Update et fonctionner avec des Coroutines => wait  position == ... 
         void Update()
         {
-            if (m_IsActive && m_PlayerController.m_IsJumping == false)
+            if (m_IsActive && m_PlayerController.IsJumping == false)
             {
                 if (m_IsActionStarted)
                 {
@@ -47,7 +47,7 @@ namespace ScaleTravel
                         if (m_PlayerController.transform.position == m_Move1.position)
                         {
                             m_NextStep = 2;
-                            // TODO Position de dos en descente
+                            // TODO Position de dos en descente => animation ?
                             //if (m_IsTopCollider) m_PlayerController.transform.LookAt(m_Move1);
                             if (m_IsTopCollider) m_PlayerController.transform.LookAt(m_Move1);
                         }
@@ -73,7 +73,7 @@ namespace ScaleTravel
                     return;
                 }
                 
-                Vector3 action = m_IsEchelleFront ? PlayerInput.Instance.Action : PlayerInput.Instance.Move;
+                Vector3 action = m_IsEchelleFront ? PlayerInput.Instance.MoveVertical : PlayerInput.Instance.Move;
 
                 if (!m_IsEchelleFront)
                 {
@@ -87,7 +87,7 @@ namespace ScaleTravel
                 }
                 else
                 {
-                    // Pour désactiver le déclenchment si le joueur appuit sur la direction inverse
+                    // Pour désactiver le déclenchement si le joueur appuit sur la direction inverse
                     if (!m_IsTopCollider && action.y < 0)
                         return;
                     if (m_IsTopCollider && action.y > 0)

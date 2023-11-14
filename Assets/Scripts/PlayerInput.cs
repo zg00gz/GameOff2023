@@ -18,7 +18,8 @@ namespace ScaleTravel
         public bool playerControllerInputBlocked;
 
         private Vector3 m_Move;
-        private Vector3 m_Action;
+        private Vector3 m_MoveVertical;
+        private bool m_Action;
         private bool m_Jump;
         private bool m_Pause;
         private bool m_Restart;
@@ -33,14 +34,19 @@ namespace ScaleTravel
             }
         }
 
-        public Vector3 Action
+        public Vector3 MoveVertical
         {
             get
             {
                 if (playerControllerInputBlocked)
                     return Vector3.zero;
-                return m_Action;
+                return m_MoveVertical;
             }
+        }
+
+        public bool Action
+        {
+            get { return m_Action && !playerControllerInputBlocked; }
         }
 
         public bool Jump
@@ -74,9 +80,14 @@ namespace ScaleTravel
 			MoveInput(value.Get<Vector2>());
 		}
 
+        public void OnMoveVertical(InputValue value)
+        {
+            MoveVerticalInput(value.Get<Vector2>());
+        }
+
         public void OnAction(InputValue value)
         {
-            ActionInput(value.Get<Vector2>());
+            ActionInput(value.isPressed);
         }
 
         public void OnJump(InputValue value)
@@ -98,9 +109,14 @@ namespace ScaleTravel
             m_Move = newMoveDirection;
         }
 
-        public void ActionInput(Vector2 newActionDirection)
+        public void MoveVerticalInput(Vector2 newMoveDirection)
         {
-            m_Action = newActionDirection;
+            m_MoveVertical = newMoveDirection;
+        }
+
+        public void ActionInput(bool newAction)
+        {
+            m_Action = newAction;
         }
 
         public void JumpInput(bool newJumpState)

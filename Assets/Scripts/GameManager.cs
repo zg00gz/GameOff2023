@@ -24,6 +24,18 @@ namespace ScaleTravel
 
         public LevelData LevelValues => m_LevelValues;
 
+        void Start()
+        {
+
+            StartCoroutine(PlayerControlDelay());
+        }
+
+        IEnumerator PlayerControlDelay()
+        {
+            yield return new WaitForSeconds(3.0f);
+            PlayerInput.Instance.playerControllerInputBlocked = false;
+        }
+
         void Update()
         {
             if (PlayerInput.Instance.Restart)

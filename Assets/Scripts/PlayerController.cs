@@ -21,13 +21,12 @@ namespace ScaleTravel
 
         [SerializeField] bool m_IsGrounded;
         [SerializeField] bool m_IsCollided;
-        public bool m_IsJumping; // Public TMP
+        public bool IsJumping;
         [SerializeField] Vector3 m_Velocity;
         //[SerializeField] Vector3 m_PrevVelocity;
 
-        public Rigidbody m_Rigidbody; // Public TMP
-        PlayerInput m_Input; 
-
+        Rigidbody m_Rigidbody;
+        PlayerInput m_Input;
 
         void Awake()
         {
@@ -42,6 +41,7 @@ namespace ScaleTravel
             m_Input = GetComponent<PlayerInput>();
             m_Rigidbody = GetComponent<Rigidbody>();
             m_IsGrounded = true;
+            m_Input.playerControllerInputBlocked = true;
         }
 
         void Update()
@@ -72,9 +72,12 @@ namespace ScaleTravel
             if (move.magnitude >= 0.1f)
             {
                 // Vitesse en fonction de la taille
-                float ratioScaleSpeed = transform.localScale.x < 1 ? 1 / transform.localScale.x : 1.0f;
+                //float ratioScaleSpeed = transform.localScale.x < 1 ? 1 / transform.localScale.x : 1.0f;
+                float ratioScaleSpeed = transform.localScale.x < 1 ? 1 / transform.localScale.x : transform.localScale.x;
+                ratioScaleSpeed = Mathf.Clamp(ratioScaleSpeed, 1.0f, 1.5f);
+
                 float maxSpeed = m_Speed + ratioScaleSpeed - 1;
-                if (m_IsJumping) maxSpeed /= 2;
+                //if (IsJumping) maxSpeed /= 2;
 
                 m_Velocity += move * m_Acceleration * Time.fixedDeltaTime;
                 m_Velocity.x = Mathf.Clamp(m_Velocity.x, -maxSpeed, maxSpeed);
@@ -86,20 +89,23 @@ namespace ScaleTravel
                 m_Rigidbody.velocity = m_Velocity;
             }
 
-            if (m_IsCollided && m_IsJumping)
+            if (m_IsCollided && IsJumping) // !m_IsGrounded && 
             {
-                m_Rigidbody.AddForce(-move * 1.5f, ForceMode.VelocityChange);
+                //m_Rigidbody.AddForce(-move * 1.5f, ForceMode.VelocityChange);
+                m_Velocity.x = 0f;
+                m_Rigidbody.velocity = m_Velocity;
             }
         }
 
         private void UpdateJump()
         {
-            if (m_IsGrounded && m_Input.Jump)
+            if (!IsJumping && m_IsGrounded && m_Input.Jump)
             {
-                m_IsJumping = true;
+                IsJumping = true;
 
                 // Hauteur en fonction de la taille
-                float ratioScaleHeight = transform.localScale.x < 1.0f ? transform.localScale.x : 1.0f;
+                //float ratioScaleHeight = transform.localScale.x < 1.0f ? transform.localScale.x : 1.0f;
+                float ratioScaleHeight = Mathf.Clamp(transform.localScale.x, 0.5f, 1.5f);
 
                 m_Rigidbody.AddForce(transform.up * (m_JumpHeight + ratioScaleHeight), ForceMode.VelocityChange);
             }
@@ -107,13 +113,6 @@ namespace ScaleTravel
             {
                 m_Input.JumpInput(false);
             }
-
-            // Attention peut bloquer sur un angle => TODO bouton respawn
-            //if (m_IsCollided && m_IsJumping)
-            //{
-            //    m_Velocity.x = 0f;
-            //    m_Rigidbody.velocity = m_Velocity;
-            //}
         }
 
         private void UpdateDirection()
@@ -143,10 +142,8 @@ namespace ScaleTravel
         {
             m_TransitionScript.StartFadeOut();
             if (m_GravityValue > 0) SetGravityInverted();
-            //SetKinematic(true);
             SetPosition(RespawnPoint);
             transform.forward = Vector3.right;
-            //SetKinematic(false);
         }
 
         public void SetGravityInverted()
@@ -170,20 +167,14 @@ namespace ScaleTravel
         }
 
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnCollisionStay(Collision collision)
         {
-            if (collision.gameObject.CompareTag("Ground"))
-            {
-                m_IsCollided = true;
-            }
+            m_IsCollided = true;
         }
 
         private void OnCollisionExit(Collision collision)
         {
-            if (collision.gameObject.CompareTag("Ground"))
-            {
-                m_IsCollided = false;
-            }
+            m_IsCollided = false;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -191,12 +182,20 @@ namespace ScaleTravel
             if (other.CompareTag("Ground"))
             {
                 m_IsGrounded = true;
-                m_IsJumping = false;
+                IsJumping = false;
                 if(!m_Input.playerControllerInputBlocked)
                 {
                     m_Velocity.y = 0f;
                     m_Rigidbody.velocity = m_Velocity;
                 }
+            }
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.CompareTag("Ground"))
+            {
+                m_IsGrounded = true;
             }
         }
 

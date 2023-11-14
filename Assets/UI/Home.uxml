@@ -1,8 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Hero.uss?fileID=7433441132597879392&amp;guid=3a4d12a4584280e469eaf27d2aff5fee&amp;type=3#Hero" />
-    <ui:GroupBox name="GroupTitle" style="position: absolute; left: 0; top: 0; margin-top: 0; padding-left: 10px; padding-top: 0; display: none;">
-        <ui:Label text="Scale Travel" display-tooltip-when-elided="true" style="-unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&apos;); -unity-font-style: bold; font-size: 72px; color: rgb(233, 233, 233); margin-bottom: 0; padding-bottom: 0;" />
-        <ui:Label text="Infinite scale up..." display-tooltip-when-elided="true" style="-unity-font-style: bold-and-italic; font-size: 20px; color: rgb(221, 221, 221); margin-top: 0; padding-top: 0; -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&apos;);" />
+    <ui:GroupBox name="GroupTitle" style="position: absolute; left: 0; top: 0; margin-top: 0; padding-left: 10px; padding-top: 0; display: flex;">
+        <ui:Label text="Scale Travel" display-tooltip-when-elided="true" style="-unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&apos;); -unity-font-style: bold; font-size: 60px; color: rgb(233, 233, 233); margin-bottom: 0; padding-bottom: 0;" />
+        <ui:Label text="Infinite scale up" display-tooltip-when-elided="true" style="-unity-font-style: normal; font-size: 25px; color: rgb(221, 221, 221); margin-top: 0; padding-top: 0; -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&apos;);" />
     </ui:GroupBox>
     <ui:GroupBox name="GroupFirstProfile" style="width: auto; height: 100%; align-items: center; justify-content: center; display: none;">
         <ui:GroupBox style="width: 250px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
@@ -33,6 +33,10 @@
                 <ui:Button display-tooltip-when-elided="true" name="btn_displayProfiles" class="hero-button-profile" style="-unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0; -unity-background-scale-mode: scale-to-fit; background-image: url(&apos;project://database/Assets/Textures/Profile.png?fileID=2800000&amp;guid=d4a9c5834b2aea74ab04b520f3b06b89&amp;type=3#Profile&apos;);" />
             </ui:GroupBox>
             <ui:Label text="Profile name" display-tooltip-when-elided="true" name="label_profileName" class="hero-label-profile-home" />
+        </ui:GroupBox>
+        <ui:GroupBox style="flex-direction: row; justify-content: flex-end;">
+            <ui:Label text="TotalPlayTime" display-tooltip-when-elided="true" name="label_playTime" class="hero-label-profile-home" style="font-size: 12px; -unity-font-style: normal;" />
+            <ui:Label text="0 h  0 m " display-tooltip-when-elided="true" name="TotalPlayTime" class="hero-label-profile-home" style="font-size: 12px; -unity-font-style: bold;" />
         </ui:GroupBox>
         <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="ScrollView">
             <ui:GroupBox name="Group-1" class="hero-groupbox-level">
@@ -121,10 +125,6 @@
                     <ui:Button text="Level-15" display-tooltip-when-elided="true" name="Level-15" class="hero-button-level" style="height: 60px; width: 70%;" />
                     <ui:Button display-tooltip-when-elided="true" name="Scores-15" class="hero-button-small" style="width: 60px; height: 60px; background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
                 </ui:GroupBox>
-            </ui:GroupBox>
-            <ui:GroupBox style="flex-direction: row; justify-content: flex-end;">
-                <ui:Label text="TotalPlayTime" display-tooltip-when-elided="true" name="label_playTime" class="hero-label-profile-home" style="font-size: 12px; -unity-font-style: normal;" />
-                <ui:Label text="0 h  0 m " display-tooltip-when-elided="true" name="TotalPlayTime" class="hero-label-profile-home" style="font-size: 12px; -unity-font-style: bold;" />
             </ui:GroupBox>
         </ui:ScrollView>
     </ui:GroupBox>
