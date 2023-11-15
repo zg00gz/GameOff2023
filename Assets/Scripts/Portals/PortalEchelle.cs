@@ -20,13 +20,11 @@ namespace ScaleTravel
 
         int m_NextStep = 1;
 
-
-        // TMP :
         PlayerController m_PlayerController;
         float m_Speed = 4.0f;
         void Awake()
         {
-            // TODO position z du Collider si scale -- ? à tester 
+            // TODO repositionner z du Collider si scale -- ? à tester 
         }
 
 
@@ -41,7 +39,7 @@ namespace ScaleTravel
 
                     if (m_NextStep == 1)
                     {
-                        Debug.Log("Step 1");
+                        //Debug.Log("Step 1");
                         // TODO déplacer MoveTowards+Speed et setKinematic dans une fonction dans PlayerController
                         m_PlayerController.transform.position = Vector3.MoveTowards(m_PlayerController.transform.position, m_Move1.position, step);
                         if (m_PlayerController.transform.position == m_Move1.position)
@@ -49,18 +47,22 @@ namespace ScaleTravel
                             m_NextStep = 2;
                             // TODO Position de dos en descente => animation ?
                             //if (m_IsTopCollider) m_PlayerController.transform.LookAt(m_Move1);
-                            if (m_IsTopCollider) m_PlayerController.transform.LookAt(m_Move1);
+                            if (m_IsTopCollider) m_PlayerController.transform.forward = m_IsEchelleFront ? new Vector3(0, 0, m_Move1.position.z) : new Vector3(m_Move1.position.x, 0, 0);
                         }
                     }
                     else if (m_NextStep == 2)
                     {
-                        Debug.Log("Step 2");
+                        //Debug.Log("Step 2");
                         m_PlayerController.transform.position = Vector3.MoveTowards(m_PlayerController.transform.position, m_Move2.position, step);
-                        if (m_PlayerController.transform.position == m_Move2.position) m_NextStep = 3;
+                        if (m_PlayerController.transform.position == m_Move2.position)
+                        {
+                            m_NextStep = 3;
+                            if (m_IsTopCollider) m_PlayerController.transform.forward = m_IsEchelleFront ? new Vector3(0, 0, -m_Move1.position.z) : new Vector3(-m_Move1.position.x, 0, 0);
+                        }
                     }
                     else if (m_NextStep == 3)
                     {
-                        Debug.Log("Step 3");
+                        //Debug.Log("Step 3");
                         m_PlayerController.transform.position = Vector3.MoveTowards(m_PlayerController.transform.position, m_Move3.position, step);
                         if (m_PlayerController.transform.position == m_Move3.position)
                         {

@@ -80,6 +80,7 @@ namespace ScaleTravel
                 //if (IsJumping) maxSpeed /= 2;
 
                 m_Velocity += move * m_Acceleration * Time.fixedDeltaTime;
+                //m_Rigidbody.AddForce(move * m_Acceleration, ForceMode.Acceleration);
                 m_Velocity.x = Mathf.Clamp(m_Velocity.x, -maxSpeed, maxSpeed);
                 m_Rigidbody.velocity = m_Velocity;
             }
@@ -164,6 +165,8 @@ namespace ScaleTravel
         {
             m_Input.playerControllerInputBlocked = value;
             m_Rigidbody.isKinematic = value;
+            m_Input.JumpInput(false);
+            m_Input.ActionInput(false);
         }
 
 

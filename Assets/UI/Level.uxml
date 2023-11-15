@@ -1,11 +1,22 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Hero.uss?fileID=7433441132597879392&amp;guid=3a4d12a4584280e469eaf27d2aff5fee&amp;type=3#Hero" />
     <ui:Label text="00:00" display-tooltip-when-elided="true" name="Time" class="hero-label-time" style="display: none; font-size: 60px; width: 220px; height: 80px;" />
-    <ui:GroupBox name="GroupTitles" style="position: absolute; top: 0; right: 0; display: none;">
-        <ui:GroupBox style="flex-direction: column; margin-left: 5px; margin-right: 5px; margin-top: 0; margin-bottom: 5px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; display: flex;">
-            <ui:Label text="Group level name" display-tooltip-when-elided="true" name="labelLevel_groupLevelName" style="-unity-font-style: bold; font-size: 20px; color: rgb(255, 255, 255); -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&apos;); margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
-            <ui:Label text="Level name" display-tooltip-when-elided="true" name="labelLevel_levelName" style="-unity-font-style: bold-and-italic; font-size: 20px; color: rgb(229, 228, 226); -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&apos;); margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
-            <ui:Label text="P: Pause" display-tooltip-when-elided="true" enable-rich-text="true" name="Pause" style="color: rgb(224, 224, 224); -unity-font-style: bold; -unity-text-align: upper-right;" />
+    <ui:GroupBox name="GroupTitles" style="position: absolute; top: 0; right: 0; display: flex;">
+        <ui:GroupBox style="flex-direction: row; margin-left: 5px; margin-right: 5px; margin-top: 0; margin-bottom: 5px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; display: flex;">
+            <ui:GroupBox>
+                <ui:Label text="Group level name" display-tooltip-when-elided="true" name="labelLevel_groupLevelName" style="-unity-font-style: bold; font-size: 18px; color: rgb(255, 255, 255); -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&apos;); margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; display: flex;" />
+                <ui:Label text="Level name" display-tooltip-when-elided="true" name="labelLevel_levelName" style="-unity-font-style: normal; font-size: 18px; color: rgb(229, 228, 226); -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&apos;); margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; display: flex;" />
+            </ui:GroupBox>
+            <ui:GroupBox style="width: 80px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
+                <ui:GroupBox style="width: 30px; flex-direction: row; margin-bottom: 0; padding-bottom: 0;">
+                    <ui:Button text="M" parse-escape-sequences="true" display-tooltip-when-elided="true" name="GoHome" class="hero-button-level" />
+                    <ui:Label text="Menu" display-tooltip-when-elided="true" name="labelMenu" style="-unity-font-style: bold; font-size: 12px; color: rgb(229, 228, 226); -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&apos;); margin-left: 5px; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; display: flex; justify-content: flex-start; align-self: center;" />
+                </ui:GroupBox>
+                <ui:GroupBox style="flex-direction: row; width: 30px; margin-top: 0; padding-top: 0;">
+                    <ui:Button text="R" parse-escape-sequences="true" display-tooltip-when-elided="true" name="GoRetry" class="hero-button-level" />
+                    <ui:Label text="Retry" display-tooltip-when-elided="true" name="labelRetry" style="-unity-font-style: bold; font-size: 12px; color: rgb(229, 228, 226); -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&apos;); margin-left: 5px; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; display: flex; justify-content: flex-start; align-self: center;" />
+                </ui:GroupBox>
+            </ui:GroupBox>
         </ui:GroupBox>
     </ui:GroupBox>
     <ui:GroupBox name="LevelDoneOrFailed" style="display: none; opacity: 1; justify-content: flex-start; position: absolute; width: 100%; bottom: 0; padding-left: 30px; padding-right: 30px; padding-top: 30px; padding-bottom: 30px; -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&apos;); align-items: center;">
@@ -15,12 +26,6 @@
                 <ui:Label text="End word" display-tooltip-when-elided="true" name="label_endWord" style="margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px; font-size: 25px; -unity-text-align: upper-center; color: rgb(61, 60, 58); -unity-font-style: bold; width: 400px;" />
                 <ui:Label display-tooltip-when-elided="true" name="label_time" text="Time" style="-unity-font-style: bold; font-size: 30px; -unity-text-align: upper-center;" />
             </ui:GroupBox>
-        </ui:GroupBox>
-    </ui:GroupBox>
-    <ui:GroupBox name="PauseMenu" class="hero-groupbox-pause" style="display: flex;">
-        <ui:GroupBox name="GroupPause" class="hero-groupbox-level" style="position: absolute; left: 25%; width: 50%; height: auto; top: 25%; display: flex; -unity-text-align: upper-center; align-items: center;">
-            <ui:Label text="Pause" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; -unity-font-style: bold; font-size: 20px; color: rgb(255, 255, 255); -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&apos;);" />
-            <ui:Label text="M: Menu    R: Retry" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; color: rgb(255, 255, 255); -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&apos;);" />
         </ui:GroupBox>
     </ui:GroupBox>
 </ui:UXML>

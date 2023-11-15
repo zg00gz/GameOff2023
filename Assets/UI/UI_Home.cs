@@ -421,7 +421,7 @@ namespace ScaleTravel
 
         private void LoadScene(int levelID)
         {
-            SceneManager.LoadScene("Hero-Level-" + levelID.ToString());
+            SceneManager.LoadScene("Level-" + levelID.ToString());
         }
 
         private void UpdateMusicVolume(ChangeEvent<float> evt)

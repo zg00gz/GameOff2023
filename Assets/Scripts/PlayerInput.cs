@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 #endif
 
 
@@ -19,9 +20,10 @@ namespace ScaleTravel
 
         private Vector3 m_Move;
         private Vector3 m_MoveVertical;
+        
         private bool m_Action;
         private bool m_Jump;
-        private bool m_Pause;
+        private bool m_Menu;
         private bool m_Restart;
 
         public Vector3 Move
@@ -54,10 +56,11 @@ namespace ScaleTravel
             get { return m_Jump && !playerControllerInputBlocked; }
         }
 
-        public bool Pause
+        public bool Menu
         {
-            get { return m_Pause; }
+            get { return m_Menu; }
         }
+
         public bool Restart
         {
             get { return m_Restart; }
@@ -72,13 +75,15 @@ namespace ScaleTravel
                 return;
             }
             s_Instance = this;
+            
         }
 
 #if ENABLE_INPUT_SYSTEM
-		public void OnMove(InputValue value)
-		{
-			MoveInput(value.Get<Vector2>());
-		}
+
+        public void OnMove(InputValue value)
+        {
+            MoveInput(value.Get<Vector2>());
+        }
 
         public void OnMoveVertical(InputValue value)
         {
@@ -91,17 +96,20 @@ namespace ScaleTravel
         }
 
         public void OnJump(InputValue value)
-		{
-			JumpInput(value.isPressed);
-		}
-#else
-        void Update()
         {
-            m_Move.Set(Input.GetAxis("Horizontal"), 0, 0);
-            m_Jump = Input.GetButton("Jump");
-            m_Pause = Input.GetKeyDown(KeyCode.P); // Input.GetButtonDown("Pause");
-            m_Restart = Input.GetKeyDown(KeyCode.R); // Input.GetButtonDown("Restart");
+            JumpInput(value.isPressed);
         }
+
+        public void OnMenu(InputValue value)
+        {
+            MenuInput(value.isPressed);
+        }
+
+        public void OnRestart(InputValue value)
+        {
+            RestartInput(value.isPressed);
+        }
+
 #endif
 
         public void MoveInput(Vector2 newMoveDirection)
@@ -122,6 +130,16 @@ namespace ScaleTravel
         public void JumpInput(bool newJumpState)
         {
             m_Jump = newJumpState;
+        }
+
+        public void MenuInput(bool newMenuState)
+        {
+            m_Menu = newMenuState;
+        }
+
+        public void RestartInput(bool newRestartState)
+        {
+            m_Restart = newRestartState;
         }
 
     }

@@ -24,17 +24,12 @@ namespace ScaleTravel
             {
                 Vector3 action = PlayerInput.Instance.Move;
 
-                // Pour désactiver le déclenchement si le joueur appuit sur la direction inverse
-                if (!m_IsTop && action.y < 0)
-                    return;
-                if (m_IsTop && action.y > 0)
-                    return;
-
                 if (PlayerInput.Instance.Action)
                 {
+                    //Debug.Log("Action !");
                     StartCoroutine(TryToUnlock());
-                    return;
                 }
+                PlayerInput.Instance.ActionInput(false);
             }
         }
 
@@ -42,7 +37,6 @@ namespace ScaleTravel
         {
             m_IsActive = false;
             m_PlayerController.SetKinematic(true);
-            PlayerInput.Instance.ActionInput(false);
 
             m_PlayerController.transform.forward = new Vector3(0, 0, m_IsTop ? 1 : -1);
             yield return new WaitForSeconds(0.5f);
@@ -61,6 +55,7 @@ namespace ScaleTravel
             if (other.CompareTag("Player") && other.isTrigger)
             {
                 m_IsActive = true;
+                PlayerInput.Instance.ActionInput(false);
                 m_PlayerController = other.GetComponent<PlayerController>();
             }
         }
@@ -70,6 +65,7 @@ namespace ScaleTravel
             if (other.CompareTag("Player") && other.isTrigger)
             {
                 m_IsActive = false;
+                PlayerInput.Instance.ActionInput(false);
             }
         }
     }

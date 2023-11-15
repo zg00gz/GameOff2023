@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4362024039738847010}
   - component: {fileID: 8490576526322533912}
   - component: {fileID: 7595944653917861210}
+  - component: {fileID: 1814940370523815157}
+  - component: {fileID: 759798027461781221}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -26,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2558896309307878388}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -59,7 +61,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LevelValues: {fileID: 11400000, guid: 4d6380179ddff4e47a0457df7ace79b6, type: 2}
+  m_MasterMixer: {fileID: 24100000, guid: b0a6fcb25ce500541bcbcb030931ae2d, type: 2}
   m_Text_GroupLevelTitle: {fileID: 0}
   m_Text_LevelTitle: {fileID: 0}
-  m_UI_Level: {fileID: 0}
+  m_UI_Level: {fileID: 1814940370523815157}
   IsLevelDone: 0
+--- !u!114 &1814940370523815157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2558896309307878388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15ed643886725847ba0f455221bd195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &759798027461781221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2558896309307878388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: d2e4dc8f645ca374db6fc589f34a61e6, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 205a182539c76d742853383ae470e78e,
+    type: 3}
+  m_SortingOrder: 0
