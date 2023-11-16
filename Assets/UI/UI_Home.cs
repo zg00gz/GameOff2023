@@ -304,37 +304,37 @@ namespace ScaleTravel
 
             for (var i = 0; i < _Btn_Levels.Count; i++)
             {
-                _Btn_Levels[i].RemoveFromClassList("hero-button-level-default");
-                _Btn_Levels[i].RemoveFromClassList("hero-button-level-bronze");
-                _Btn_Levels[i].RemoveFromClassList("hero-button-level-silver");
-                _Btn_Levels[i].RemoveFromClassList("hero-button-level-gold");
-                _CupLevels[i].RemoveFromClassList("hero-cup-level-default");
-                _CupLevels[i].RemoveFromClassList("hero-cup-level-bronze");
-                _CupLevels[i].RemoveFromClassList("hero-cup-level-silver");
-                _CupLevels[i].RemoveFromClassList("hero-cup-level-gold");
+                _Btn_Levels[i].RemoveFromClassList("scale-button-level-default");
+                _Btn_Levels[i].RemoveFromClassList("scale-button-level-bronze");
+                _Btn_Levels[i].RemoveFromClassList("scale-button-level-silver");
+                _Btn_Levels[i].RemoveFromClassList("scale-button-level-gold");
+                _CupLevels[i].RemoveFromClassList("scale-cup-level-default");
+                _CupLevels[i].RemoveFromClassList("scale-cup-level-bronze");
+                _CupLevels[i].RemoveFromClassList("scale-cup-level-silver");
+                _CupLevels[i].RemoveFromClassList("scale-cup-level-gold");
             }
 
             for (var i = 0; i < playerLevels.Count; i++)
             {
                 if(playerLevels[i].Time <= m_Levels[i].RunCupTime[0])
                 {
-                    _Btn_Levels[i].AddToClassList("hero-button-level-gold");
-                    _CupLevels[i].AddToClassList("hero-cup-level-gold");
+                    _Btn_Levels[i].AddToClassList("scale-button-level-gold");
+                    _CupLevels[i].AddToClassList("scale-cup-level-gold");
                 }
                 else if (playerLevels[i].Time <= m_Levels[i].RunCupTime[1])
                 {
-                    _Btn_Levels[i].AddToClassList("hero-button-level-silver");
-                    _CupLevels[i].AddToClassList("hero-cup-level-silver");
+                    _Btn_Levels[i].AddToClassList("scale-button-level-silver");
+                    _CupLevels[i].AddToClassList("scale-cup-level-silver");
                 }
                 else if (playerLevels[i].Time <= m_Levels[i].RunCupTime[2])
                 {
-                    _Btn_Levels[i].AddToClassList("hero-button-level-bronze");
-                    _CupLevels[i].AddToClassList("hero-cup-level-bronze");
+                    _Btn_Levels[i].AddToClassList("scale-button-level-bronze");
+                    _CupLevels[i].AddToClassList("scale-cup-level-bronze");
                 }
                 else
                 {
-                    _Btn_Levels[i].AddToClassList("hero-button-level-default");
-                    _CupLevels[i].AddToClassList("hero-cup-level-default");
+                    _Btn_Levels[i].AddToClassList("scale-button-level-default");
+                    _CupLevels[i].AddToClassList("scale-cup-level-default");
                 }
 
                 // Active next level

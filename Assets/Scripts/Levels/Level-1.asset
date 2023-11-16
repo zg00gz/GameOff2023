@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Level-1
   m_EditorClassIdentifier: 
   _LevelID: 1
+  _Time: 60
   _RunCupTime:
   - 25
   - 35
@@ -22,10 +23,10 @@ MonoBehaviour:
     LevelName: At the very beginning...
     LevelScale: 10<sup>-35</sup> m
     GoWord: It all starts here...
-    EndWord: You are ready now !
+    EndWord: Tutorial done ! You are ready !
   _French:
     GroupLevelName: Monde des particules
     LevelName: "Au tout d\xE9but..."
     LevelScale: 10<sup>-35</sup> m
     GoWord: Tout commence ici...
-    EndWord: "Tu es pr\xEAt maintenant !"
+    EndWord: "Tutoriel termin\xE9 ! Tu es pr\xEAt !"

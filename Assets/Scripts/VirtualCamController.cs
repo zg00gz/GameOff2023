@@ -11,7 +11,9 @@ namespace ScaleTravel
     {
         [SerializeField] CinemachineVirtualCamera Cam1;
         [SerializeField] CinemachineVirtualCamera Cam2;
+        [SerializeField] CinemachineVirtualCamera CamEnd;
 
+        [SerializeField] CinemachineBrain Cam;
 
         public void CheckVirtualCamera(float scaleX)
         {
@@ -30,6 +32,12 @@ namespace ScaleTravel
                 Cam1.Priority = 10;
                 Cam2.Priority = 9;
             }
+        }
+
+        public void SwitchToEnd()
+        {
+            Cam.ActiveVirtualCamera.Priority = 9;
+            CamEnd.Priority = 10;
         }
 
     }

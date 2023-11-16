@@ -9,35 +9,68 @@ namespace ScaleTravel
     public class UI_Level : MonoBehaviour
     {
         private GroupBox _GroupTitles;
-        private GroupBox _PauseMenu;
 
         // Level - Run
+        private GroupBox _GroupTimer;
+        private GroupBox _GroupLevelDone;
         private Label _Time;
-        private GroupBox _LevelDoneOrFailed;
+
+
+        private Button _Btn_Home;
+        private Button _Btn_Retry;
 
 
         private void OnEnable()
         {
             var uiDocument = GetComponent<UIDocument>();
             _GroupTitles = uiDocument.rootVisualElement.Q<GroupBox>("GroupTitles");
-            _LevelDoneOrFailed = uiDocument.rootVisualElement.Q<GroupBox>("LevelDoneOrFailed");
+            _GroupLevelDone = uiDocument.rootVisualElement.Q<GroupBox>("GroupLevelDone");
+            _GroupTimer = uiDocument.rootVisualElement.Q<GroupBox>("GroupTimer");
 
             _GroupTitles.style.display = DisplayStyle.None;
-            _LevelDoneOrFailed.style.display = DisplayStyle.None;
+            _GroupLevelDone.style.display = DisplayStyle.None;
+            _GroupTimer.style.display = DisplayStyle.None;
 
             _Time = uiDocument.rootVisualElement.Q<Label>("Time");
+
+            // Buttons
+            _Btn_Home = uiDocument.rootVisualElement.Q<Button>("btn_home");
+            _Btn_Retry = uiDocument.rootVisualElement.Q<Button>("btn_retry");
+
+            _Btn_Home.RegisterCallback<ClickEvent>(delegate { Home(); });
+            _Btn_Retry.RegisterCallback<ClickEvent>(delegate { Retry(); });
         }
 
         private void OnDisable()
         {
-
+            _Btn_Home.UnregisterCallback<ClickEvent>(delegate { Home(); });
+            _Btn_Retry.UnregisterCallback<ClickEvent>(delegate { Retry(); });
         }
 
-        public void DisplayTitles()
+        private void Home()
         {
-            //Debug.Log("UI DisplayTitle");
+            GameManager.Instance.Home();
+        }
+
+        private void Retry()
+        {
+            GameManager.Instance.Retry();
+        }
+
+        public void StartLevelScreen()
+        {
+            PlayerLocal.LevelText levelText = PlayerLocal.Instance.GetLevelText();
+
             _GroupTitles.Q<Label>("labelLevel_groupLevelName").text = GameManager.Instance.LevelValues.GroupLevelName;
             _GroupTitles.Q<Label>("labelLevel_levelName").text = GameManager.Instance.LevelValues.LevelName;
+
+            // TODO si gamepad sprite background sinon lettre => gérer avec class ?
+            _GroupTitles.Q<Label>("label_menu").text = levelText.Home;
+            _GroupTitles.Q<Label>("label_retry").text = levelText.Retry;
+
+            _GroupLevelDone.Q<Label>("label_title_best").text = levelText.BestTime;
+            _GroupLevelDone.Q<Label>("label_endNext").text = levelText.JumpToContinue;
+
             _GroupTitles.style.display = DisplayStyle.Flex;
         }
 
@@ -45,56 +78,118 @@ namespace ScaleTravel
         {
             //Debug.Log("UI DisplayTimer");
             _Time.text = timeToDisplay;
-            _Time.style.display = DisplayStyle.Flex;
+            _GroupTimer.style.display = DisplayStyle.Flex;
+        }
+        public void HideTimer()
+        {
+            _GroupTimer.style.display = DisplayStyle.None;
+        }
+        public void TimerCup(int cupId)
+        {
+            var spriteCup = _GroupTimer.Q<VisualElement>("sprite_cupTimer");
+            SetCupClassById(spriteCup, cupId);
         }
         public void UpdateTimer(string timeToDisplay)
         {
             _Time.text = timeToDisplay;
         }
-        public void ElapsedTimeScreen(float time = 0.0f, string displayTime = "")
+        public void EndLevelScreen(float time = 0.0f, string displayTime = "")
         {
-            //Debug.Log("UI ElapsedTimeScreen => " + displayTime);
+            //Debug.Log("UI EndLevelScreen => " + displayTime);
+            _GroupLevelDone.Q<Label>("label_endWord").text = GameManager.Instance.LevelValues.EndWord;
+            _GroupLevelDone.Q<Label>("label_time").text = displayTime;
 
-            if (GameManager.Instance.IsLevelDone)
+            // Player
+            var spriteCup = _GroupLevelDone.Q<VisualElement>("sprite_cup");
+            spriteCup.style.display = DisplayStyle.None;
+
+            var cupClass = GetCupClass(time);
+            if(!string.IsNullOrEmpty(cupClass))
             {
-                _LevelDoneOrFailed.Q<Label>("label_endWord").text = GameManager.Instance.LevelValues.EndWord;
-                _LevelDoneOrFailed.Q<Label>("label_time").text = displayTime;
-                var spriteCup = _LevelDoneOrFailed.Q<VisualElement>("sprite_cup");
+                spriteCup.AddToClassList(cupClass);
                 spriteCup.style.display = DisplayStyle.Flex;
+            }
 
-                if (time <= GameManager.Instance.LevelValues.RunCupTime[0])
-                {
-                    //Debug.Log("Gold");
-                    spriteCup.AddToClassList("hero-cup-level-gold");
-                }
-                else if (time <= GameManager.Instance.LevelValues.RunCupTime[1])
-                {
-                    //Debug.Log("Silver");
-                    spriteCup.AddToClassList("hero-cup-level-silver");
-                }
-                else if (time <= GameManager.Instance.LevelValues.RunCupTime[2])
-                {
-                    //Debug.Log("Bronze");
-                    spriteCup.AddToClassList("hero-cup-level-bronze");
-                }
-                else
-                {
-                    spriteCup.style.display = DisplayStyle.None;
-                }
+
+            // Best
+            var groupBest = _GroupLevelDone.Q<GroupBox>("GroupEndBest");
+            var isBestSamePlayer = PlayerLocal.Instance.HeroData.Profile.PlayerName == PlayerLocal.Instance.LevelBestPlayer;
+
+            if (time == PlayerLocal.Instance.LevelBestTime && isBestSamePlayer)
+            {
+                groupBest.style.display = DisplayStyle.None;
             }
             else
             {
-                _LevelDoneOrFailed.Q<Label>("label_endWord").text = PlayerLocal.Instance.HeroData.Profile.PlayerLanguage == Lang.EN ? "Elapsed time... Try again !" : "Temps écoulé... Essaie encore !";
-                _LevelDoneOrFailed.Q<Label>("label_time").text = "M: Menu     R: Retry";
+                var spriteBestCup = _GroupLevelDone.Q<VisualElement>("sprite_cup_best");
+                spriteBestCup.style.display = DisplayStyle.None;
+
+                var bestCupClass = GetCupClass(PlayerLocal.Instance.LevelBestTime);
+                if (!string.IsNullOrEmpty(bestCupClass))
+                {
+                    spriteBestCup.AddToClassList(cupClass);
+                    spriteBestCup.style.display = DisplayStyle.Flex;
+                }
+
+                _GroupLevelDone.Q<Label>("label_bestTime").text = PlayerLocal.Instance.LevelBestDisplayTime;
+                _GroupLevelDone.Q<Label>("label_bestProfile").text = isBestSamePlayer ? "" : "(" + PlayerLocal.Instance.LevelBestPlayer + ")";
+
+                groupBest.style.display = DisplayStyle.Flex;
             }
 
-            _Time.style.display = DisplayStyle.None;
-            _LevelDoneOrFailed.style.display = DisplayStyle.Flex;
+            // Level times
+            _GroupLevelDone.Q<Label>("label_time_gold").text = PlayerLocal.Instance.FormatTime(GameManager.Instance.LevelValues.RunCupTime[0]);
+            _GroupLevelDone.Q<Label>("label_time_silver").text = PlayerLocal.Instance.FormatTime(GameManager.Instance.LevelValues.RunCupTime[1]);
+            _GroupLevelDone.Q<Label>("label_time_bronze").text = PlayerLocal.Instance.FormatTime(GameManager.Instance.LevelValues.RunCupTime[2]);
+
+            _GroupTimer.style.display = DisplayStyle.None;
+            _GroupLevelDone.style.display = DisplayStyle.Flex;
         }
 
-        public void HideElapsedTimeScreen()
+        private string GetCupClass(float time)
         {
-            _LevelDoneOrFailed.style.display = DisplayStyle.None;
+
+            if (time <= GameManager.Instance.LevelValues.RunCupTime[0])
+            {
+                //Debug.Log("Gold");
+                return "scale-cup-level-gold";
+            }
+            else if (time <= GameManager.Instance.LevelValues.RunCupTime[1])
+            {
+                //Debug.Log("Silver");
+                return "scale-cup-level-silver";
+            }
+            else if (time <= GameManager.Instance.LevelValues.RunCupTime[2])
+            {
+                //Debug.Log("Bronze");
+                return "scale-cup-level-bronze";
+            }
+
+            return "";
+        }
+
+        private void SetCupClassById(VisualElement spriteCup, int cupId)
+        {
+            spriteCup.RemoveFromClassList("scale-cup-level-gold");
+            spriteCup.RemoveFromClassList("scale-cup-level-silver");
+            spriteCup.RemoveFromClassList("scale-cup-level-bronze");
+            spriteCup.style.display = DisplayStyle.Flex;
+
+            switch (cupId)
+            {
+                case 1:
+                    spriteCup.AddToClassList("scale-cup-level-gold");
+                    break;
+                case 2:
+                    spriteCup.AddToClassList("scale-cup-level-silver");
+                    break;
+                case 3:
+                    spriteCup.AddToClassList("scale-cup-level-bronze");
+                    break;
+                default:
+                    spriteCup.style.display = DisplayStyle.None;
+                    break;
+            }
         }
 
     }

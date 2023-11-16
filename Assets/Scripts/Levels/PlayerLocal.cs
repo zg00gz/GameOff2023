@@ -129,7 +129,7 @@ namespace ScaleTravel
             HeroData = data;
         }
         
-        public void SaveLevel(string playerID, int levelID, float playedTime, float time, string displayTime)
+        public void SaveLevel(string playerID, int levelID, float time, string displayTime)
         {
             //Debug.Log("P_ Save player level");
             SaveData data = Load(playerID);
@@ -211,6 +211,10 @@ namespace ScaleTravel
             public string Date;
         }
 
+        public float LevelBestTime;
+        public string LevelBestDisplayTime;
+        public string LevelBestPlayer;
+
         private void SaveLevelScore(int levelID, float time, string displayTime)
         {
             LevelSaveData data = LoadScore(levelID);
@@ -224,7 +228,11 @@ namespace ScaleTravel
                 Date = DateTime.Now.ToString()
             });
             data.Scores = data.Scores.OrderBy(s => s.Time).Take(10).ToList();
-            
+
+            LevelBestTime = data.Scores[0].Time;
+            LevelBestDisplayTime = data.Scores[0].DisplayTime;
+            LevelBestPlayer = data.Scores[0].Player;
+
             try
             {
                 string json = JsonUtility.ToJson(data);
@@ -299,8 +307,11 @@ namespace ScaleTravel
 
         public class LevelText
         {
+            public string Home;
+            public string Retry;
             public string Time;
-            public string BestScore;
+            public string BestTime;
+            public string JumpToContinue;
         }
         public LevelText GetLevelText()
         {
@@ -309,13 +320,19 @@ namespace ScaleTravel
             switch (HeroData.Profile.PlayerLanguage)
             {
                 case Lang.EN:
+                    levelText.Home = "Menu";
+                    levelText.Retry = "Retry";
                     levelText.Time = "Time";
-                    levelText.BestScore = "Best";
+                    levelText.BestTime = "Best time : ";
+                    levelText.JumpToContinue = "Jump to continue !";
                     break;
 
                 case Lang.FR:
+                    levelText.Home = "Menu";
+                    levelText.Retry = "Réessayer";
                     levelText.Time = "Temps";
-                    levelText.BestScore = "Meilleurs";
+                    levelText.BestTime = "Meilleur temps : ";
+                    levelText.JumpToContinue = "Saute pour continuer !";
                     break;
             }
 

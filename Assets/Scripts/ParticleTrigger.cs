@@ -21,12 +21,18 @@ namespace ScaleTravel
 
         private void OnTriggerEnter(Collider other)
         {
-            m_ParticleSystem.Play();
+            if (other.CompareTag("Player") && other.isTrigger)
+            {
+                m_ParticleSystem.Play();
+            }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            m_ParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            if (other.CompareTag("Player") && other.isTrigger)
+            {
+                m_ParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            }
         }
     }
 }

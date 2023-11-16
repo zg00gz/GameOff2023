@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Level-12
   m_EditorClassIdentifier: 
   _LevelID: 12
+  _Time: 240
   _RunCupTime:
   - 30
   - 60
