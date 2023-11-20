@@ -8,7 +8,8 @@ namespace ScaleTravel
     [RequireComponent(typeof(CanvasGroup))]
     public class FadeTransition : MonoBehaviour
     {
-        public float Duration = 1.0f;
+        public float Duration = 1.5f;
+        public float IntroDelay = 1.0f;
         public Coroutine CurrentRoutine { private set; get; } = null;
 
         private CanvasGroup m_CanvasGroup = null;
@@ -17,6 +18,12 @@ namespace ScaleTravel
         private void Awake()
         {
             m_CanvasGroup = GetComponent<CanvasGroup>();
+        }
+
+        public void IntroStartFadeOut()
+        {
+            StopAllCoroutines();
+            CurrentRoutine = StartCoroutine(IntroFadeOut(Duration));
         }
 
         public void StartFadeIn()
@@ -48,6 +55,21 @@ namespace ScaleTravel
         {
             float elapsedTime = 0.0f;
             SetAlpha(1.0f);
+
+            while (m_Alpha >= 0.0f)
+            {
+                SetAlpha(1 - (elapsedTime / duration));
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        private IEnumerator IntroFadeOut(float duration)
+        {
+            float elapsedTime = 0.0f;
+            SetAlpha(1.0f);
+
+            yield return new WaitForSeconds(IntroDelay);
 
             while (m_Alpha >= 0.0f)
             {

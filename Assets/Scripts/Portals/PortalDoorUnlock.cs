@@ -11,6 +11,8 @@ namespace ScaleTravel
         [SerializeField] bool m_IsTop;
 
         [SerializeField] MeshRenderer m_Button;
+        [SerializeField] SpriteRenderer m_Key;
+        [SerializeField] SpriteRenderer m_Key2;
         [SerializeField] Material m_LockMaterial;
         [SerializeField] Material m_UnlockMaterial;
 
@@ -41,18 +43,36 @@ namespace ScaleTravel
             m_PlayerController.transform.forward = new Vector3(0, 0, m_IsTop ? 1 : -1);
             yield return new WaitForSeconds(0.5f);
 
-            // if(m_KeysRequired == m_PlayerController.Keys) OU Stars minimum
-            m_Door.SetUnlocked();
-            m_Button.material = m_UnlockMaterial;
+            bool canOpen = true;
+            if (m_KeysRequired > 0)
+            {
+                if(GameManager.Instance.OpenWithKeys(m_KeysRequired))
+                {
+                    m_Key.enabled = false;
+                    if (m_KeysRequired > 1) m_Key2.enabled = false;
+                }
+                else
+                    canOpen = false;
+            }
 
+            if(canOpen)
+            {
+                m_Door.SetUnlocked();
+                m_Button.material = m_UnlockMaterial;
+
+                this.enabled = false; // Désactive le collider
+            }
+            else
+            {
+                m_IsActive = true;
+            }
             m_PlayerController.SetKinematic(false);
-            this.enabled = false; // Désactive le collider
         }
 
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player") && other.isTrigger)
+            if (other.CompareTag("Player") && !other.isTrigger)
             {
                 m_IsActive = true;
                 PlayerInput.Instance.ActionInput(false);
@@ -62,7 +82,7 @@ namespace ScaleTravel
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("Player") && other.isTrigger)
+            if (other.CompareTag("Player") && !other.isTrigger)
             {
                 m_IsActive = false;
                 PlayerInput.Instance.ActionInput(false);

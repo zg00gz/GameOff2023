@@ -31,7 +31,6 @@ namespace ScaleTravel
                     m_Target = other.gameObject;
                     m_PortalDestination.IsIgnoringFirstTrigger = true;
                     Teleport();
-                    //m_IsIgnoringFirstTrigger = true; // Pour le voyage retour
                 }
             }
         }

@@ -13,20 +13,19 @@ MonoBehaviour:
   m_Name: Level-10
   m_EditorClassIdentifier: 
   _LevelID: 10
-  _Time: 240
   _RunCupTime:
   - 30
   - 60
   - 120
   _English:
-    GroupLevelName: World of void
-    LevelName: The Earth
-    LevelScale: 12 742 km
+    GroupLevelName: Infinite Travel
+    LevelName: The Universe
+    LevelScale: 93 000 000 000 Light Years
     GoWord: Let's go !
     EndWord: Well done !
   _French:
-    GroupLevelName: Monde du vide
-    LevelName: La Terre
-    LevelScale: 12 742 km
+    GroupLevelName: Voyage infini
+    LevelName: L'Univers
+    LevelScale: "93 000 000 000 Ann\xE9es-lumi\xE8re"
     GoWord: Let's go !
     EndWord: "Bien jou\xE9 !"

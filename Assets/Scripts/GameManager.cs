@@ -23,18 +23,24 @@ namespace ScaleTravel
         [SerializeField] TMPro.TextMeshProUGUI m_Text_ScaleLevel;
         //[SerializeField] float m_LevelStartDelay = 3.0f; // TMP
 
-
-        [SerializeField] PlayerController m_PlayerController;
-        [SerializeField] PlayerInput m_Input;
         [SerializeField] UI_Level m_UI_Level;
+        [SerializeField] int m_Keys;
+
+        public bool IsLevelDone;
+
+        [SerializeField] float m_RespawnMin;
+        [SerializeField] float m_RespawnMax;
+
+        private PlayerController m_PlayerController;
+        private PlayerInput m_Input;
 
         private float m_LoadLevelTime;
         private float m_TimerStartTime;
         private float m_TimerEndTime;
-        public bool IsLevelDone;
 
         public LevelData LevelValues => m_LevelValues;
         private PlayerLocal.Level m_LastPlayerLevelValues;
+        //private PlayerLocal.LevelSaveData m_LastLevelScores;
 
         void Start()
         {
@@ -46,8 +52,12 @@ namespace ScaleTravel
             }
             s_Instance = this;
 
+            // Pour charger les scores et les valeurs du meilleur score
+            // m_LastLevelScores = PlayerLocal.Instance.LoadScore(LevelValues.LevelID);
+
             m_PlayerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
             m_Input = m_PlayerController.GetComponent<PlayerInput>();
+            m_Input.playerControllerInputBlocked = true;
 
             Cursor.visible = false; // Hide mouse cursor
 
@@ -61,15 +71,8 @@ namespace ScaleTravel
             m_LoadLevelTime = Time.time;
             m_MasterMixer.SetFloat("musicVol", PlayerLocal.Instance.HeroData.Profile.MusicVolume);
             m_MasterMixer.SetFloat("soundVol", PlayerLocal.Instance.HeroData.Profile.SoundVolume);
-
-            //StartCoroutine(LevelStartDelay()); // TMP
         }
         
-        //IEnumerator LevelStartDelay()
-        //{
-        //    yield return new WaitForSeconds(m_LevelStartDelay);
-        //    LevelStart();
-        //}
 
         void Update()
         {
@@ -82,6 +85,41 @@ namespace ScaleTravel
             {
                 m_Input.RestartInput(false);
                 Retry();
+            }
+
+            var positionPlayerY = m_PlayerController.transform.position.y;
+            if (positionPlayerY < m_RespawnMin || positionPlayerY > m_RespawnMax)
+            {
+                m_PlayerController.Respawn();
+            }
+
+#if !UNITY_WEBGL
+            if (Input.GetKey("escape"))
+            {
+
+                Debug.Log("Quit (Escape)");
+                Application.Quit();
+            }
+#endif
+        }
+        
+        public void GetKey()
+        {
+            m_Keys++;
+            m_UI_Level.UpdateKeys(m_Keys);
+        }
+
+        public bool OpenWithKeys(int keys)
+        {
+            if (m_Keys < keys)
+            {
+                return false;
+            }
+            else
+            {
+                m_Keys -= keys;
+                m_UI_Level.UpdateKeys(m_Keys);
+                return true;
             }
         }
 
@@ -120,13 +158,12 @@ namespace ScaleTravel
             m_Input.playerControllerInputBlocked = false;
 
             m_UI_Level.StartLevelScreen();
+            m_TimerStartTime = Time.time;
             if (m_LastPlayerLevelValues != null) DisplayTimer();
         }
 
         private void DisplayTimer()
         {
-            m_TimerStartTime = Time.time;
-            
             string textTime = PlayerLocal.Instance.FormatTime(LevelValues.RunCupTime[2]);
             m_UI_Level.TimerCup(1);
             m_UI_Level.DisplayTimer(textTime);
@@ -164,6 +201,7 @@ namespace ScaleTravel
         public void LevelDone()
         {
             IsLevelDone = true;
+            m_PlayerController.SetKinematic(true);
             
             //if (m_MusicRunEnd)
             //{

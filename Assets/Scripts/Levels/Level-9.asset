@@ -13,20 +13,19 @@ MonoBehaviour:
   m_Name: Level-9
   m_EditorClassIdentifier: 
   _LevelID: 9
-  _Time: 240
   _RunCupTime:
   - 30
   - 60
   - 120
   _English:
-    GroupLevelName: World of the living
-    LevelName: Dinosaurs
-    LevelScale: 24 m
-    GoWord: Go !
+    GroupLevelName: World of void
+    LevelName: The Milky Way
+    LevelScale: 100 000 Light Years
+    GoWord: Let's go !
     EndWord: Well done !
   _French:
-    GroupLevelName: Monde des vivants
-    LevelName: Dinosaures
-    LevelScale: 24 m
-    GoWord: Go !
+    GroupLevelName: Monde du vide
+    LevelName: "La Voie Lact\xE9e"
+    LevelScale: "100 000 Ann\xE9es-lumi\xE8re"
+    GoWord: Let's go !
     EndWord: "Bien jou\xE9 !"

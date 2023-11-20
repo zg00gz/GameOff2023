@@ -19,7 +19,7 @@ namespace ScaleTravel
         {
             if (Instance != null)
             {
-                Debug.Log("PlayerLocal instance..."); // Destroy
+                //Debug.Log("PlayerLocal instance..."); // Destroy
                 Destroy(gameObject);
                 return;
             }
@@ -27,19 +27,6 @@ namespace ScaleTravel
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-
-#if !UNITY_WEBGL
-        private void Update()
-        {
-            if (Input.GetKey("escape"))
-            {
-
-                Debug.Log("Quit (Escape)");
-                Application.Quit();
-            }
-        }
-#endif
-
 
         #region Player data
 
@@ -229,9 +216,7 @@ namespace ScaleTravel
             });
             data.Scores = data.Scores.OrderBy(s => s.Time).Take(10).ToList();
 
-            LevelBestTime = data.Scores[0].Time;
-            LevelBestDisplayTime = data.Scores[0].DisplayTime;
-            LevelBestPlayer = data.Scores[0].Player;
+            SetBestTimeInfo(data.Scores[0]);
 
             try
             {
@@ -254,6 +239,11 @@ namespace ScaleTravel
                     string json = File.ReadAllText(path);
                     LevelSaveData data = JsonUtility.FromJson<LevelSaveData>(json);
 
+                    if(data != null && data.Scores.Count() > 0)
+                    {
+                        SetBestTimeInfo(data.Scores[0]);
+                    }
+
                     return data ?? new LevelSaveData();
                 }
             }
@@ -262,6 +252,13 @@ namespace ScaleTravel
                 Debug.Log("Cannot access " + Application.persistentDataPath + " - PlayerLocal data not saved");
             }
             return new LevelSaveData();
+        }
+
+        private void SetBestTimeInfo(LevelScore info)
+        {
+            LevelBestTime = info.Time;
+            LevelBestDisplayTime = info.DisplayTime;
+            LevelBestPlayer = info.Player;
         }
 
 #endregion

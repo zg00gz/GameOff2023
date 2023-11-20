@@ -13,8 +13,8 @@ namespace ScaleTravel
 
 
         [SerializeField] float m_Speed = 5.0f;
-        [SerializeField] float m_Acceleration = 15.0f;
-        [SerializeField] float m_JumpHeight = 4.0f;
+        [SerializeField] float m_Acceleration = 20.0f;
+        [SerializeField] float m_JumpHeight = 6.0f;
         [SerializeField] float m_GravityValue = -9.81f;
         public Vector3 RespawnPoint;
         [SerializeField] FadeTransition m_TransitionScript;
@@ -41,15 +41,7 @@ namespace ScaleTravel
             m_Input = GetComponent<PlayerInput>();
             m_Rigidbody = GetComponent<Rigidbody>();
             m_IsGrounded = true;
-            m_Input.playerControllerInputBlocked = true;
-        }
-
-        void Update()
-        {
-            if (transform.position.y < -5 || transform.position.y > 15)
-            {
-                Respawn();
-            }
+            Physics.gravity = new Vector3(0, m_GravityValue, 0); // Lorsqu'on retry, la gravité Physics précédente est conservée
         }
 
         void FixedUpdate()
@@ -139,11 +131,12 @@ namespace ScaleTravel
             }
         }
 
-        private void Respawn()
+        public void Respawn()
         {
             m_TransitionScript.StartFadeOut();
-            if (m_GravityValue > 0) SetGravityInverted();
+            if (m_GravityValue > 0) SetGravityInverted(); // TODO monde à l'envers ?
             SetPosition(RespawnPoint);
+            m_Rigidbody.velocity = Vector3.zero;
             transform.forward = Vector3.right;
         }
 
@@ -152,6 +145,13 @@ namespace ScaleTravel
             m_GravityValue = -m_GravityValue;
             m_Rigidbody.velocity = Vector3.zero;
             Physics.gravity = new Vector3(0, m_GravityValue, 0);
+        }
+
+        public void AddJumpForce(float force)
+        {
+            m_Rigidbody.velocity = Vector3.zero;
+            // TODO * masse ? + modifier la masse quand scale
+            m_Rigidbody.AddForce(transform.up * force, ForceMode.Impulse);
         }
 
         public void SetPosition(Vector3 position)

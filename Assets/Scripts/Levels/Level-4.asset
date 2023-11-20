@@ -13,20 +13,19 @@ MonoBehaviour:
   m_Name: Level-4
   m_EditorClassIdentifier: 
   _LevelID: 4
-  _Time: 240
   _RunCupTime:
-  - 40
-  - 100
-  - 200
+  - 30
+  - 60
+  - 120
   _English:
     GroupLevelName: World of the living
-    LevelName: Virus
-    LevelScale: 10<sup>-8</sup> m
-    GoWord: Go !
-    EndWord: Well done ! <br>Thanks again for playing my game !
+    LevelName: Red blood cell and...
+    LevelScale: 8x10<sup>-4</sup> m
+    GoWord: Let's go !
+    EndWord: Well done !
   _French:
     GroupLevelName: Monde des vivants
-    LevelName: Virus
-    LevelScale: 10<sup>-8</sup> m
-    GoWord: C'est parti !
-    EndWord: "Bien jou\xE9 ! <br>Merci encore de jouer \xE0 mon jeu ! "
+    LevelName: Globule rouge et...
+    LevelScale: 8x10<sup>-4</sup> m
+    GoWord: Let's go !
+    EndWord: "Bien jou\xE9 !"

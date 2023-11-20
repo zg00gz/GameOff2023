@@ -14,13 +14,15 @@ namespace ScaleTravel
 
 
         public bool IsStartingPoint;
-        [SerializeField] Transform m_Move1;
-        [SerializeField] Transform m_Move2;
-        [SerializeField] Transform m_Move3;
+        [SerializeField] Transform m_Move1; // Départ de l'échellle
+        [SerializeField] Transform m_Move2; // Arrivée échelle
+        [SerializeField] Transform m_Move3; // Arrivée
+        [SerializeField] float m_ScaleRequired = 1.0f;
 
         int m_NextStep = 1;
 
         PlayerController m_PlayerController;
+        Vector3 m_PlayerStartPosition;
         float m_Speed = 4.0f;
         void Awake()
         {
@@ -37,40 +39,54 @@ namespace ScaleTravel
                 {
                     var step = m_Speed * Time.deltaTime;
 
-                    if (m_NextStep == 1)
+                    switch(m_NextStep)
                     {
-                        //Debug.Log("Step 1");
-                        // TODO déplacer MoveTowards+Speed et setKinematic dans une fonction dans PlayerController
-                        m_PlayerController.transform.position = Vector3.MoveTowards(m_PlayerController.transform.position, m_Move1.position, step);
-                        if (m_PlayerController.transform.position == m_Move1.position)
-                        {
-                            m_NextStep = 2;
-                            // TODO Position de dos en descente => animation ?
-                            //if (m_IsTopCollider) m_PlayerController.transform.LookAt(m_Move1);
-                            if (m_IsTopCollider) m_PlayerController.transform.forward = m_IsEchelleFront ? new Vector3(0, 0, m_Move1.position.z) : new Vector3(m_Move1.position.x, 0, 0);
-                        }
-                    }
-                    else if (m_NextStep == 2)
-                    {
-                        //Debug.Log("Step 2");
-                        m_PlayerController.transform.position = Vector3.MoveTowards(m_PlayerController.transform.position, m_Move2.position, step);
-                        if (m_PlayerController.transform.position == m_Move2.position)
-                        {
-                            m_NextStep = 3;
-                            if (m_IsTopCollider) m_PlayerController.transform.forward = m_IsEchelleFront ? new Vector3(0, 0, -m_Move1.position.z) : new Vector3(-m_Move1.position.x, 0, 0);
-                        }
-                    }
-                    else if (m_NextStep == 3)
-                    {
-                        //Debug.Log("Step 3");
-                        m_PlayerController.transform.position = Vector3.MoveTowards(m_PlayerController.transform.position, m_Move3.position, step);
-                        if (m_PlayerController.transform.position == m_Move3.position)
-                        {
-                            m_IsActive = false;
-                            m_IsActionStarted = false;
-                            m_NextStep = 1;
-                            m_PlayerController.SetKinematic(false);
-                        }
+                        case 1:
+                            //Debug.Log("Step 1");
+                            // TODO déplacer MoveTowards+Speed et setKinematic dans une fonction dans PlayerController
+                            m_PlayerController.transform.position = Vector3.MoveTowards(m_PlayerController.transform.position, m_Move1.position, step);
+                            if (m_PlayerController.transform.position == m_Move1.position)
+                            {
+                                m_NextStep = 2;
+                                // TODO Position de dos en descente => animation ?
+                                //if (m_IsTopCollider) m_PlayerController.transform.LookAt(m_Move1);
+                                if (m_IsTopCollider) m_PlayerController.transform.forward = m_IsEchelleFront ? new Vector3(0, 0, m_Move1.position.z) : new Vector3(m_Move1.position.x, 0, 0);
+                            }
+                            break;
+                        case 2:
+                            if(m_ScaleRequired < m_PlayerController.transform.localScale.x)
+                            {
+                                //Debug.Log("Step 2 go back...");
+                                // Retour en arrière => trop petit pour monter !
+                                m_PlayerController.transform.forward = m_PlayerStartPosition;
+                                m_PlayerController.transform.position = Vector3.MoveTowards(m_PlayerController.transform.position, m_PlayerStartPosition, step);
+                                if (m_PlayerController.transform.position == m_PlayerStartPosition)
+                                {
+                                    m_NextStep = 10;
+                                }
+                            }
+                            else
+                            {
+                                //Debug.Log("Step 2");
+                                m_PlayerController.transform.position = Vector3.MoveTowards(m_PlayerController.transform.position, m_Move2.position, step);
+                                if (m_PlayerController.transform.position == m_Move2.position)
+                                {
+                                    m_NextStep = 3;
+                                    if (m_IsTopCollider) m_PlayerController.transform.forward = m_IsEchelleFront ? new Vector3(0, 0, -m_Move1.position.z) : new Vector3(-m_Move1.position.x, 0, 0);
+                                }
+                            }
+                            break;
+                        case 3:
+                            //Debug.Log("Step 3");
+                            m_PlayerController.transform.position = Vector3.MoveTowards(m_PlayerController.transform.position, m_Move3.position, step);
+                            if (m_PlayerController.transform.position == m_Move3.position)
+                            {
+                                m_IsActive = false;
+                                m_IsActionStarted = false;
+                                m_NextStep = 1;
+                                m_PlayerController.SetKinematic(false);
+                            }
+                            break;
                     }
                     return;
                 }
@@ -100,6 +116,7 @@ namespace ScaleTravel
                 {
                     m_IsActionStarted = true;
                     IsStartingPoint = false;
+                    m_PlayerStartPosition = m_PlayerController.transform.position;
 
                     m_PlayerController.SetKinematic(true);
                     m_PlayerController.transform.LookAt(m_Move1);

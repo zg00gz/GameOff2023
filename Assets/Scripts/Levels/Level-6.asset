@@ -13,20 +13,19 @@ MonoBehaviour:
   m_Name: Level-6
   m_EditorClassIdentifier: 
   _LevelID: 6
-  _Time: 240
   _RunCupTime:
   - 30
   - 60
   - 120
   _English:
     GroupLevelName: World of the living
-    LevelName: Human hair
-    LevelScale: 1.8x10<sup>-4</sup> m
-    GoWord: Go !!!!
-    EndWord: GG ! You are a star !!!
+    LevelName: Humans and small friends
+    LevelScale: 1.7 m
+    GoWord: Go !
+    EndWord: Well done !
   _French:
     GroupLevelName: Monde des vivants
-    LevelName: Cheveux humain
-    LevelScale: 1.8x10<sup>-4</sup> m
-    GoWord: Go !!!!
-    EndWord: GG ! Tu es une star !!!
+    LevelName: Humains et petits amis
+    LevelScale: 1.7 m
+    GoWord: Go !
+    EndWord: "Bien jou\xE9 !"

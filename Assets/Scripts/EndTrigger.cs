@@ -19,7 +19,7 @@ namespace ScaleTravel
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!m_IsEndTriggered && other.CompareTag("Player") && other.isTrigger)
+            if (!m_IsEndTriggered && other.CompareTag("Player") && !other.isTrigger)
             {
                 m_IsEndTriggered = true;
                 GameManager.Instance.LevelDone();

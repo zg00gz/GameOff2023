@@ -13,20 +13,19 @@ MonoBehaviour:
   m_Name: Level-7
   m_EditorClassIdentifier: 
   _LevelID: 7
-  _Time: 240
   _RunCupTime:
   - 30
   - 60
   - 120
   _English:
-    GroupLevelName: World of the living
-    LevelName: Ant
-    LevelScale: 8x10<sup>-3</sup> m
-    GoWord: Go !
+    GroupLevelName: World of void
+    LevelName: The Earth and more !
+    LevelScale: 12 742 km
+    GoWord: Let's go !
     EndWord: Well done !
   _French:
-    GroupLevelName: Monde des vivants
-    LevelName: Fourmi
-    LevelScale: 8x10<sup>-3</sup> m
-    GoWord: Go !
+    GroupLevelName: Monde du vide
+    LevelName: La Terre et plus encore !
+    LevelScale: 12 742 km
+    GoWord: Let's go !
     EndWord: "Bien jou\xE9 !"

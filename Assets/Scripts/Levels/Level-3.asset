@@ -13,20 +13,19 @@ MonoBehaviour:
   m_Name: Level-3
   m_EditorClassIdentifier: 
   _LevelID: 3
-  _Time: 240
   _RunCupTime:
-  - 60
+  - 70
   - 100
   - 180
   _English:
     GroupLevelName: Particles World
-    LevelName: Proton, Neutron, Electron
+    LevelName: + or - with electron
     LevelScale: 10<sup>-15</sup> m
     GoWord: Good luck !
     EndWord: GG ! You are a star !!!
   _French:
     GroupLevelName: Monde des particules
-    LevelName: Proton, Neutron, Electron
+    LevelName: "+ ou - avec les \xE9lectrons"
     LevelScale: 10<sup>-15</sup> m
     GoWord: Bonne chance !
     EndWord: GG ! Tu es une star !!!

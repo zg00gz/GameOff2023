@@ -64,8 +64,12 @@ MonoBehaviour:
   m_MasterMixer: {fileID: 24100000, guid: b0a6fcb25ce500541bcbcb030931ae2d, type: 2}
   m_Text_GroupLevelTitle: {fileID: 0}
   m_Text_LevelTitle: {fileID: 0}
+  m_Text_GoWord: {fileID: 0}
+  m_Text_ScaleLevel: {fileID: 0}
   m_UI_Level: {fileID: 1814940370523815157}
   IsLevelDone: 0
+  m_RespawnMin: -5
+  m_RespawnMax: 10
 --- !u!114 &1814940370523815157
 MonoBehaviour:
   m_ObjectHideFlags: 0

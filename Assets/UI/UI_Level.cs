@@ -13,6 +13,7 @@ namespace ScaleTravel
         // Level - Run
         private GroupBox _GroupTimer;
         private GroupBox _GroupLevelDone;
+        private GroupBox _GroupKeys;
         private Label _Time;
 
 
@@ -26,10 +27,12 @@ namespace ScaleTravel
             _GroupTitles = uiDocument.rootVisualElement.Q<GroupBox>("GroupTitles");
             _GroupLevelDone = uiDocument.rootVisualElement.Q<GroupBox>("GroupLevelDone");
             _GroupTimer = uiDocument.rootVisualElement.Q<GroupBox>("GroupTimer");
+            _GroupKeys = uiDocument.rootVisualElement.Q<GroupBox>("GroupKeys");
 
             _GroupTitles.style.display = DisplayStyle.None;
             _GroupLevelDone.style.display = DisplayStyle.None;
             _GroupTimer.style.display = DisplayStyle.None;
+            _GroupKeys.style.display = DisplayStyle.None;
 
             _Time = uiDocument.rootVisualElement.Q<Label>("Time");
 
@@ -74,6 +77,18 @@ namespace ScaleTravel
             _GroupTitles.style.display = DisplayStyle.Flex;
         }
 
+        public void UpdateKeys(int keys)
+        {
+            if (keys == 0)
+            {
+                _GroupKeys.style.display = DisplayStyle.None;
+                return;
+            }
+
+            _GroupKeys.Q<Label>("label_keys").text = "x" + keys;
+            _GroupKeys.style.display = DisplayStyle.Flex;
+        }
+
         public void DisplayTimer(string timeToDisplay)
         {
             //Debug.Log("UI DisplayTimer");
@@ -101,16 +116,8 @@ namespace ScaleTravel
 
             // Player
             var spriteCup = _GroupLevelDone.Q<VisualElement>("sprite_cup");
-            spriteCup.style.display = DisplayStyle.None;
-
-            var cupClass = GetCupClass(time);
-            if(!string.IsNullOrEmpty(cupClass))
-            {
-                spriteCup.AddToClassList(cupClass);
-                spriteCup.style.display = DisplayStyle.Flex;
-            }
-
-
+            SetCupClass(spriteCup, time);
+            
             // Best
             var groupBest = _GroupLevelDone.Q<GroupBox>("GroupEndBest");
             var isBestSamePlayer = PlayerLocal.Instance.HeroData.Profile.PlayerName == PlayerLocal.Instance.LevelBestPlayer;
@@ -122,14 +129,7 @@ namespace ScaleTravel
             else
             {
                 var spriteBestCup = _GroupLevelDone.Q<VisualElement>("sprite_cup_best");
-                spriteBestCup.style.display = DisplayStyle.None;
-
-                var bestCupClass = GetCupClass(PlayerLocal.Instance.LevelBestTime);
-                if (!string.IsNullOrEmpty(bestCupClass))
-                {
-                    spriteBestCup.AddToClassList(cupClass);
-                    spriteBestCup.style.display = DisplayStyle.Flex;
-                }
+                SetCupClass(spriteBestCup, PlayerLocal.Instance.LevelBestTime);
 
                 _GroupLevelDone.Q<Label>("label_bestTime").text = PlayerLocal.Instance.LevelBestDisplayTime;
                 _GroupLevelDone.Q<Label>("label_bestProfile").text = isBestSamePlayer ? "" : "(" + PlayerLocal.Instance.LevelBestPlayer + ")";
@@ -146,26 +146,32 @@ namespace ScaleTravel
             _GroupLevelDone.style.display = DisplayStyle.Flex;
         }
 
-        private string GetCupClass(float time)
+        private void SetCupClass(VisualElement spriteCup, float time)
         {
+            spriteCup.RemoveFromClassList("scale-cup-level-gold");
+            spriteCup.RemoveFromClassList("scale-cup-level-silver");
+            spriteCup.RemoveFromClassList("scale-cup-level-bronze");
+            spriteCup.style.display = DisplayStyle.Flex;
 
             if (time <= GameManager.Instance.LevelValues.RunCupTime[0])
             {
                 //Debug.Log("Gold");
-                return "scale-cup-level-gold";
+                spriteCup.AddToClassList("scale-cup-level-gold");
             }
             else if (time <= GameManager.Instance.LevelValues.RunCupTime[1])
             {
                 //Debug.Log("Silver");
-                return "scale-cup-level-silver";
+                spriteCup.AddToClassList("scale-cup-level-silver");
             }
             else if (time <= GameManager.Instance.LevelValues.RunCupTime[2])
             {
                 //Debug.Log("Bronze");
-                return "scale-cup-level-bronze";
+                spriteCup.AddToClassList("scale-cup-level-bronze");
             }
-
-            return "";
+            else
+            {
+                spriteCup.style.display = DisplayStyle.None;
+            }
         }
 
         private void SetCupClassById(VisualElement spriteCup, int cupId)

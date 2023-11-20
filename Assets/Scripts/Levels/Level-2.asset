@@ -13,20 +13,19 @@ MonoBehaviour:
   m_Name: Level-2
   m_EditorClassIdentifier: 
   _LevelID: 2
-  _Time: 240
   _RunCupTime:
   - 40
   - 60
-  - 100
+  - 120
   _English:
     GroupLevelName: Particles World
-    LevelName: Planck
+    LevelName: Planck is so small...
     LevelScale: 1.6x10<sup>-35</sup> m
     GoWord: Let's go !
     EndWord: Well done ! <br>Thanks for playing my game !
   _French:
     GroupLevelName: Monde des particules
-    LevelName: Planck
+    LevelName: Planck est si petit...
     LevelScale: 1.6x10<sup>-35</sup> m
     GoWord: Allons-y !
     EndWord: "Bien jou\xE9 ! <br>Merci de jouer \xE0 mon jeu ! "

@@ -13,20 +13,19 @@ MonoBehaviour:
   m_Name: Level-5
   m_EditorClassIdentifier: 
   _LevelID: 5
-  _Time: 240
   _RunCupTime:
   - 30
   - 60
   - 120
   _English:
     GroupLevelName: World of the living
-    LevelName: Red blood cell
-    LevelScale: 8x10<sup>-4</sup> m
-    GoWord: Let's go !
-    EndWord: Well done !
+    LevelName: Human hair and ant
+    LevelScale: 1.8x10<sup>-4</sup> m
+    GoWord: Go !!!!
+    EndWord: GG ! You are a star !!!
   _French:
     GroupLevelName: Monde des vivants
-    LevelName: Globule rouge
-    LevelScale: 8x10<sup>-4</sup> m
-    GoWord: Let's go !
-    EndWord: "Bien jou\xE9 !"
+    LevelName: Cheveux humain et fourmis
+    LevelScale: 1.8x10<sup>-4</sup> m
+    GoWord: Go !!!!
+    EndWord: GG ! Tu es une star !!!

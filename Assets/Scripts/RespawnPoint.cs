@@ -14,12 +14,9 @@ namespace ScaleTravel
             public Vector3 NewPosition;
         }
 
-        [SerializeField] ObjectToPosition[] m_ListToMove; // TODO script indépendant => Trigger move / destroy / add ?
-        // TODO option change camera => script indépendant ?
-
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player") && other.isTrigger)
+            if (other.CompareTag("Player") && !other.isTrigger)
             {
                 PlayerController.Instance.RespawnPoint = transform.position;
             }

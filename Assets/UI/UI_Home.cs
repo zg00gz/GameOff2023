@@ -179,8 +179,8 @@ namespace ScaleTravel
             }
             _Label_LevelGroups[0].text = m_Levels[0].GroupLevelName;
             _Label_LevelGroups[1].text = m_Levels[3].GroupLevelName;
-            _Label_LevelGroups[2].text = m_Levels[9].GroupLevelName;
-            _Label_LevelGroups[3].text = m_Levels[14].GroupLevelName;
+            _Label_LevelGroups[2].text = m_Levels[6].GroupLevelName;
+            _Label_LevelGroups[3].text = m_Levels[9].GroupLevelName;
         }
 
         private void DisplayCreateProfile()
