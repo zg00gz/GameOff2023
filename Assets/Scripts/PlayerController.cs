@@ -134,7 +134,7 @@ namespace ScaleTravel
         public void Respawn()
         {
             m_TransitionScript.StartFadeOut();
-            if (m_GravityValue > 0) SetGravityInverted(); // TODO monde à l'envers ?
+            if (m_GravityValue > 0) SetGravityInverted();
             SetPosition(RespawnPoint);
             m_Rigidbody.velocity = Vector3.zero;
             transform.forward = Vector3.right;

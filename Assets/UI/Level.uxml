@@ -8,11 +8,11 @@
             </ui:GroupBox>
             <ui:GroupBox style="width: auto; margin-right: 4px;">
                 <ui:GroupBox style="width: auto; flex-direction: row; margin-bottom: 0; padding-bottom: 0; margin-top: 0; margin-right: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-left: 0; align-items: center; align-self: auto;">
-                    <ui:Button text="M" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn_home" focusable="false" class="scale-button-level" style="width: 40px; height: 40px; font-size: 16px;" />
+                    <ui:Button text="M" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn_home" focusable="false" class="scale-button-level" style="width: 40px; height: 40px; font-size: 16px; overflow: hidden; padding-right: 0;" />
                     <ui:Label text="Menu" display-tooltip-when-elided="true" name="label_menu" style="-unity-font-style: bold; font-size: 16px; color: rgb(229, 228, 226); -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&apos;); margin-left: 5px; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; display: flex; justify-content: flex-start; align-self: center; opacity: 1;" />
                 </ui:GroupBox>
                 <ui:GroupBox style="flex-direction: row; width: auto; margin-top: 0; padding-top: 0; margin-right: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-bottom: 0; margin-left: 0; align-items: center;">
-                    <ui:Button text="R" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn_retry" focusable="false" class="scale-button-level" style="width: 40px; height: 40px; font-size: 16px;" />
+                    <ui:Button text="R" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn_retry" focusable="false" class="scale-button-level" style="width: 40px; height: 40px; font-size: 16px; padding-right: 0;" />
                     <ui:Label text="Réessayer" display-tooltip-when-elided="true" name="label_retry" style="-unity-font-style: bold; font-size: 16px; color: rgb(229, 228, 226); -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&apos;); margin-left: 5px; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; display: flex; justify-content: flex-start; align-self: center; opacity: 1;" />
                 </ui:GroupBox>
             </ui:GroupBox>

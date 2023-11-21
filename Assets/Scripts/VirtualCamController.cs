@@ -35,6 +35,12 @@ namespace ScaleTravel
             CamEnd.Priority = 11;
         }
 
+        public void SwitchCollider(Collider collider)
+        {
+            CamNormal.GetComponent<CinemachineConfiner>().m_BoundingVolume = collider;
+            CamSmall.GetComponent<CinemachineConfiner>().m_BoundingVolume = collider;
+        }
+
     }
 
 }

@@ -30,7 +30,7 @@
         <ui:GroupBox style="flex-direction: row-reverse; flex-shrink: 0; flex-grow: 0; padding-left: 0; padding-right: 5px; padding-top: 0; padding-bottom: 0; margin-left: 0; margin-right: 0; margin-top: 5px; margin-bottom: 0;">
             <ui:GroupBox style="flex-direction: row-reverse; margin-top: 0;">
                 <ui:Button display-tooltip-when-elided="true" name="btn_displayParam" class="scale-button-profile" style="background-image: url(&apos;project://database/Assets/Textures/Params.png?fileID=21300000&amp;guid=064217c4e6b588746861aedaeeb40635&amp;type=3#Params&apos;); -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0; -unity-background-scale-mode: scale-to-fit; height: 30px;" />
-                <ui:Button display-tooltip-when-elided="true" name="btn_displayProfiles" class="scale-button-profile" style="-unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0; -unity-background-scale-mode: stretch-to-fill; background-image: url(&apos;project://database/Assets/_zg00gz/Textures/Icons-ScaleTravel.png?fileID=-294437843&amp;guid=771853c4fe1bb7d4dad71be5b1dfda91&amp;type=3#Icons-ScaleHero&apos;); width: 30px; height: 30px;" />
+                <ui:Button display-tooltip-when-elided="true" name="btn_displayProfiles" class="scale-button-profile" style="-unity-background-scale-mode: scale-to-fit; background-image: url(&apos;project://database/Assets/_zg00gz/Textures/Icons-ScaleTravel.png?fileID=-294437843&amp;guid=771853c4fe1bb7d4dad71be5b1dfda91&amp;type=3#Icons-ScaleHero&apos;); width: 30px; height: 30px; margin-left: 5px; -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0;" />
             </ui:GroupBox>
             <ui:Label text="Profile name" display-tooltip-when-elided="true" name="label_profileName" class="scale-label-profile-home" />
         </ui:GroupBox>
@@ -41,73 +41,91 @@
         <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="ScrollView">
             <ui:GroupBox name="Group-1" class="scale-groupbox-level">
                 <ui:Label text="Group 1 Name" display-tooltip-when-elided="true" name="Group-1-Name" class="scale-label-levelgroup" />
-                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: center;">
                     <ui:VisualElement name="Cup-1" class="scale-cup-level" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
-                    <ui:Button text="Level-1" display-tooltip-when-elided="true" name="Level-1" class="scale-button-level scale-button-level-gold" />
-                    <ui:Button display-tooltip-when-elided="true" name="Scores-1" class="scale-button-small" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
+                    <ui:Button text="Level-1" display-tooltip-when-elided="true" name="Level-1" class="scale-button-level scale-button-level-gold">
+                        <ui:Label tabindex="-1" text="Scale" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LevelScale-1" class="scale-button-level-scale" style="overflow: hidden;" />
+                    </ui:Button>
+                    <ui:Button display-tooltip-when-elided="true" name="Scores-1" class="scale-button-small scale-cup-level-gold" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
                 </ui:GroupBox>
-                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: center;">
                     <ui:VisualElement name="Cup-2" class="scale-cup-level" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
-                    <ui:Button text="Level-2" display-tooltip-when-elided="true" name="Level-2" class="scale-button-level scale-button-level-silver" />
+                    <ui:Button text="Level-2" display-tooltip-when-elided="true" name="Level-2" class="scale-button-level scale-button-level-silver">
+                        <ui:Label tabindex="-1" text="Scale" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LevelScale-2" class="scale-button-level-scale" style="overflow: hidden;" />
+                    </ui:Button>
                     <ui:Button display-tooltip-when-elided="true" name="Scores-2" class="scale-button-small" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
                 </ui:GroupBox>
-                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: center;">
                     <ui:VisualElement name="Cup-3" class="scale-cup-level" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
-                    <ui:Button text="Level-3" display-tooltip-when-elided="true" name="Level-3" class="scale-button-level scale-button-level-bronze" />
+                    <ui:Button text="Level-3" display-tooltip-when-elided="true" name="Level-3" class="scale-button-level scale-button-level-bronze">
+                        <ui:Label tabindex="-1" text="Scale" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LevelScale-3" class="scale-button-level-scale" style="overflow: hidden;" />
+                    </ui:Button>
                     <ui:Button display-tooltip-when-elided="true" name="Scores-3" class="scale-button-small" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
                 </ui:GroupBox>
             </ui:GroupBox>
             <ui:GroupBox name="Group-2" class="scale-groupbox-level">
                 <ui:Label text="Group 2 Name" display-tooltip-when-elided="true" name="Group-2-Name" class="scale-label-levelgroup" />
-                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: center;">
                     <ui:VisualElement name="Cup-4" class="scale-cup-level" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
-                    <ui:Button text="Level-4" display-tooltip-when-elided="true" name="Level-4" class="scale-button-level" />
+                    <ui:Button text="Level-4" display-tooltip-when-elided="true" name="Level-4" class="scale-button-level">
+                        <ui:Label tabindex="-1" text="Scale" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LevelScale-4" class="scale-button-level-scale" style="overflow: hidden;" />
+                    </ui:Button>
                     <ui:Button display-tooltip-when-elided="true" name="Scores-4" class="scale-button-small" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
                 </ui:GroupBox>
-                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: center;">
                     <ui:VisualElement name="Cup-5" class="scale-cup-level" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
-                    <ui:Button text="Level-5" display-tooltip-when-elided="true" name="Level-5" class="scale-button-level" />
+                    <ui:Button text="Level-5" display-tooltip-when-elided="true" name="Level-5" class="scale-button-level">
+                        <ui:Label tabindex="-1" text="Scale" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LevelScale-5" class="scale-button-level-scale" style="overflow: hidden;" />
+                    </ui:Button>
                     <ui:Button display-tooltip-when-elided="true" name="Scores-5" class="scale-button-small" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
                 </ui:GroupBox>
-                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: center;">
                     <ui:VisualElement name="Cup-6" class="scale-cup-level" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
-                    <ui:Button text="Level-6" display-tooltip-when-elided="true" name="Level-6" class="scale-button-level" />
+                    <ui:Button text="Level-6" display-tooltip-when-elided="true" name="Level-6" class="scale-button-level">
+                        <ui:Label tabindex="-1" text="Scale" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LevelScale-6" class="scale-button-level-scale" style="overflow: hidden;" />
+                    </ui:Button>
                     <ui:Button display-tooltip-when-elided="true" name="Scores-6" class="scale-button-small" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
                 </ui:GroupBox>
             </ui:GroupBox>
             <ui:GroupBox name="Group-3" class="scale-groupbox-level">
                 <ui:Label text="Group 3 Name" display-tooltip-when-elided="true" name="Group-3-Name" class="scale-label-levelgroup" />
-                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: center;">
                     <ui:VisualElement name="Cup-7" class="scale-cup-level" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
-                    <ui:Button text="Level-7" display-tooltip-when-elided="true" name="Level-7" class="scale-button-level" />
+                    <ui:Button text="Level-7" display-tooltip-when-elided="true" name="Level-7" class="scale-button-level">
+                        <ui:Label tabindex="-1" text="Scale" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LevelScale-7" class="scale-button-level-scale" style="overflow: hidden;" />
+                    </ui:Button>
                     <ui:Button display-tooltip-when-elided="true" name="Scores-7" class="scale-button-small" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
                 </ui:GroupBox>
-                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: center;">
                     <ui:VisualElement name="Cup-8" class="scale-cup-level" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
-                    <ui:Button text="Level-8" display-tooltip-when-elided="true" name="Level-8" class="scale-button-level" />
+                    <ui:Button text="Level-8" display-tooltip-when-elided="true" name="Level-8" class="scale-button-level">
+                        <ui:Label tabindex="-1" text="Scale" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LevelScale-8" class="scale-button-level-scale" style="overflow: hidden;" />
+                    </ui:Button>
                     <ui:Button display-tooltip-when-elided="true" name="Scores-8" class="scale-button-small" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
                 </ui:GroupBox>
-                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: center;">
                     <ui:VisualElement name="Cup-9" class="scale-cup-level" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
-                    <ui:Button text="Level-9" display-tooltip-when-elided="true" name="Level-9" class="scale-button-level" />
+                    <ui:Button text="Level-9" display-tooltip-when-elided="true" name="Level-9" class="scale-button-level">
+                        <ui:Label tabindex="-1" text="Scale" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LevelScale-9" class="scale-button-level-scale" style="overflow: hidden;" />
+                    </ui:Button>
                     <ui:Button display-tooltip-when-elided="true" name="Scores-9" class="scale-button-small" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
                 </ui:GroupBox>
-                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; display: none;">
+                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; display: none; align-items: center;">
                     <ui:VisualElement name="Cup-11" class="scale-cup-level" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
                     <ui:Button text="Level-11" display-tooltip-when-elided="true" name="Level-11" class="scale-button-level scale-button-level-silver" />
                     <ui:Button display-tooltip-when-elided="true" name="Scores-11" class="scale-button-small" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
                 </ui:GroupBox>
-                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; display: none;">
+                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; display: none; align-items: center;">
                     <ui:VisualElement name="Cup-12" class="scale-cup-level" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
                     <ui:Button text="Level-12" display-tooltip-when-elided="true" name="Level-12" class="scale-button-level scale-button-level-bronze" />
                     <ui:Button display-tooltip-when-elided="true" name="Scores-12" class="scale-button-small" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
                 </ui:GroupBox>
-                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; display: none;">
+                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; display: none; align-items: center;">
                     <ui:VisualElement name="Cup-13" class="scale-cup-level" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
                     <ui:Button text="Level-13" display-tooltip-when-elided="true" name="Level-13" class="scale-button-level scale-button-level-bronze" />
                     <ui:Button display-tooltip-when-elided="true" name="Scores-13" class="scale-button-small" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
                 </ui:GroupBox>
-                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; display: none;">
+                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; display: none; align-items: center;">
                     <ui:VisualElement name="Cup-14" class="scale-cup-level" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
                     <ui:Button text="Level-14" display-tooltip-when-elided="true" name="Level-14" class="scale-button-level scale-button-level-bronze" />
                     <ui:Button display-tooltip-when-elided="true" name="Scores-14" class="scale-button-small" style="background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
@@ -115,9 +133,11 @@
             </ui:GroupBox>
             <ui:GroupBox name="Group-4" class="scale-groupbox-level" style="display: flex;">
                 <ui:Label text="Group 4 Name" display-tooltip-when-elided="true" name="Group-4-Name" enable-rich-text="true" class="scale-label-levelgroup" />
-                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 10px; display: flex;">
+                <ui:GroupBox style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 10px; display: flex; align-items: center;">
                     <ui:VisualElement name="Cup-10" class="scale-cup-level" style="width: 60px; height: 60px; background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
-                    <ui:Button text="Level-15" display-tooltip-when-elided="true" name="Level-10" class="scale-button-level" style="height: 60px; width: 70%;" />
+                    <ui:Button text="Level-10" display-tooltip-when-elided="true" name="Level-10" class="scale-button-level" style="height: 60px; width: 80%;">
+                        <ui:Label tabindex="-1" text="Scale" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LevelScale-10" class="scale-button-level-scale" style="overflow: hidden;" />
+                    </ui:Button>
                     <ui:Button display-tooltip-when-elided="true" name="Scores-10" class="scale-button-small" style="width: 60px; height: 60px; background-image: url(&apos;project://database/Assets/Textures/Coupe.png?fileID=2800000&amp;guid=a61b02b85b2ab2f4ab6f8c2642289b22&amp;type=3#Coupe&apos;);" />
                 </ui:GroupBox>
             </ui:GroupBox>

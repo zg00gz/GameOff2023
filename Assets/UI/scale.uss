@@ -74,30 +74,30 @@
 }
 
 .scale-button-small {
-    background-color: rgba(229, 228, 226, 0.39);
+    background-color: rgba(229, 228, 226, 0);
     -unity-font: url('project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
-    border-left-width: 2px;
-    border-right-width: 2px;
-    border-top-width: 2px;
-    border-bottom-width: 2px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     -unity-font-style: bold;
-    border-left-color: rgb(104, 106, 108);
-    border-right-color: rgb(104, 106, 108);
-    border-top-color: rgb(104, 106, 108);
-    border-bottom-color: rgb(104, 106, 108);
-    height: 20px;
+    border-left-color: rgba(255, 255, 255, 0.39);
+    border-right-color: rgba(255, 255, 255, 0.39);
+    border-top-color: rgba(255, 255, 255, 0.39);
+    border-bottom-color: rgba(255, 255, 255, 0.39);
+    height: 25px;
     margin-left: 7px;
     margin-right: 0;
     margin-top: 0;
     margin-bottom: 2px;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0;
-    padding-bottom: 6px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 10px;
     justify-content: center;
     width: 30px;
     color: rgb(61, 60, 58);
@@ -160,11 +160,11 @@
     margin-top: 0;
     margin-bottom: 2px;
     padding-left: 0;
-    padding-right: 0;
+    padding-right: 120px;
     padding-top: 0;
     padding-bottom: 0;
     justify-content: center;
-    font-size: 12px;
+    font-size: 14px;
     -unity-text-align: middle-center;
     color: rgb(0, 0, 0);
 }
@@ -222,6 +222,7 @@
     color: rgb(255, 255, 255);
     -unity-font-style: bold;
     width: 80%;
+    font-size: 16px;
 }
 
 .scale-cup-level {
@@ -231,6 +232,7 @@
     margin-left: 5px;
     margin-top: 1px;
     -unity-background-image-tint-color: rgb(94, 94, 94);
+    display: none;
 }
 
 .scale-cup-level-default {
@@ -259,4 +261,13 @@
 
 .scale-text-level-gold {
     color: rgb(212, 175, 55);
+}
+
+.scale-button-level-scale {
+    right: 0;
+    position: absolute;
+    color: rgb(80, 80, 80);
+    -unity-font-style: bold;
+    overflow: hidden;
+    font-size: 12px;
 }
