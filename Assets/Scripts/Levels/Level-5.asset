@@ -16,16 +16,16 @@ MonoBehaviour:
   _RunCupTime:
   - 30
   - 60
-  - 120
+  - 90
   _English:
     GroupLevelName: World of the living
-    LevelName: Human hair and ant
+    LevelName: Human hair and baby ant
     LevelScale: 1.8x10<sup>-4</sup> m
     GoWord: Go !!!!
     EndWord: GG ! You are a star !!!
   _French:
     GroupLevelName: Monde des vivants
-    LevelName: Cheveux humain et fourmis
+    LevelName: "Cheveux humain et b\xE9b\xE9 fourmi"
     LevelScale: 1.8x10<sup>-4</sup> m
     GoWord: Go !!!!
     EndWord: GG ! Tu es une star !!!

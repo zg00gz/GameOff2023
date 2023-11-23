@@ -11,6 +11,8 @@ namespace ScaleTravel
         [SerializeField] Transform m_Target;
         [SerializeField] float m_Speed = 2.0f;
         [SerializeField] bool m_IsLooping;
+        [SerializeField] bool m_IsEndAuto; // Ne peut pas loop si actif
+
 
         private Vector3 m_InitialPosition;
         private Vector3 m_MovePosition;
@@ -32,7 +34,7 @@ namespace ScaleTravel
                 if (m_Object.position == m_MovePosition)
                 {
                     m_IsTranslating = false;
-                    if(m_IsLooping) SetMovePosition();
+                    if(m_IsLooping && !m_IsEndAuto) SetMovePosition();
                 }
             }
         }
@@ -63,7 +65,7 @@ namespace ScaleTravel
         {
             if (other.CompareTag("Player") && !other.isTrigger)
             {
-                m_IsTriggered = false;
+                if(!m_IsEndAuto) m_IsTriggered = false;
             }
         }
     }
