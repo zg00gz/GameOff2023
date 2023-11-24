@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI/scale.uss?fileID=7433441132597879392&amp;guid=3a4d12a4584280e469eaf27d2aff5fee&amp;type=3#scale" />
     <ui:GroupBox name="GroupTitle" style="position: absolute; left: 0; top: 0; margin-top: 0; padding-left: 10px; padding-top: 0; display: flex;">
         <ui:Label text="Scale Travel" display-tooltip-when-elided="true" style="-unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&apos;); -unity-font-style: bold; font-size: 60px; color: rgb(233, 233, 233); margin-bottom: 0; padding-bottom: 0;" />
-        <ui:Label text="Infinite scale up" display-tooltip-when-elided="true" style="-unity-font-style: normal; font-size: 25px; color: rgb(221, 221, 221); margin-top: 0; padding-top: 0; -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&apos;);" />
+        <ui:Label text="Infinite scale up..." display-tooltip-when-elided="true" name="label_game_subtitle" style="-unity-font-style: normal; font-size: 25px; color: rgb(221, 221, 221); margin-top: 0; padding-top: 0; -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&apos;);" />
     </ui:GroupBox>
     <ui:GroupBox name="GroupFirstProfile" style="width: auto; height: 100%; align-items: center; justify-content: center; display: none;">
         <ui:GroupBox style="width: 250px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">

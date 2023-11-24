@@ -20,12 +20,12 @@ MonoBehaviour:
   _English:
     GroupLevelName: Particles World
     LevelName: Planck is so small...
-    LevelScale: 1.6x10<sup>-35</sup> m
+    LevelScale: 1.6x10<sup>-35</sup> <b>m</b>eters
     GoWord: Let's go !
     EndWord: Well done ! <br>Thanks for playing my game !
   _French:
     GroupLevelName: Monde des particules
     LevelName: Planck est si petit...
-    LevelScale: 1.6x10<sup>-35</sup> m
+    LevelScale: "1.6x10<sup>-35</sup> <b>m</b>\xE8tres"
     GoWord: Allons-y !
     EndWord: "Bien jou\xE9 ! <br>Merci de jouer \xE0 mon jeu ! "

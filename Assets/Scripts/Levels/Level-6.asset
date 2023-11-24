@@ -20,12 +20,12 @@ MonoBehaviour:
   _English:
     GroupLevelName: World of the living
     LevelName: Humans and small friends
-    LevelScale: 1.7 m
+    LevelScale: 1.7 <b>m</b>eters
     GoWord: Go !
     EndWord: Well done !
   _French:
     GroupLevelName: Monde des vivants
     LevelName: Humains et petits amis
-    LevelScale: 1.7 m
+    LevelScale: "1.7 <b>m</b>\xE8tres"
     GoWord: Go !
     EndWord: "Bien jou\xE9 !"

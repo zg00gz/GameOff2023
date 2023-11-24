@@ -266,8 +266,8 @@
 .scale-button-level-scale {
     right: 0;
     position: absolute;
-    color: rgb(80, 80, 80);
-    -unity-font-style: bold;
+    color: rgb(19, 19, 19);
+    -unity-font-style: normal;
     overflow: hidden;
     font-size: 12px;
 }

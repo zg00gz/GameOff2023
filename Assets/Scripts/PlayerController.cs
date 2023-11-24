@@ -46,7 +46,7 @@ namespace ScaleTravel
 
         void FixedUpdate()
         {
-            if(!m_Input.playerControllerInputBlocked)
+            if(!m_Input.playerControllerInputBlocked && !GameManager.Instance.IsLevelDone)
             {
                 UpdateVelocity();
                 UpdateDirection();

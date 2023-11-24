@@ -20,12 +20,12 @@ MonoBehaviour:
   _English:
     GroupLevelName: World of the living
     LevelName: Red blood cell and...
-    LevelScale: 8x10<sup>-4</sup> m
+    LevelScale: 8x10<sup>-4</sup> <b>m</b>eters
     GoWord: Let's go !
     EndWord: Well done !
   _French:
     GroupLevelName: Monde des vivants
     LevelName: Globule rouge et...
-    LevelScale: 8x10<sup>-4</sup> m
+    LevelScale: "8x10<sup>-4</sup> <b>m</b>\xE8tres"
     GoWord: Let's go !
     EndWord: "Bien jou\xE9 !"

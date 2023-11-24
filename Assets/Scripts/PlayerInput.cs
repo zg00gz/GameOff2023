@@ -107,6 +107,10 @@ namespace ScaleTravel
 
         public void OnRestart(InputValue value)
         {
+            // A savoir : le select du gamepad est utilisé dans les navigateurs pour quitter le mode jeu
+            // =>   prévoir un autre bouton
+            //      Autre solution : afficher la souris pour utiliser les boutons comme dans Home
+            //      Autre solution : Mettre en pause avec Start puis choisir les actions Menu/Restart/Autre et en faisant apparaître la souris
             RestartInput(value.isPressed);
         }
 

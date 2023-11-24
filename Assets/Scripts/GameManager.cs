@@ -133,6 +133,21 @@ namespace ScaleTravel
             SaveTotalPlayTime();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+        public void NextLevelAction()
+        {
+            StartCoroutine(WaitBeforNextLevelAction());
+        }
+        IEnumerator WaitBeforNextLevelAction()
+        {
+            yield return new WaitForSeconds(4);
+            m_Input.JumpInput(false);
+            m_Input.playerControllerInputBlocked = false;
+
+            m_UI_Level.DisplayNextLevelAction();
+            yield return new WaitUntil(() => m_Input.Jump);
+
+            NextLevel();
+        }
         public void NextLevel()
         {
             SaveTotalPlayTime();

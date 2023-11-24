@@ -73,6 +73,7 @@ namespace ScaleTravel
 
             _GroupLevelDone.Q<Label>("label_title_best").text = levelText.BestTime;
             _GroupLevelDone.Q<Label>("label_endNext").text = levelText.JumpToContinue;
+            _GroupLevelDone.Q<Label>("label_endNext").style.display = DisplayStyle.None;
 
             _GroupTitles.style.display = DisplayStyle.Flex;
         }
@@ -144,6 +145,13 @@ namespace ScaleTravel
 
             _GroupTimer.style.display = DisplayStyle.None;
             _GroupLevelDone.style.display = DisplayStyle.Flex;
+
+            GameManager.Instance.NextLevelAction();
+        }
+
+        public void DisplayNextLevelAction()
+        {
+            _GroupLevelDone.Q<Label>("label_endNext").style.display = DisplayStyle.Flex;
         }
 
         private void SetCupClass(VisualElement spriteCup, float time)

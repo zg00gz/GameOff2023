@@ -53,7 +53,6 @@ namespace ScaleTravel
                 //Debug.Log("Wait level screen...");
                 SetAudioMixerVolume();
                 yield return new WaitForSeconds(1f);
-                DisplayLevels();
             }
             else
             {
@@ -159,6 +158,8 @@ namespace ScaleTravel
             Lang lang = PlayerLocal.Instance.HeroData.Profile.PlayerLanguage;
             PlayerLocal.MenuText menuText = PlayerLocal.Instance.GetMenuText();
 
+            _GroupTitle.Q<Label>("label_game_subtitle").text = lang == Lang.FR ? "Une mise à l’échelle infinie..." : "Infinite scaling...";
+
             // Select profile/ New profile
             _Btn_NewProfile.text = menuText.NewProfile;
 
@@ -208,7 +209,7 @@ namespace ScaleTravel
             DisplayLevels();
         }
 
-        private void DisplayUpdateProfile()
+        public void DisplayUpdateProfile()
         {
             TextField inputPlayerName = _GroupFirstProfile.Q<TextField>("input_PlayerName");
             inputPlayerName.value = "Hero";
@@ -239,7 +240,7 @@ namespace ScaleTravel
             DisplayLevels();
         }
 
-        private void DisplayProfiles()
+        public void DisplayProfiles()
         {
             _GroupFirstProfile.style.display = DisplayStyle.None;
             _GroupLevels.style.display = DisplayStyle.None;
@@ -284,6 +285,8 @@ namespace ScaleTravel
 
         private void DisplayLevels()
         {
+            HomeManager.Instance.IsHomeLoaded = true;
+
             _GroupFirstProfile.style.display = DisplayStyle.None;
             _GroupProfiles.style.display = DisplayStyle.None;
             _GroupParams.style.display = DisplayStyle.None;

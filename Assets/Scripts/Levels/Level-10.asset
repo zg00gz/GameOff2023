@@ -19,13 +19,13 @@ MonoBehaviour:
   - 120
   _English:
     GroupLevelName: Infinite Travel
-    LevelName: The Universe
-    LevelScale: 93 000 000 000 Light Years
+    LevelName: The Universe and beyond...
+    LevelScale: 93 000 000 000 <b>Light Years</b>
     GoWord: Let's go !
     EndWord: Well done !
   _French:
     GroupLevelName: Voyage infini
-    LevelName: L'Univers
-    LevelScale: "93 000 000 000 Ann\xE9es-lumi\xE8re"
+    LevelName: "L'Univers et au-del\xE0..."
+    LevelScale: "93 000 000 000 <b>Ann\xE9es-lumi\xE8re</b>"
     GoWord: Let's go !
     EndWord: "Bien jou\xE9 !"
