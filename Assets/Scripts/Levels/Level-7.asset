@@ -20,12 +20,12 @@ MonoBehaviour:
   _English:
     GroupLevelName: World of void
     LevelName: The Earth and more !
-    LevelScale: 12 742 <b>km</b>
+    LevelScale: 12 742 km
     GoWord: Let's go !
     EndWord: Well done !
   _French:
     GroupLevelName: Monde du vide
     LevelName: La Terre et plus encore !
-    LevelScale: 12 742 <b>km</b>
+    LevelScale: 12 742 km
     GoWord: Let's go !
     EndWord: "Bien jou\xE9 !"

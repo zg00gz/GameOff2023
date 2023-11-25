@@ -22,6 +22,7 @@ namespace ScaleTravel
         private GroupBox _GroupLevels;
         private GroupBox _GroupParams;
         private GroupBox _GroupScores;
+        private GroupBox _GroupInfos;
 
         private Button _Btn_OK_EN;
         private Button _Btn_OK_FR;
@@ -53,6 +54,7 @@ namespace ScaleTravel
                 //Debug.Log("Wait level screen...");
                 SetAudioMixerVolume();
                 yield return new WaitForSeconds(1f);
+                DisplayLevels();
             }
             else
             {
@@ -91,12 +93,14 @@ namespace ScaleTravel
             _GroupLevels = uiDocument.rootVisualElement.Q<GroupBox>("GroupLevels");
             _GroupParams = uiDocument.rootVisualElement.Q<GroupBox>("GroupParams");
             _GroupScores = uiDocument.rootVisualElement.Q<GroupBox>("GroupScores");
+            _GroupInfos = uiDocument.rootVisualElement.Q<GroupBox>("GroupScaleInfos");
 
             _GroupFirstProfile.style.display = DisplayStyle.None;
             _GroupProfiles.style.display = DisplayStyle.None;
             _GroupLevels.style.display = DisplayStyle.None;
             _GroupParams.style.display = DisplayStyle.None;
             _GroupScores.style.display = DisplayStyle.None;
+            _GroupInfos.style.display = DisplayStyle.None;
             StartCoroutine(LoadHome());
 
 
@@ -177,6 +181,8 @@ namespace ScaleTravel
             {
                 m_Levels[i].SetLanguage(lang);
                 _Btn_Levels[i].text = m_Levels[i].LevelName;
+                //_Btn_Levels[i].Q<Label>("LevelScale-" + (i+1)).text = lang == Lang.FR ? "Echelle " + m_Levels[i].LevelScale : "Scale " + m_Levels[i].LevelScale;
+                //_Btn_Levels[i].Q<Label>("LevelScale-" + (i+1)).text = "<b>" + m_Levels[i].LevelScale + "</b>";
                 _Btn_Levels[i].Q<Label>("LevelScale-" + (i+1)).text = m_Levels[i].LevelScale;
             }
             _Label_LevelGroups[0].text = m_Levels[0].GroupLevelName;

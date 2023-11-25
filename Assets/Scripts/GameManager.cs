@@ -150,8 +150,14 @@ namespace ScaleTravel
         }
         public void NextLevel()
         {
-            SaveTotalPlayTime();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+            if (SceneManager.GetActiveScene().buildIndex < 9)
+            {
+                SaveTotalPlayTime();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            else
+                Home();
         }
 
         public bool IsGamepadUsed()

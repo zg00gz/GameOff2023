@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _LevelID: 6
   _RunCupTime:
-  - 30
-  - 60
+  - 45
   - 120
+  - 240
   _English:
     GroupLevelName: World of the living
-    LevelName: Humans and small friends
-    LevelScale: 1.7 <b>m</b>eters
+    LevelName: Humans and dino...
+    LevelScale: 1.7 m
     GoWord: Go !
     EndWord: Well done !
   _French:
     GroupLevelName: Monde des vivants
-    LevelName: Humains et petits amis
-    LevelScale: "1.7 <b>m</b>\xE8tres"
+    LevelName: Humains et dino...
+    LevelScale: 1.7 m
     GoWord: Go !
     EndWord: "Bien jou\xE9 !"

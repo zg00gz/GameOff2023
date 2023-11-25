@@ -20,12 +20,12 @@ MonoBehaviour:
   _English:
     GroupLevelName: Particles World
     LevelName: + or - with electron
-    LevelScale: 10<sup>-15</sup> <b>m</b>eters>
+    LevelScale: 10<sup>-15</sup> m
     GoWord: Good luck !
     EndWord: GG ! You are a star !!!
   _French:
     GroupLevelName: Monde des particules
     LevelName: "+ ou - avec les \xE9lectrons"
-    LevelScale: "10<sup>-15</sup> <b>m</b>\xE8tres"
+    LevelScale: 10<sup>-15</sup> m
     GoWord: Bonne chance !
     EndWord: GG ! Tu es une star !!!

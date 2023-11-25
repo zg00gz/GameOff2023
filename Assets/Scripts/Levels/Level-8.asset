@@ -19,13 +19,13 @@ MonoBehaviour:
   - 120
   _English:
     GroupLevelName: World of void
-    LevelName: 1 Light Year and Black Holes
-    LevelScale: 9 461 000 000 000 <b>km</b>
+    LevelName: 1 Light Year (ly)
+    LevelScale: 9 461 000 000 000 km
     GoWord: Let's go !
     EndWord: Well done !
   _French:
     GroupLevelName: Monde du vide
-    LevelName: "1 Ann\xE9e Lumi\xE8re"
-    LevelScale: 9 461 000 000 000 <b>km</b>
+    LevelName: "1 Ann\xE9e Lumi\xE8re (al)"
+    LevelScale: 9 461 000 000 000 km
     GoWord: Let's go !
     EndWord: "Bien jou\xE9 !"

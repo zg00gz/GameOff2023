@@ -142,6 +142,33 @@
     -unity-background-scale-mode: stretch-to-fill;
 }
 
+.scale-button-info {
+    background-color: rgba(229, 228, 226, 0);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-left: 5px;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 2px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 6px;
+    width: 30px;
+    height: 30px;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+}
+
 .scale-button-level {
     -unity-font: url('project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
     border-left-width: 1px;
@@ -164,7 +191,7 @@
     padding-top: 0;
     padding-bottom: 0;
     justify-content: center;
-    font-size: 14px;
+    font-size: 16px;
     -unity-text-align: middle-center;
     color: rgb(0, 0, 0);
 }
@@ -178,7 +205,7 @@
 }
 
 .scale-button-level-bronze {
-    background-color: rgba(205, 127, 50, 0.5);
+    background-color: rgba(205, 127, 50, 0.9);
     border-left-color: rgb(205, 127, 50);
     border-right-color: rgb(205, 127, 50);
     border-top-color: rgb(205, 127, 50);
@@ -186,7 +213,7 @@
 }
 
 .scale-button-level-silver {
-    background-color: rgba(188, 198, 204, 0.5);
+    background-color: rgba(188, 198, 204, 0.9);
     border-left-color: rgb(188, 198, 204);
     border-right-color: rgb(188, 198, 204);
     border-top-color: rgb(188, 198, 204);
@@ -194,7 +221,7 @@
 }
 
 .scale-button-level-gold {
-    background-color: rgba(212, 175, 55, 0.5);
+    background-color: rgba(212, 175, 55, 0.9);
     border-left-color: rgb(212, 175, 55);
     border-right-color: rgb(212, 175, 55);
     border-top-color: rgb(212, 175, 55);
@@ -221,8 +248,8 @@
     -unity-font: url('project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
     color: rgb(255, 255, 255);
     -unity-font-style: bold;
-    width: 80%;
-    font-size: 16px;
+    width: 85%;
+    font-size: 20px;
 }
 
 .scale-cup-level {
@@ -269,5 +296,5 @@
     color: rgb(19, 19, 19);
     -unity-font-style: normal;
     overflow: hidden;
-    font-size: 12px;
+    font-size: 16px;
 }

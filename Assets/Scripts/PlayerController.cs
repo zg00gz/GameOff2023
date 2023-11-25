@@ -11,6 +11,7 @@ namespace ScaleTravel
         private static PlayerController s_Instance;
         public static PlayerController Instance { get { return s_Instance; } }
 
+        [SerializeField] Animator m_Animation;
 
         [SerializeField] float m_Speed = 5.0f;
         [SerializeField] float m_Acceleration = 20.0f;
@@ -75,9 +76,20 @@ namespace ScaleTravel
                 //m_Rigidbody.AddForce(move * m_Acceleration, ForceMode.Acceleration);
                 m_Velocity.x = Mathf.Clamp(m_Velocity.x, -maxSpeed, maxSpeed);
                 m_Rigidbody.velocity = m_Velocity;
+
+                if (!IsJumping && m_IsGrounded)
+                {
+                    m_Animation.SetBool("isWalking", true);
+                    m_Animation.SetBool("isJumping", false);
+                }
             }
             else
             {
+                if (!IsJumping && m_IsGrounded)
+                {
+                    m_Animation.SetBool("isWalking", false);
+                    m_Animation.SetBool("isJumping", false);
+                }
                 m_Velocity.x = 0f;
                 m_Rigidbody.velocity = m_Velocity;
             }
@@ -101,6 +113,9 @@ namespace ScaleTravel
                 float ratioScaleHeight = Mathf.Clamp(transform.localScale.x, 0.5f, 1.5f);
 
                 m_Rigidbody.AddForce(transform.up * (m_JumpHeight + ratioScaleHeight), ForceMode.VelocityChange);
+
+                m_Animation.SetBool("isJumping", true);
+                m_Animation.SetBool("isWalking", false);
             }
             else
             {

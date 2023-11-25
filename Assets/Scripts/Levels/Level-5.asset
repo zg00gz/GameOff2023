@@ -20,12 +20,12 @@ MonoBehaviour:
   _English:
     GroupLevelName: World of the living
     LevelName: Hair and baby ant
-    LevelScale: 1.8x10<sup>-4</sup> <b>m</b>eters
+    LevelScale: 10<sup>-4</sup> m
     GoWord: Go !!!!
     EndWord: GG ! You are a star !!!
   _French:
     GroupLevelName: Monde des vivants
     LevelName: "Cheveux et b\xE9b\xE9 fourmi"
-    LevelScale: "1.8x10<sup>-4</sup> <b>m</b>\xE8tres"
+    LevelScale: 10<sup>-4</sup> m
     GoWord: Go !!!!
     EndWord: GG ! Tu es une star !!!

@@ -359,7 +359,7 @@ namespace ScaleTravel
             int minutes = hours > 0 ? Mathf.FloorToInt( (timeToDisplay - hours*3600 ) / 60) : Mathf.FloorToInt(timeToDisplay / 60);
             float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
-            return string.Format("{0} h  {1} m  {2} s", hours, ("0" + minutes).Substring(0, 2), ("0" + seconds).Substring(0, 2));
+            return string.Format("{0} h  {1} m  {2} s", hours, ("0" + minutes).Substring(minutes.ToString().Count() - 1, 2), ("0" + seconds).Substring(0, 2));
         }
 
     }
