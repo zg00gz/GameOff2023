@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 9817973}
   - component: {fileID: 9817972}
   m_Layer: 0
-  m_Name: GravityTrigger
+  m_Name: GravityTrigger start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,6 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NewGravity: {x: 0, y: 1, z: 0}
+  m_IsVelocityLimited: 1
   OnStart:
     m_PersistentCalls:
       m_Calls:
@@ -7303,7 +7304,7 @@ GameObject:
   - component: {fileID: 1139139022}
   - component: {fileID: 1139139021}
   m_Layer: 0
-  m_Name: GravityTrigger
+  m_Name: GravityTrigger end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7358,6 +7359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NewGravity: {x: 0, y: -9.81, z: 0}
+  m_IsVelocityLimited: 0
   OnStart:
     m_PersistentCalls:
       m_Calls:
@@ -14829,7 +14831,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1001 &4854099359508124559
 PrefabInstance:
   m_ObjectHideFlags: 0

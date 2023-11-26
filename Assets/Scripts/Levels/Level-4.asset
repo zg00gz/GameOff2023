@@ -19,13 +19,13 @@ MonoBehaviour:
   - 240
   _English:
     GroupLevelName: World of the living
-    LevelName: Red blood cell and...
+    LevelName: Red blood cell and virus
     LevelScale: 10<sup>-5</sup> m
     GoWord: Let's go !
     EndWord: Well done !
   _French:
     GroupLevelName: Monde des vivants
-    LevelName: Globule rouge et...
+    LevelName: Globule rouge et virus
     LevelScale: 10<sup>-5</sup> m
     GoWord: Let's go !
     EndWord: "Bien jou\xE9 !"

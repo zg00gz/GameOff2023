@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _LevelID: 7
   _RunCupTime:
-  - 30
   - 60
-  - 120
+  - 150
+  - 300
   _English:
     GroupLevelName: World of void
     LevelName: The Earth and more !
     LevelScale: 12 742 km
-    GoWord: Let's go !
+    GoWord: 
     EndWord: Well done !
   _French:
     GroupLevelName: Monde du vide
     LevelName: La Terre et plus encore !
     LevelScale: 12 742 km
-    GoWord: Let's go !
+    GoWord: 
     EndWord: "Bien jou\xE9 !"

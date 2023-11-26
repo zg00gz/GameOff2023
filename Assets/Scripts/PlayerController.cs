@@ -26,6 +26,11 @@ namespace ScaleTravel
         [SerializeField] Vector3 m_Velocity;
         //[SerializeField] Vector3 m_PrevVelocity;
 
+        public bool IsVelocityLimited;
+        [SerializeField] float m_MaxVelocityY = 10.0f;
+
+
+
         Rigidbody m_Rigidbody;
         PlayerInput m_Input;
 
@@ -53,8 +58,21 @@ namespace ScaleTravel
                 UpdateDirection();
                 UpdateJump();
             }
-
             //m_PrevVelocity = m_Rigidbody.velocity;
+
+            if(IsVelocityLimited)
+            {
+                
+                m_Velocity.y = Mathf.Clamp(m_Velocity.y, -m_MaxVelocityY, m_MaxVelocityY);
+                m_Rigidbody.velocity = m_Velocity;
+            }
+                
+        }
+
+        public void SetIsFlying(bool value)
+        {
+            m_Animation.SetBool("isFlying", value);
+            IsJumping = true;
         }
 
         private void UpdateVelocity()

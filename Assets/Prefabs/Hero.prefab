@@ -228,6 +228,8 @@ MonoBehaviour:
   m_IsCollided: 0
   IsJumping: 0
   m_Velocity: {x: 0, y: 0, z: 0}
+  IsVelocityLimited: 0
+  m_MaxVelocityY: 10
 --- !u!114 &4592945309808309485
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,25 +4,27 @@ using UnityEngine.Events;
 
 namespace ScaleTravel
 {
-    public class GravityTrigger : MonoBehaviour
+    public class SetPositionTrigger : MonoBehaviour
     {
-        [SerializeField] Vector3 m_NewGravity;
-        [SerializeField] bool m_IsVelocityLimited;
+        [SerializeField] Transform m_Target;
+        [SerializeField] Vector3 m_Position;
 
         public UnityEvent OnStart= new UnityEvent();
 
+        [SerializeField] bool m_IsOneShot;
         private bool m_IsEndTriggered;
+
+        private void SetPosition()
+        {
+            m_Target.position = m_Position;
+        }
 
         private void OnTriggerEnter(Collider other)
         {
             if (!m_IsEndTriggered && other.CompareTag("Player") && !other.isTrigger)
             {
-                m_IsEndTriggered = true;
-                Physics.gravity = m_NewGravity;
-
-                PlayerController.Instance.IsVelocityLimited = m_IsVelocityLimited;
-                PlayerController.Instance.SetIsFlying(m_IsVelocityLimited);
-
+                if(m_IsOneShot) m_IsEndTriggered = true;
+                SetPosition();
                 OnStart.Invoke();
             }
         }
