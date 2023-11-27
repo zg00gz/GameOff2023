@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _LevelID: 8
   _RunCupTime:
-  - 30
-  - 60
-  - 120
+  - 140
+  - 190
+  - 240
   _English:
     GroupLevelName: World of void
     LevelName: 1 Light Year (ly)

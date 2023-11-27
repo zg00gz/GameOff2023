@@ -18,14 +18,14 @@ MonoBehaviour:
   - 60
   - 120
   _English:
-    GroupLevelName: Infinite Travel
+    GroupLevelName: World of the Big and the Bang
     LevelName: The Universe and beyond...
     LevelScale: 93 000 000 000 ly
-    GoWord: Let's go !
-    EndWord: Well done !
+    GoWord: Big Bang !
+    EndWord: Your are the master of the Universes !!!
   _French:
-    GroupLevelName: Voyage infini
+    GroupLevelName: Monde du Big et du Bang
     LevelName: "L'Univers et au-del\xE0..."
     LevelScale: 93 000 000 000 al
-    GoWord: Let's go !
-    EndWord: "Bien jou\xE9 !"
+    GoWord: Big Bang !
+    EndWord: "Tu es le ma\xEEtre des Univers !!!"

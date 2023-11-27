@@ -108,6 +108,10 @@ namespace ScaleTravel
             m_Keys++;
             m_UI_Level.UpdateKeys(m_Keys);
         }
+        public int GetNumberOfKey()
+        {
+            return m_Keys;
+        }
 
         public bool OpenWithKeys(int keys)
         {

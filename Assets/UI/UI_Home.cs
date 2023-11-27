@@ -302,15 +302,16 @@ namespace ScaleTravel
             _ProfileName.text = PlayerLocal.Instance.HeroData.Profile.PlayerName;
             _GroupLevels.Q<Label>("TotalPlayTime").text = PlayerLocal.Instance.FormatTotalTime(PlayerLocal.Instance.HeroData.Profile.TotalPlayedTime);
 
+            var playerLevels = PlayerLocal.Instance.HeroData.Levels.OrderBy(p => p.LevelID).ToList();
 
+            // Active all levels if unlock enough levels
+            var isLevelActive = playerLevels.Count() > 2;
             foreach (Button btn_level in _Btn_Levels)
             {
-                btn_level.SetEnabled(false);
+                btn_level.SetEnabled(isLevelActive);
             }
             _Btn_Levels[0].SetEnabled(true);
-
-
-            var playerLevels = PlayerLocal.Instance.HeroData.Levels.OrderBy(p => p.LevelID).ToList();
+            
 
             for (var i = 0; i < _Btn_Levels.Count; i++)
             {
@@ -360,6 +361,12 @@ namespace ScaleTravel
                 {
                     _Btn_Levels[i+1].SetEnabled(true);
                 }
+            }
+
+            // Last level available only if all levels done
+            if (_Btn_Levels.Count() < m_Levels.Count() + 1)
+            {
+                _Btn_Levels.Last().SetEnabled(false);
             }
 
             _GroupLevels.style.display = DisplayStyle.Flex;

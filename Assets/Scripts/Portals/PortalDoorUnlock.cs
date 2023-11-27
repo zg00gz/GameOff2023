@@ -24,8 +24,6 @@ namespace ScaleTravel
         {
             if (m_IsActive && m_PlayerController.IsJumping == false)
             {
-                Vector3 action = PlayerInput.Instance.Move;
-
                 if (PlayerInput.Instance.Action)
                 {
                     //Debug.Log("Action !");

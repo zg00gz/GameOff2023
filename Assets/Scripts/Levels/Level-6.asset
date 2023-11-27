@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _LevelID: 6
   _RunCupTime:
-  - 45
-  - 120
+  - 90
+  - 150
   - 240
   _English:
     GroupLevelName: World of the living

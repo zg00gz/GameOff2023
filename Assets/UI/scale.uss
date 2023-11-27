@@ -120,7 +120,7 @@
     border-bottom-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    height: 30px;
+    height: 50px;
     margin-left: 5px;
     margin-right: 0;
     margin-top: 0;
@@ -129,7 +129,7 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 6px;
-    width: 30px;
+    width: 50px;
     border-left-color: rgb(255, 255, 255);
     border-right-color: rgb(255, 255, 255);
     border-top-color: rgb(255, 255, 255);

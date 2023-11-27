@@ -62,11 +62,31 @@ namespace ScaleTravel
 
             if(IsVelocityLimited)
             {
-                
                 m_Velocity.y = Mathf.Clamp(m_Velocity.y, -m_MaxVelocityY, m_MaxVelocityY);
                 m_Rigidbody.velocity = m_Velocity;
+                if(Physics.gravity.y == 0) UpdateVelocityVertical();
             }
                 
+        }
+
+        private void UpdateVelocityVertical()
+        {
+            m_Velocity = m_Rigidbody.velocity;
+            Vector3 move = m_Input.MoveVertical;
+
+            if (move.magnitude >= 0.1f)
+            {
+                float maxSpeed = m_Speed;
+
+                m_Velocity += move * m_Acceleration * Time.fixedDeltaTime;
+                m_Velocity.y = Mathf.Clamp(m_Velocity.y, -maxSpeed, maxSpeed);
+                m_Rigidbody.velocity = m_Velocity;
+            }
+            else
+            {
+                m_Velocity.y = 0f;
+                m_Rigidbody.velocity = m_Velocity;
+            }
         }
 
         public void SetIsFlying(bool value)
