@@ -14,18 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _LevelID: 10
   _RunCupTime:
-  - 30
-  - 60
-  - 120
+  - 90
+  - 200
+  - 300
   _English:
     GroupLevelName: World of the Big and the Bang
     LevelName: The Universe and beyond...
     LevelScale: 93 000 000 000 ly
-    GoWord: Big Bang !
-    EndWord: Your are the master of the Universes !!!
+    GoWord: The Big Bang !
+    EndWord: Your are the master of the Universes !!!<br>Many thanks for playing
+      my game
   _French:
     GroupLevelName: Monde du Big et du Bang
     LevelName: "L'Univers et au-del\xE0..."
     LevelScale: 93 000 000 000 al
-    GoWord: Big Bang !
-    EndWord: "Tu es le ma\xEEtre des Univers !!!"
+    GoWord: Le Big Bang !
+    EndWord: "Tu es le ma\xEEtre des Univers !!!<br>Merci beaucoup d'avoir jou\xE9
+      \xE0 mon jeu"

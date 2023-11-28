@@ -29,7 +29,7 @@ namespace ScaleTravel
         public bool IsVelocityLimited;
         [SerializeField] float m_MaxVelocityY = 10.0f;
 
-
+        public bool IsExplosing;
 
         Rigidbody m_Rigidbody;
         PlayerInput m_Input;
@@ -60,7 +60,7 @@ namespace ScaleTravel
             }
             //m_PrevVelocity = m_Rigidbody.velocity;
 
-            if(IsVelocityLimited)
+            if(IsVelocityLimited && !GameManager.Instance.IsLevelDone)
             {
                 m_Velocity.y = Mathf.Clamp(m_Velocity.y, -m_MaxVelocityY, m_MaxVelocityY);
                 m_Rigidbody.velocity = m_Velocity;
@@ -128,8 +128,11 @@ namespace ScaleTravel
                     m_Animation.SetBool("isWalking", false);
                     m_Animation.SetBool("isJumping", false);
                 }
-                m_Velocity.x = 0f;
-                m_Rigidbody.velocity = m_Velocity;
+                if(!IsExplosing)
+                {
+                    m_Velocity.x = 0f;
+                    m_Rigidbody.velocity = m_Velocity;
+                }
             }
 
             if (m_IsCollided && IsJumping) // !m_IsGrounded && 
@@ -207,6 +210,15 @@ namespace ScaleTravel
             m_Rigidbody.AddForce(transform.up * force, ForceMode.Impulse);
         }
 
+        public void AddExplosionForce(float force, Vector3 position, float radius)
+        {
+            IsExplosing = true;
+            m_Rigidbody.velocity = Vector3.zero;
+            force = force / transform.localScale.x;
+
+            m_Rigidbody.AddExplosionForce(force, position, radius, 3.0f, ForceMode.VelocityChange);
+        }
+
         public void SetPosition(Vector3 position)
         {
             SetKinematic(true);
@@ -237,6 +249,7 @@ namespace ScaleTravel
         {
             if (other.CompareTag("Ground"))
             {
+                IsExplosing = false;
                 m_IsGrounded = true;
                 IsJumping = false;
                 if(!m_Input.playerControllerInputBlocked)

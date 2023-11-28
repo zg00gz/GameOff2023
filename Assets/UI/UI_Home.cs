@@ -364,7 +364,7 @@ namespace ScaleTravel
             }
 
             // Last level available only if all levels done
-            if (_Btn_Levels.Count() < m_Levels.Count() + 1)
+            if (playerLevels.Count < 9)
             {
                 _Btn_Levels.Last().SetEnabled(false);
             }

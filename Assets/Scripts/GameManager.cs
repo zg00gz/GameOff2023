@@ -155,7 +155,7 @@ namespace ScaleTravel
         public void NextLevel()
         {
 
-            if (SceneManager.GetActiveScene().buildIndex < 9)
+            if (SceneManager.GetActiveScene().buildIndex < 10)
             {
                 SaveTotalPlayTime();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
