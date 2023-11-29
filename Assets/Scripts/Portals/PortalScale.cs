@@ -20,9 +20,11 @@ namespace ScaleTravel
         bool m_IsActionRunning;
 
         VirtualCamController m_VirtualCamScript;
+        private AudioSource m_AudioSource;
 
         void Start()
         {
+            m_AudioSource = GetComponent<AudioSource>();
             m_VirtualCamScript = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<VirtualCamController>();
             DisplayType(PlayerController.Instance.transform.localScale.x);
         }
@@ -43,6 +45,7 @@ namespace ScaleTravel
                     }
 
                     m_IsScalingUp = m_Target.transform.localScale.x < m_TargetScale.x;
+                    m_AudioSource.Play();
                     m_IsActionRunning = true;
                 }
                 else

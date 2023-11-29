@@ -18,7 +18,16 @@ namespace ScaleTravel
 
         [SerializeField] bool m_IsActive;
 
-        PlayerController m_PlayerController;
+        [SerializeField] AudioClip m_ButtonSound;
+        [SerializeField] AudioClip m_UnlockSound;
+
+        private PlayerController m_PlayerController;
+        private AudioSource m_AudioSource;
+
+        void Start()
+        {
+            m_AudioSource = GetComponent<AudioSource>();
+        }
 
         void Update()
         {
@@ -38,6 +47,7 @@ namespace ScaleTravel
             m_IsActive = false;
             m_PlayerController.SetKinematic(true);
 
+            m_AudioSource.PlayOneShot(m_ButtonSound);
             m_PlayerController.transform.forward = new Vector3(0, 0, m_IsTop ? 1 : -1);
             yield return new WaitForSeconds(0.5f);
 
@@ -55,6 +65,7 @@ namespace ScaleTravel
 
             if(canOpen)
             {
+                m_AudioSource.PlayOneShot(m_UnlockSound);
                 m_Door.SetUnlocked();
                 m_Button.material = m_UnlockMaterial;
 

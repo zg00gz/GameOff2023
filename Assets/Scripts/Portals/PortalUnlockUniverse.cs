@@ -7,10 +7,18 @@ namespace ScaleTravel
     public class PortalUnlockUniverse : MonoBehaviour
     {
         [SerializeField] GameObject m_Area;
-
         [SerializeField] bool m_IsActive;
 
-        PlayerController m_PlayerController;
+        [SerializeField] AudioClip m_ButtonSound;
+        [SerializeField] AudioClip m_UnlockSound;
+
+        private PlayerController m_PlayerController;
+        private AudioSource m_AudioSource;
+
+        void Start()
+        {
+            m_AudioSource = GetComponent<AudioSource>();
+        }
 
         void Update()
         {
@@ -30,13 +38,21 @@ namespace ScaleTravel
         {
             m_PlayerController.SetKinematic(true);
 
+            m_AudioSource.PlayOneShot(m_ButtonSound);
             m_PlayerController.transform.forward = new Vector3(0, 0, 1);
             yield return new WaitForSeconds(0.5f);
 
-            foreach(var bigBang in m_Area.GetComponentsInChildren<BigBang>())
+            var bigBangs = m_Area.GetComponentsInChildren<BigBang>();
+            int bigBangsActive = 0;
+
+            foreach (var bigBang in bigBangs)
             {
+                if (bigBang.GetComponent<Collider>().enabled) bigBangsActive++;
                 bigBang.Active(true);
             }
+
+            if (bigBangs.Length != bigBangsActive)
+                m_AudioSource.PlayOneShot(m_UnlockSound);
 
             m_PlayerController.SetKinematic(false);
         }

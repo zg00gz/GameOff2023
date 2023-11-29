@@ -16,13 +16,22 @@ namespace ScaleTravel
 
         [SerializeField] int m_AreaIndex = 0;
 
-        PlayerController m_PlayerController;
+        [SerializeField] AudioClip m_ButtonSound;
+        [SerializeField] AudioClip m_UnlockSound;
+
+        private PlayerController m_PlayerController;
+        private AudioSource m_AudioSource;
+
+        void Start()
+        {
+            m_AudioSource = GetComponent<AudioSource>();
+        }
 
         void Update()
         {
             if (m_IsActive && m_PlayerController.IsJumping == false)
             {
-                if (PlayerInput.Instance.Action)
+                if (PlayerInput.Instance.Action && m_Key.enabled)
                 {
                     m_IsActive = false;
                     StopAllCoroutines();
@@ -36,9 +45,11 @@ namespace ScaleTravel
         {  
             m_PlayerController.SetKinematic(true);
 
+            m_AudioSource.PlayOneShot(m_ButtonSound);
             m_PlayerController.transform.forward = new Vector3(0, 0, 1);
             yield return new WaitForSeconds(0.5f);
 
+            m_AudioSource.PlayOneShot(m_UnlockSound);
             m_AreaKeys[m_AreaIndex].SetActive(true);
             m_Key.enabled = false;
 

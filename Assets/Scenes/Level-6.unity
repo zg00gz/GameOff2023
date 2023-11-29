@@ -25178,7 +25178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1001 &3551529540730296934
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25468,6 +25468,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2230378160686106405, guid: 5d3d15dafbcbbbd40a8e967c9bac46c3,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: cdc7f06e851386b4f88afbac9fd73d7d, type: 3}
     - target: {fileID: 2558896309307878388, guid: 5d3d15dafbcbbbd40a8e967c9bac46c3,
         type: 3}
       propertyPath: m_Name
@@ -25523,6 +25528,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7595944653917861210, guid: 5d3d15dafbcbbbd40a8e967c9bac46c3,
+        type: 3}
+      propertyPath: m_LevelMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 327a955e4c085e34ead8a54ff67ac38a, type: 3}
     - target: {fileID: 7595944653917861210, guid: 5d3d15dafbcbbbd40a8e967c9bac46c3,
         type: 3}
       propertyPath: m_RespawnMax
@@ -25882,6 +25892,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DisplayFPS TMP DEV
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692413605574518305, guid: 02f7da335e8183241a6eefaa56bfabe4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3500200854524629793, guid: 02f7da335e8183241a6eefaa56bfabe4,
         type: 3}

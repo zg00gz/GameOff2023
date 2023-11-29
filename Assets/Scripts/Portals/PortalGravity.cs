@@ -10,10 +10,18 @@ namespace ScaleTravel
         [SerializeField] Collider m_PortalArrivalCollider;
         PlayerController m_PlayerController;
 
+        private AudioSource m_AudioSource;
+
+        void Start()
+        {
+            m_AudioSource = GetComponent<AudioSource>();
+        }
+
         void SetGravity()
         {
             PlayerInput.Instance.playerControllerInputBlocked = true;
             m_PlayerController.SetGravityInverted();
+            m_AudioSource.Play();
         }
 
         private void OnTriggerEnter(Collider other)

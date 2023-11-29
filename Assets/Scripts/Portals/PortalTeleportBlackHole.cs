@@ -14,6 +14,12 @@ namespace ScaleTravel
         [SerializeField] GameObject m_Hide;
 
         GameObject m_Target;
+        private AudioSource m_AudioSource;
+
+        void Start()
+        {
+            m_AudioSource = GetComponent<AudioSource>();
+        }
 
         void Teleport()
         {
@@ -29,6 +35,7 @@ namespace ScaleTravel
                 if (IsIgnoringFirstTrigger)
                 {
                     IsIgnoringFirstTrigger = false;
+                    m_AudioSource.Play();
                 }
                 else
                 {

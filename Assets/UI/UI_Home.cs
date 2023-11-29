@@ -34,6 +34,7 @@ namespace ScaleTravel
         private Label _ProfileName;
         private Button _Btn_DisplayProfiles;
         private Button _Btn_DisplayParams;
+        private Button _Btn_DisplayInfos;
         private Button _Btn_OK;
 
         private List<GroupBox> _Groupbox_levelGroups;
@@ -43,6 +44,7 @@ namespace ScaleTravel
         private List<VisualElement> _CupLevels;
 
         private Button _Btn_OK_Scores;
+        private Button _Btn_OK_Infos;
 
         IEnumerator LoadHome()
         {
@@ -62,6 +64,7 @@ namespace ScaleTravel
                 //Debug.Log("Wait profile screen...");
                 yield return new WaitForSeconds(1f);
 
+
                 Debug.Log("Get profiles...");
                 PlayerLocal.Instance.ExistingProfiles = null;
                 //Debug.Log((PlayerLocal.Instance.ExistingProfiles != null) + " " + Time.time);
@@ -69,14 +72,13 @@ namespace ScaleTravel
                 yield return new WaitUntil(() => PlayerLocal.Instance.ExistingProfiles != null);
                 //Debug.Log((PlayerLocal.Instance.ExistingProfiles != null) + " " + Time.time);
 
-
                 switch (PlayerLocal.Instance.ExistingProfiles.Count)
                 {
                     case 0:
                         DisplayCreateProfile();
                         break;
                     default:
-                        DisplayProfiles();
+                        DisplayProfiles(true);
                         break;
                 }
             }
@@ -155,6 +157,12 @@ namespace ScaleTravel
 
             _Btn_OK_Scores = uiDocument.rootVisualElement.Q<Button>("Btn_OK_Scores");
             _Btn_OK_Scores.RegisterCallback<ClickEvent>(delegate { HideScores(); });
+
+            // Infos
+            _Btn_DisplayInfos = uiDocument.rootVisualElement.Q<Button>("btn_displayInfos");
+            _Btn_DisplayInfos.RegisterCallback<ClickEvent>(delegate { DisplayInfos(); });
+            _Btn_OK_Infos = _GroupInfos.Q<Button>("btn_OK_Infos");
+            _Btn_OK_Infos.RegisterCallback<ClickEvent>(delegate { CloseInfos(); });
         }
 
         private void SetLabels()
@@ -200,6 +208,7 @@ namespace ScaleTravel
             _GroupLevels.style.display = DisplayStyle.None;
             _GroupParams.style.display = DisplayStyle.None;
             _GroupScores.style.display = DisplayStyle.None;
+            _GroupInfos.style.display = DisplayStyle.None;
             _GroupFirstProfile.style.display = DisplayStyle.Flex;
         }
         private void CreateProfile(Lang lang)
@@ -208,17 +217,37 @@ namespace ScaleTravel
             TextField inputPlayerName = _GroupFirstProfile.Q<TextField>("input_PlayerName");
 
             PlayerLocal.ProfileData profile = new PlayerLocal.ProfileData();
-            profile.PlayerName = inputPlayerName.text != "" ? inputPlayerName.text : "Hero";
+            profile.PlayerName = inputPlayerName.text;
             profile.PlayerLanguage = lang;
-            PlayerLocal.Instance.SaveProfile(profile);
+
+            if (IsProfileEmptyOrAlreadyExist(profile.PlayerName))
+                return;
             
+            PlayerLocal.Instance.SaveProfile(profile);
             DisplayLevels();
+        }
+
+        private bool IsProfileEmptyOrAlreadyExist(string newPlayerName, bool isUpdateContext = false)
+        {
+            if (newPlayerName == "")
+                return true;
+
+            if (PlayerLocal.Instance.ExistingProfiles.Count() == 0)
+                return false;
+
+            var existingProfiles = isUpdateContext ? 
+                    PlayerLocal.Instance.ExistingProfiles.Where(p => p.PlayerName == newPlayerName && p.PlayerID != PlayerLocal.Instance.HeroData.Profile.PlayerID)
+                    : PlayerLocal.Instance.ExistingProfiles.Where(p => p.PlayerName == newPlayerName);
+            if (existingProfiles.Count() > 0)
+                return true;
+
+            return false;
         }
 
         public void DisplayUpdateProfile()
         {
-            TextField inputPlayerName = _GroupFirstProfile.Q<TextField>("input_PlayerName");
-            inputPlayerName.value = "Hero";
+            //TextField inputPlayerName = _GroupFirstProfile.Q<TextField>("input_PlayerName");
+            //inputPlayerName.value = "Hero";
             _GroupParams.Q<TextField>("input_PlayerName").value = PlayerLocal.Instance.HeroData.Profile.PlayerName;
             _GroupParams.Q<RadioButton>("radio_EN").value = PlayerLocal.Instance.HeroData.Profile.PlayerLanguage == Lang.EN ? true : false;
             _GroupParams.Q<RadioButton>("radio_FR").value = PlayerLocal.Instance.HeroData.Profile.PlayerLanguage == Lang.FR ? true : false;
@@ -229,6 +258,7 @@ namespace ScaleTravel
             _GroupProfiles.style.display = DisplayStyle.None;
             _GroupLevels.style.display = DisplayStyle.None;
             _GroupScores.style.display = DisplayStyle.None;
+            _GroupInfos.style.display = DisplayStyle.None;
             _GroupParams.style.display = DisplayStyle.Flex;
         }
         private void UpdateProfile()
@@ -241,23 +271,28 @@ namespace ScaleTravel
             profile.MusicVolume = _GroupParams.Q<Slider>("slider_music").value;
             profile.SoundVolume = _GroupParams.Q<Slider>("slider_sounds").value;
 
-            PlayerLocal.Instance.SaveProfile(profile);
+            if (IsProfileEmptyOrAlreadyExist(profile.PlayerName, true))
+                return;
 
+            PlayerLocal.Instance.SaveProfile(profile);
             DisplayLevels();
         }
 
-        public void DisplayProfiles()
+        public void DisplayProfiles(bool isFirstLoad = false)
         {
             _GroupFirstProfile.style.display = DisplayStyle.None;
             _GroupLevels.style.display = DisplayStyle.None;
             _GroupParams.style.display = DisplayStyle.None;
-            StartCoroutine(LoadExistingProfiles());
+            _GroupInfos.style.display = DisplayStyle.None;
+            StartCoroutine(LoadExistingProfiles(isFirstLoad));
         }
-        IEnumerator LoadExistingProfiles()
+        IEnumerator LoadExistingProfiles(bool isFirstLoad)
         {
-            if(PlayerLocal.Instance.ExistingProfiles.Count == 0)
+            // Commenté pour mettre à jour le nom du joueur dans la liste à chaque fois, sauf au premier appel du jeu
+            //if(PlayerLocal.Instance.ExistingProfiles.Count == 0)
+            if (!isFirstLoad)
             {
-                Debug.Log("Get profiles...");
+                Debug.Log("Get profiles...load");
                 PlayerLocal.Instance.ExistingProfiles = new List<PlayerLocal.ProfileData>();
                 PlayerLocal.Instance.GetExistingProfiles();
                 yield return new WaitUntil(() => PlayerLocal.Instance.ExistingProfiles.Count > 0);
@@ -281,6 +316,29 @@ namespace ScaleTravel
             PlayerLocal.Instance.HeroData = PlayerLocal.Instance.Load(playerID);
             SetAudioMixerVolume();
             DisplayLevels();
+        }
+
+        private void DisplayInfos()
+        {
+            _GroupLevels.style.display = DisplayStyle.None;
+            
+            if(PlayerLocal.Instance.HeroData.Profile.PlayerLanguage == Lang.FR)
+            {
+                _GroupInfos.Q<GroupBox>("Infos_FR").style.display = DisplayStyle.Flex;
+                _GroupInfos.Q<GroupBox>("Infos_EN").style.display = DisplayStyle.None;
+            }
+            else
+            {
+                _GroupInfos.Q<GroupBox>("Infos_FR").style.display = DisplayStyle.None;
+                _GroupInfos.Q<GroupBox>("Infos_EN").style.display = DisplayStyle.Flex;
+            }
+
+            _GroupInfos.style.display = DisplayStyle.Flex;
+        }
+        private void CloseInfos()
+        {
+            _GroupInfos.style.display = DisplayStyle.None;
+            _GroupLevels.style.display = DisplayStyle.Flex;
         }
 
         private void SetAudioMixerVolume()
@@ -328,6 +386,7 @@ namespace ScaleTravel
                 _Btn_Scores[i].RemoveFromClassList("scale-cup-level-silver");
                 _Btn_Scores[i].RemoveFromClassList("scale-cup-level-gold");
             }
+            //_Btn_Levels[0].Focus();
 
             for (var i = 0; i < playerLevels.Count; i++)
             {

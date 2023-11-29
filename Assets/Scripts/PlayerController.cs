@@ -33,6 +33,7 @@ namespace ScaleTravel
 
         Rigidbody m_Rigidbody;
         PlayerInput m_Input;
+        AudioSource m_AudioSource;
 
         void Awake()
         {
@@ -46,6 +47,7 @@ namespace ScaleTravel
 
             m_Input = GetComponent<PlayerInput>();
             m_Rigidbody = GetComponent<Rigidbody>();
+            m_AudioSource = GetComponent<AudioSource>();
             m_IsGrounded = true;
             Physics.gravity = new Vector3(0, m_GravityValue, 0); // Lorsqu'on retry, la gravité Physics précédente est conservée
         }
@@ -148,6 +150,7 @@ namespace ScaleTravel
             if (!IsJumping && m_IsGrounded && m_Input.Jump)
             {
                 IsJumping = true;
+                m_AudioSource.Play();
 
                 // Hauteur en fonction de la taille
                 //float ratioScaleHeight = transform.localScale.x < 1.0f ? transform.localScale.x : 1.0f;

@@ -10,11 +10,18 @@ namespace ScaleTravel
 
         public bool IsIgnoringFirstTrigger;
         [SerializeField] PortalTeleport m_PortalDestination;
+        private AudioSource m_AudioSource;
 
         GameObject m_Target;
 
+        void Start()
+        {
+            m_AudioSource = GetComponent<AudioSource>();
+        }
+
         void Teleport()
         {
+            m_AudioSource.Play();
             m_Target.GetComponent<PlayerController>().SetPosition(m_PortalDestination.transform.position);
         }
 

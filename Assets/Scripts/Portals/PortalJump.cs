@@ -10,9 +10,17 @@ namespace ScaleTravel
         [SerializeField] float m_Force = 20.0f;
         PlayerController m_PlayerController;
 
+        private AudioSource m_AudioSource;
+
+        void Start()
+        {
+            m_AudioSource = GetComponent<AudioSource>();
+        }
+
         void AddPortalJumpForce()
         {
             m_PlayerController.AddJumpForce(m_Force);
+            m_AudioSource.Play();
         }
 
         private void OnTriggerEnter(Collider other)

@@ -29,7 +29,7 @@
     <ui:GroupBox name="GroupLevels" class="scale-groupbox scale-groupbox-home" style="display: flex; height: 100%; justify-content: center; padding-top: 0;">
         <ui:GroupBox style="flex-direction: row-reverse; flex-shrink: 0; flex-grow: 0; padding-left: 0; padding-right: 5px; padding-top: 0; padding-bottom: 0; margin-left: 0; margin-right: 0; margin-top: 5px; margin-bottom: 0;">
             <ui:GroupBox style="flex-direction: row-reverse; margin-top: 0;">
-                <ui:Button text="?" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn_display_infos" class="scale-button-info" style="-unity-font-style: bold; justify-content: center; font-size: 35px; -unity-text-align: middle-center; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; width: 50px; height: 50px;" />
+                <ui:Button text="?" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn_displayInfos" class="scale-button-info" style="-unity-font-style: bold; justify-content: center; font-size: 35px; -unity-text-align: middle-center; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; width: 50px; height: 50px;" />
                 <ui:Button display-tooltip-when-elided="true" name="btn_displayParam" class="scale-button-profile" style="background-image: url(&apos;project://database/Assets/Textures/Params.png?fileID=21300000&amp;guid=064217c4e6b588746861aedaeeb40635&amp;type=3#Params&apos;); -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0; -unity-background-scale-mode: scale-to-fit;" />
                 <ui:Button display-tooltip-when-elided="true" name="btn_displayProfiles" class="scale-button-profile" style="-unity-background-scale-mode: scale-to-fit; background-image: url(&apos;project://database/Assets/_zg00gz/Textures/Icons-ScaleTravel.png?fileID=-294437843&amp;guid=771853c4fe1bb7d4dad71be5b1dfda91&amp;type=3#Icons-ScaleHero&apos;); margin-left: 5px; -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0;" />
             </ui:GroupBox>
@@ -185,10 +185,103 @@
         </ui:GroupBox>
     </ui:GroupBox>
     <ui:GroupBox name="GroupScaleInfos" style="width: auto; height: 100%; align-items: center; justify-content: center; display: none; -unity-background-image-tint-color: rgb(255, 255, 255); max-height: none;">
-        <ui:GroupBox class="scale-groupbox-level" style="width: 50%; background-color: rgba(255, 255, 255, 0.59); max-height: 95%; height: 300px;">
-            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+        <ui:GroupBox class="scale-groupbox-level" style="width: 85%; background-color: rgba(255, 255, 255, 0.59); max-height: 95%; height: 500px; display: flex;">
+            <ui:GroupBox name="Infos_FR" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 3px;">
+                <ui:GroupBox name="GroupBox" style="flex-direction: row; -unity-font-style: bold; border-bottom-width: 2px; border-left-color: rgb(118, 118, 118); border-right-color: rgb(118, 118, 118); border-top-color: rgb(118, 118, 118); border-bottom-color: rgb(118, 118, 118); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                    <ui:Label tabindex="-1" text="CONTROLES" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="width: 25%;" />
+                    <ui:Label tabindex="-1" text="Manette/Gamepad" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%;" />
+                    <ui:Label tabindex="-1" text="Clavier" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%;" />
+                </ui:GroupBox>
+                <ui:GroupBox name="GroupBox" style="flex-direction: row; border-left-color: rgb(176, 176, 176); border-right-color: rgb(176, 176, 176); border-top-color: rgb(176, 176, 176); border-bottom-color: rgb(176, 176, 176); border-bottom-width: 2px; margin-top: 0; padding-bottom: 0; padding-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                    <ui:Label tabindex="-1" text="Se déplacer" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="width: 25%;" />
+                    <ui:Label tabindex="-1" text="Stick gauche" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%;" />
+                    <ui:Label tabindex="-1" text="Touches directionnelles ou Q, D" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%;" />
+                </ui:GroupBox>
+                <ui:GroupBox name="GroupBox" style="flex-direction: row; border-left-color: rgb(176, 176, 176); border-right-color: rgb(176, 176, 176); border-top-color: rgb(176, 176, 176); border-bottom-color: rgb(176, 176, 176); border-bottom-width: 2px; margin-top: 0; padding-bottom: 0; padding-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                    <ui:Label tabindex="-1" text="Sauter" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="width: 25%;" />
+                    <ui:Label tabindex="-1" text="Bouton en bas" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%;" />
+                    <ui:Label tabindex="-1" text="Touche espace" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%;" />
+                </ui:GroupBox>
+                <ui:GroupBox name="GroupBox" style="flex-direction: row; border-left-color: rgb(176, 176, 176); border-right-color: rgb(176, 176, 176); border-top-color: rgb(176, 176, 176); border-bottom-color: rgb(176, 176, 176); border-bottom-width: 2px; margin-top: 0; padding-bottom: 0; padding-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                    <ui:Label tabindex="-1" text="Action" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="width: 25%;" />
+                    <ui:Label tabindex="-1" text="Bouton à gauche" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%;" />
+                    <ui:Label tabindex="-1" text="Touche E ou Shift gauche" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%;" />
+                </ui:GroupBox>
+                <ui:GroupBox name="GroupBox" style="flex-direction: row; border-left-color: rgb(176, 176, 176); border-right-color: rgb(176, 176, 176); border-top-color: rgb(176, 176, 176); border-bottom-color: rgb(176, 176, 176); border-bottom-width: 2px; margin-top: 0; padding-bottom: 0; padding-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                    <ui:Label tabindex="-1" text="Se diriger vers un object " parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="width: 25%;" />
+                    <ui:Label tabindex="-1" text="Stick gauche (haut ou bas)" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%;" />
+                    <ui:Label tabindex="-1" text="Touches directionnelles haut ou bas ou Z, S" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%;" />
+                </ui:GroupBox>
+                <ui:GroupBox name="GroupBox" style="flex-direction: row; border-left-color: rgb(176, 176, 176); border-right-color: rgb(176, 176, 176); border-top-color: rgb(176, 176, 176); border-bottom-color: rgb(176, 176, 176); border-bottom-width: 2px; margin-top: 0; padding-bottom: 0; padding-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                    <ui:Label tabindex="-1" text="Réessayer le niveau " parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="width: 25%; -unity-text-align: middle-left;" />
+                    <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" text="          (Select) ou bouton du haut" style="width: 35%; -unity-text-align: middle-left;">
+                        <ui:VisualElement style="flex-grow: 1; background-image: url(&apos;project://database/Assets/_zg00gz/Textures/Icons-ScaleTravel.png?fileID=1222093967&amp;guid=771853c4fe1bb7d4dad71be5b1dfda91&amp;type=3#Icons-Select&apos;); width: 25px; height: 25px; -unity-background-image-tint-color: rgb(0, 0, 0); -unity-background-scale-mode: stretch-to-fill;" />
+                    </ui:Label>
+                    <ui:Label tabindex="-1" text="Touche R" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%; -unity-text-align: middle-left;" />
+                </ui:GroupBox>
+                <ui:GroupBox name="GroupBox" style="flex-direction: row; border-left-color: rgb(176, 176, 176); border-right-color: rgb(176, 176, 176); border-top-color: rgb(176, 176, 176); border-bottom-color: rgb(176, 176, 176); border-bottom-width: 2px; margin-top: 0; padding-bottom: 0; padding-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                    <ui:Label tabindex="-1" text="Revenir au menu" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="width: 25%; -unity-text-align: middle-left;" />
+                    <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" text="          (Start)" style="width: 35%; -unity-text-align: middle-left;">
+                        <ui:VisualElement style="flex-grow: 1; background-image: url(&apos;project://database/Assets/_zg00gz/Textures/Icons-ScaleTravel.png?fileID=776354799&amp;guid=771853c4fe1bb7d4dad71be5b1dfda91&amp;type=3#Icons-Start&apos;); width: 25px; height: 25px; -unity-background-image-tint-color: rgb(0, 0, 0); -unity-background-scale-mode: stretch-to-fill;" />
+                    </ui:Label>
+                    <ui:Label tabindex="-1" text="Touche M" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%; -unity-text-align: middle-left;" />
+                </ui:GroupBox>
+                <ui:Label tabindex="-1" text="Déverrouiller les niveaux" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font-style: bold; margin-top: 10px;" />
+                <ui:Label tabindex="-1" text="Finir le monde 1 déverouille les mondes 2 et 3. Finir les mondes 2 et 3 déverouille le dernier monde" parse-escape-sequences="true" display-tooltip-when-elided="true" style="margin-top: 0; padding-top: 0; margin-right: 0;" />
+                <ui:Label tabindex="-1" text="Credits" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font-style: bold; margin-top: 10px;" />
+                <ui:Label tabindex="-1" text="Un jeu par Vincent Fleury (zg00gz). &lt;i&gt;Créé pour Github Game Off 2023 en novembre 2023&lt;/i&gt;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="margin-top: 0; padding-top: 0;" />
+                <ui:Label tabindex="-1" text="Sources" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font-style: bold; margin-top: 10px;" />
+                <ui:Label tabindex="-1" text="Lecture d&apos;articles Wikipedia pour connaître des valeurs d’échelles et définir les tailles approximatives des objets du jeu." parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="margin-top: 0; padding-top: 0;" />
+            </ui:GroupBox>
+            <ui:GroupBox name="Infos_EN" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 3px; display: none;">
+                <ui:GroupBox name="GroupBox" style="flex-direction: row; -unity-font-style: bold; border-bottom-width: 2px; border-left-color: rgb(118, 118, 118); border-right-color: rgb(118, 118, 118); border-top-color: rgb(118, 118, 118); border-bottom-color: rgb(118, 118, 118); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                    <ui:Label tabindex="-1" text="CONTROLS" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="width: 25%;" />
+                    <ui:Label tabindex="-1" text="Gamepad" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%;" />
+                    <ui:Label tabindex="-1" text="Keyboard" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%;" />
+                </ui:GroupBox>
+                <ui:GroupBox name="GroupBox" style="flex-direction: row; border-left-color: rgb(176, 176, 176); border-right-color: rgb(176, 176, 176); border-top-color: rgb(176, 176, 176); border-bottom-color: rgb(176, 176, 176); border-bottom-width: 2px; margin-top: 0; padding-bottom: 0; padding-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                    <ui:Label tabindex="-1" text="Move" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="width: 25%;" />
+                    <ui:Label tabindex="-1" text="Left Stick" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%;" />
+                    <ui:Label tabindex="-1" text="Press Arrows or A, D" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%;" />
+                </ui:GroupBox>
+                <ui:GroupBox name="GroupBox" style="flex-direction: row; border-left-color: rgb(176, 176, 176); border-right-color: rgb(176, 176, 176); border-top-color: rgb(176, 176, 176); border-bottom-color: rgb(176, 176, 176); border-bottom-width: 2px; margin-top: 0; padding-bottom: 0; padding-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                    <ui:Label tabindex="-1" text="Jump" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="width: 25%;" />
+                    <ui:Label tabindex="-1" text="Button South" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%;" />
+                    <ui:Label tabindex="-1" text="Press Space" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%;" />
+                </ui:GroupBox>
+                <ui:GroupBox name="GroupBox" style="flex-direction: row; border-left-color: rgb(176, 176, 176); border-right-color: rgb(176, 176, 176); border-top-color: rgb(176, 176, 176); border-bottom-color: rgb(176, 176, 176); border-bottom-width: 2px; margin-top: 0; padding-bottom: 0; padding-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                    <ui:Label tabindex="-1" text="Action" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="width: 25%;" />
+                    <ui:Label tabindex="-1" text="Button West" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%;" />
+                    <ui:Label tabindex="-1" text="Press E or Left Shift" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%;" />
+                </ui:GroupBox>
+                <ui:GroupBox name="GroupBox" style="flex-direction: row; border-left-color: rgb(176, 176, 176); border-right-color: rgb(176, 176, 176); border-top-color: rgb(176, 176, 176); border-bottom-color: rgb(176, 176, 176); border-bottom-width: 2px; margin-top: 0; padding-bottom: 0; padding-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                    <ui:Label tabindex="-1" text="Go to an object " parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="width: 25%;" />
+                    <ui:Label tabindex="-1" text="Left Stick (top or bottom)" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%;" />
+                    <ui:Label tabindex="-1" text="Press Arrows top or bottom or  W, S" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%;" />
+                </ui:GroupBox>
+                <ui:GroupBox name="GroupBox" style="flex-direction: row; border-left-color: rgb(176, 176, 176); border-right-color: rgb(176, 176, 176); border-top-color: rgb(176, 176, 176); border-bottom-color: rgb(176, 176, 176); border-bottom-width: 2px; margin-top: 0; padding-bottom: 0; padding-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                    <ui:Label tabindex="-1" text="Retry the level " parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="width: 25%; -unity-text-align: middle-left;" />
+                    <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" text="          (Select) or button North" style="width: 35%; -unity-text-align: middle-left;">
+                        <ui:VisualElement style="flex-grow: 1; background-image: url(&apos;project://database/Assets/_zg00gz/Textures/Icons-ScaleTravel.png?fileID=1222093967&amp;guid=771853c4fe1bb7d4dad71be5b1dfda91&amp;type=3#Icons-Select&apos;); width: 25px; height: 25px; -unity-background-image-tint-color: rgb(0, 0, 0); -unity-background-scale-mode: stretch-to-fill;" />
+                    </ui:Label>
+                    <ui:Label tabindex="-1" text="Press R" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%; -unity-text-align: middle-left;" />
+                </ui:GroupBox>
+                <ui:GroupBox name="GroupBox" style="flex-direction: row; border-left-color: rgb(176, 176, 176); border-right-color: rgb(176, 176, 176); border-top-color: rgb(176, 176, 176); border-bottom-color: rgb(176, 176, 176); border-bottom-width: 2px; margin-top: 0; padding-bottom: 0; padding-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                    <ui:Label tabindex="-1" text="Go back to menu " parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="width: 25%; -unity-text-align: middle-left;" />
+                    <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" text="          (Start)" style="width: 35%; -unity-text-align: middle-left;">
+                        <ui:VisualElement style="flex-grow: 1; background-image: url(&apos;project://database/Assets/_zg00gz/Textures/Icons-ScaleTravel.png?fileID=776354799&amp;guid=771853c4fe1bb7d4dad71be5b1dfda91&amp;type=3#Icons-Start&apos;); width: 25px; height: 25px; -unity-background-image-tint-color: rgb(0, 0, 0); -unity-background-scale-mode: stretch-to-fill;" />
+                    </ui:Label>
+                    <ui:Label tabindex="-1" text="Press M" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 35%; -unity-text-align: middle-left;" />
+                </ui:GroupBox>
+                <ui:Label tabindex="-1" text="Unlock levels" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font-style: bold; margin-top: 10px;" />
+                <ui:Label tabindex="-1" text="Completing World 1 unlocks Worlds 2 and 3. Completing Worlds 2 and 3 unlocks the last world" parse-escape-sequences="true" display-tooltip-when-elided="true" style="margin-top: 0; padding-top: 0; margin-right: 0;" />
+                <ui:Label tabindex="-1" text="Credits" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font-style: bold; margin-top: 10px;" />
+                <ui:Label tabindex="-1" text="A game by Vincent Fleury. &lt;i&gt;Made for GitHub Game Off 2023 in november 2023&lt;/i&gt;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="margin-top: 0; padding-top: 0;" />
+                <ui:Label tabindex="-1" text="Sources" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font-style: bold; margin-top: 10px;" />
+                <ui:Label tabindex="-1" text="Read Wikipedia articles for scale values and approximate sizes of in-game objects." parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="margin-top: 0; padding-top: 0;" />
+            </ui:GroupBox>
             <ui:GroupBox style="-unity-text-align: upper-left; align-items: center; padding-bottom: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; margin-top: 15px; padding-left: 0; padding-right: 0; padding-top: 0; position: absolute; bottom: 0; left: 0; right: 0;">
-                <ui:Button display-tooltip-when-elided="true" enable-rich-text="true" name="Btn_OK_infos" text="OK" class="scale-button" style="width: 150px;" />
+                <ui:Button display-tooltip-when-elided="true" enable-rich-text="true" name="btn_OK_Infos" text="OK" class="scale-button" style="width: 150px;" />
             </ui:GroupBox>
         </ui:GroupBox>
     </ui:GroupBox>

@@ -17,6 +17,10 @@ namespace ScaleTravel
         [SerializeField] LevelData m_LevelValues;
         [SerializeField] AudioMixer m_MasterMixer;
 
+        private AudioSource m_AudioSource;
+        [SerializeField] AudioClip m_EndLevelMusic;
+
+
         [SerializeField] TMPro.TextMeshProUGUI m_Text_GroupLevelTitle;
         [SerializeField] TMPro.TextMeshProUGUI m_Text_LevelTitle;
         [SerializeField] TMPro.TextMeshProUGUI m_Text_GoWord;
@@ -71,6 +75,7 @@ namespace ScaleTravel
             m_LoadLevelTime = Time.time;
             m_MasterMixer.SetFloat("musicVol", PlayerLocal.Instance.HeroData.Profile.MusicVolume);
             m_MasterMixer.SetFloat("soundVol", PlayerLocal.Instance.HeroData.Profile.SoundVolume);
+            m_AudioSource = GetComponent<AudioSource>();
         }
         
 
@@ -181,7 +186,7 @@ namespace ScaleTravel
         public void LevelStart()
         {
             m_Input.playerControllerInputBlocked = false;
-
+            
             m_UI_Level.StartLevelScreen();
             m_TimerStartTime = Time.time;
             if (m_LastPlayerLevelValues != null) DisplayTimer();
@@ -227,12 +232,12 @@ namespace ScaleTravel
         {
             IsLevelDone = true;
             m_PlayerController.SetKinematic(true);
-            
-            //if (m_MusicRunEnd)
-            //{
-            //    m_AudioSource.Stop();
-            //    m_MusicRunEnd.Play();
-            //}
+
+            if (m_EndLevelMusic != null)
+            {
+                m_AudioSource.Stop();
+                m_AudioSource.PlayOneShot(m_EndLevelMusic);
+            }
 
             // SavePlayerLevel
             m_TimerEndTime = Time.time;

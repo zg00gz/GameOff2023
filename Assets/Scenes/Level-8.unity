@@ -8610,7 +8610,7 @@ PrefabInstance:
     - target: {fileID: 5177793729609994867, guid: feafb542324f5ca46a1ad9f19cd07204,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.77
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5177793729609994867, guid: feafb542324f5ca46a1ad9f19cd07204,
         type: 3}
@@ -21065,7 +21065,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3995316823328982485 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2217597304569429374, guid: d3967f0d694447f47bed6a076d196e60,
@@ -21293,6 +21293,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2230378160686106405, guid: 5d3d15dafbcbbbd40a8e967c9bac46c3,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c1e92573ecacfec41a34acadbc62f0ac, type: 3}
     - target: {fileID: 2558896309307878388, guid: 5d3d15dafbcbbbd40a8e967c9bac46c3,
         type: 3}
       propertyPath: m_Name
@@ -21348,6 +21353,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7595944653917861210, guid: 5d3d15dafbcbbbd40a8e967c9bac46c3,
+        type: 3}
+      propertyPath: m_LevelMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: c1e92573ecacfec41a34acadbc62f0ac, type: 3}
     - target: {fileID: 7595944653917861210, guid: 5d3d15dafbcbbbd40a8e967c9bac46c3,
         type: 3}
       propertyPath: m_LevelValues
@@ -21678,6 +21688,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DisplayFPS TMP DEV
       objectReference: {fileID: 0}
+    - target: {fileID: 1692413605574518305, guid: 02f7da335e8183241a6eefaa56bfabe4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3500200854524629793, guid: 02f7da335e8183241a6eefaa56bfabe4,
         type: 3}
       propertyPath: m_Pivot.x
@@ -21874,7 +21889,7 @@ PrefabInstance:
     - target: {fileID: 3304207575642063274, guid: e152d5c48efec4d4a9401d1559ab34a8,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.14
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3304207575642063274, guid: e152d5c48efec4d4a9401d1559ab34a8,
         type: 3}

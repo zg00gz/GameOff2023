@@ -171,6 +171,7 @@
 
 .scale-button-level {
     -unity-font: url('project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
+    -unity-font-style: bold;
     border-left-width: 1px;
     border-right-width: 1px;
     border-top-width: 1px;
@@ -179,7 +180,6 @@
     border-bottom-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    -unity-font-style: bold;
     width: 85%;
     height: 25px;
     margin-left: 2px;
@@ -193,7 +193,20 @@
     justify-content: center;
     font-size: 16px;
     -unity-text-align: middle-center;
+    color: rgb(50, 50, 50);
+}
+.scale-button-level:hover:enabled {
     color: rgb(0, 0, 0);
+    border-left-color: rgb(50, 50, 50));
+    border-right-color: rgb(50, 50, 50);
+    border-top-color: rgb(50, 50, 50);
+    border-bottom-color: rgb(50, 50, 50);
+}
+.scale-button-level:focus {
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
 }
 
 .scale-button-level-default {
@@ -205,7 +218,7 @@
 }
 
 .scale-button-level-bronze {
-    background-color: rgba(205, 127, 50, 0.9);
+    background-color: rgba(205, 127, 50, 1);
     border-left-color: rgb(205, 127, 50);
     border-right-color: rgb(205, 127, 50);
     border-top-color: rgb(205, 127, 50);
@@ -213,7 +226,7 @@
 }
 
 .scale-button-level-silver {
-    background-color: rgba(188, 198, 204, 0.9);
+    background-color: rgba(188, 198, 204, 1);
     border-left-color: rgb(188, 198, 204);
     border-right-color: rgb(188, 198, 204);
     border-top-color: rgb(188, 198, 204);
@@ -221,7 +234,7 @@
 }
 
 .scale-button-level-gold {
-    background-color: rgba(212, 175, 55, 0.9);
+    background-color: rgba(212, 175, 55, 1);
     border-left-color: rgb(212, 175, 55);
     border-right-color: rgb(212, 175, 55);
     border-top-color: rgb(212, 175, 55);

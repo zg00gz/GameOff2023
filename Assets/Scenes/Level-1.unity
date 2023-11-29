@@ -5664,7 +5664,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1001 &4574021908024190977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5856,7 +5856,7 @@ PrefabInstance:
     - target: {fileID: 4660352896529016693, guid: 26cd5372707c273418a8b609de48a28b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 4
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 4660352896529016693, guid: 26cd5372707c273418a8b609de48a28b,
         type: 3}
@@ -5886,6 +5886,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2230378160686106405, guid: 5d3d15dafbcbbbd40a8e967c9bac46c3,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e4588f2692002df41824b5211d5e76a2, type: 3}
     - target: {fileID: 2558896309307878388, guid: 5d3d15dafbcbbbd40a8e967c9bac46c3,
         type: 3}
       propertyPath: m_Name
@@ -6320,6 +6325,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DisplayFPS TMP DEV
       objectReference: {fileID: 0}
+    - target: {fileID: 1692413605574518305, guid: 02f7da335e8183241a6eefaa56bfabe4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3500200854524629793, guid: 02f7da335e8183241a6eefaa56bfabe4,
         type: 3}
       propertyPath: m_Pivot.x
@@ -6511,7 +6521,7 @@ PrefabInstance:
     - target: {fileID: 3304207575642063274, guid: e152d5c48efec4d4a9401d1559ab34a8,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3304207575642063274, guid: e152d5c48efec4d4a9401d1559ab34a8,
         type: 3}
